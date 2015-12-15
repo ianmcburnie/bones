@@ -29,7 +29,7 @@ Bones advocates the [Progressive Enhancement](http://en.wikipedia.org/wiki/Progr
 
 <sub><sup>2</sup> Building an app that is rendered entirely on the client-side? If so, you will only need to refer to the enhanced/initialised code. However, best practice is to build apps in an <a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/">isomorphic</a> fashion so that first page load is rendered by the server then *enhanced* on the client.</sub>
 
-## [Accordion](https://github.corp.ebay.com/pages/accessibility/patterns/disclosure/accordion.html)
+## [Accordion](https://ebay.gitbooks.io/mindpatterns/content/disclosure/accordion.html)
 
 ### Before JavaScript Initialisation
 
@@ -87,7 +87,7 @@ Tree structure remains identical, but many new attributes are added. Zero or mor
 </div>
 ```
 
-## [Breadcrumbs](https://github.corp.ebay.com/pages/accessibility/patterns/navigation/breadcrumbs.html)
+## [Breadcrumbs](https://ebay.gitbooks.io/mindpatterns/content/navigation/breadcrumbs.html)
 
 The content is an ordered list of links inside a navigation landmark region. Breadcrumbs do not require JavaScript initialisation. CSS can be used to generate → separator content.
 
@@ -103,7 +103,7 @@ The content is an ordered list of links inside a navigation landmark region. Bre
 </nav>
 ```
 
-## [Carousel](https://github.corp.ebay.com/pages/accessibility/patterns/disclosure/carousel.html)
+## [Carousel](https://ebay.gitbooks.io/mindpatterns/content/disclosure/carousel.html)
 
 ### Before JavaScript Initialisation
 
@@ -176,7 +176,7 @@ JavaScript adds the button, instructions and listbox to the markup.
 </div>
 ```
 
-## [Dialog](https://github.corp.ebay.com/pages/accessibility/patterns/structure/dialog.html)
+## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/structure/dialog.html)
 
 ```html
 <div aria-labelledby="dialog_title" class="dialog" role="dialog">
@@ -194,7 +194,7 @@ JavaScript adds the button, instructions and listbox to the markup.
 
 **NOTE:** header tag is not supported in IE8 and below - use HTML5Shiv or substitute for a div tag instead.
 
-## [Input Validation](https://github.corp.ebay.com/pages/accessibility/patterns/messaging/inputvalidation.html)
+## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/inputvalidation.html)
 
 Input validation messages depend fully on JavaScript; they are considered an enhancement in *addition* to full form validation (form validation does not require JavaScript).
 
@@ -225,7 +225,7 @@ Input validation messages depend fully on JavaScript; they are considered an enh
 ```
 
 <!--
-## [Listbox](https://github.corp.ebay.com/pages/accessibility/patterns/input/listbox.html)
+## [Listbox](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
 
 ### Before JavaScript Initialisation
 
@@ -264,7 +264,7 @@ A scrolling listbox is created by using a select tag and specifying an arbitrary
 ```
 -->
 
-## [Pagination](https://github.corp.ebay.com/pages/accessibility/examples/pagination/)
+## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
 
 ### Stateless Pagination
 
@@ -287,7 +287,7 @@ A scrolling listbox is created by using a select tag and specifying an arbitrary
 </nav>
 ```
 
-## [Popup Menu](https://github.corp.ebay.com/pages/accessibility/patterns/input/menu.html)
+## [Popup Menu](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
 
 A popup menu contains commands (menuitem, menuitemradio, or menuitemcheckbox) that execute JavaScript. If you require a non-JavaScript fallback, consider using native form controls (e.g. regular buttons, radios and checkboxes).
 
@@ -334,7 +334,7 @@ If you only require a flat list of menu items, with no groups or separators, you
 
 In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
 
-## [Popup Nav](https://github.corp.ebay.com/pages/accessibility/patterns/navigation/navmenu.html)
+## [Popup Nav](https://ebay.gitbooks.io/mindpatterns/content/navigation/navmenu.html)
 
 ### Before JavaScript Initialisation
 
@@ -372,7 +372,7 @@ Remember that this button will not work without JavaScript. Therefore we disable
 
 If you require a popup nav that is opened by hovering on a link, rather than clicking on a button, then append an offscreen popup button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
 
-## [Radio](https://github.corp.ebay.com/pages/accessibility/patterns/input/radio.html)
+## [Radio](https://ebay.gitbooks.io/mindpatterns/content/input/radio.html)
 
 ```html
 <div class="radiogroup" id="radiogroup1">
@@ -441,7 +441,7 @@ Notice that aria-hidden is now applied to the labels. This is to prevent an issu
 
 -->
 
-## [Tabs](https://github.corp.ebay.com/pages/accessibility/patterns/disclosure/tabs.html)
+## [Tabs](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html)
 
 Tabs require 2 or more panels of content.
 
