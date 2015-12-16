@@ -10,10 +10,10 @@
 1. [Carousel](#user-content-carousel)
 1. [Combobox](#user-content-combobox)
 1. [Dialog](#user-content-dialog)
+1. [Faux Menu](#user-content-faux-menu)
 1. [Input Validation](#user-content-input-validation)
 1. [Pagination](#user-content-pagination)
-1. [Popup Menu](#user-content-popup-menu)
-1. [Popup Nav](#user-content-popup-nav)
+1. [Menu](#user-content-menu)
 1. [Radio](#user-content-radio)
 1. [Tabs](#user-content-tabs)
 
@@ -194,6 +194,44 @@ JavaScript adds the button, instructions and listbox to the markup.
 
 **NOTE:** header tag is not supported in IE8 and below - use HTML5Shiv or substitute for a div tag instead.
 
+## [Faux Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fauxmenu.html)
+
+### Before JavaScript Initialisation
+
+The content is a button and a list of links. Use an ordered list if the items are semantically ordered in any way.
+
+```html
+<div class="fauxmenu">
+    <button disabled>Open Nav</button>
+    <div>
+        <ul>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+        </ul>
+    </div>
+</div>
+```
+
+Remember that this button will not work without JavaScript. Therefore we disable it in our markup and then enable it with JavaScript.
+
+### After JavaScript Initialisation
+
+```html
+<div class="fauxmenu fauxmenu--js" id="fauxmenu_0">
+    <button aria-controls="fauxmenu_0_flyout" aria-expanded="false">Open Nav</button>
+    <div id="pfauxmenu_0_flyout">
+        <ul>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+        </ul>
+    </div>
+</div>
+```
+
+If you require a faux menu that is opened by hovering on a link, rather than clicking on a button, then append an offscreen popup button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
+
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/inputvalidation.html)
 
 Input validation messages depend fully on JavaScript; they are considered an enhancement in *addition* to full form validation (form validation does not require JavaScript).
@@ -287,14 +325,14 @@ A scrolling listbox is created by using a select tag and specifying an arbitrary
 </nav>
 ```
 
-## [Popup Menu](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
+## [Menu](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
 
-A popup menu contains commands (menuitem, menuitemradio, or menuitemcheckbox) that execute JavaScript. If you require a non-JavaScript fallback, consider using native form controls (e.g. regular buttons, radios and checkboxes).
+A menu contains commands (menuitem, menuitemradio, or menuitemcheckbox) that execute JavaScript. If you require a non-JavaScript fallback, consider using native form controls (e.g. regular buttons, radios and checkboxes).
 
 ```html
-<div class="popupmenu" id="popupmenu_0">
-    <button aria-controls="popupmenu_0_flyout" aria-expanded="false" aria-haspopup="true" disabled>Open Menu</button>
-    <div id="popupmenu_0_flyout">
+<div class="menu" id="menu_0">
+    <button aria-controls="menu_0_flyout" aria-expanded="false" aria-haspopup="true" disabled>Open Menu</button>
+    <div id="menu_0_flyout">
         <div role="menu">
             <div role="presentation">
                 <div role="menuitem" tabindex="0">Button 1</div>
@@ -321,9 +359,9 @@ Remember that the popup button will not work without JavaScript. Therefore we ma
 If you only require a flat list of menu items, with no groups or separators, you can instead use a more compact form of markup:
 
 ```html
-<div class="popupmenu" id="popupmenu_1">
-    <button aria-controls="popupmenu_1_flyout" aria-expanded="false" aria-haspopup="true">Open Menu</button>
-    <div id="popupmenu_1_flyout">
+<div class="menu" id="menu_1">
+    <button aria-controls="menu_1_flyout" aria-expanded="false" aria-haspopup="true">Open Menu</button>
+    <div id="menu_1_flyout">
         <div role="menu">
             <div role="menuitem" tabindex="0">Button 1</div>
             <div role="menuitem" tabindex="-1">Button 2</div>
@@ -333,44 +371,6 @@ If you only require a flat list of menu items, with no groups or separators, you
 ```
 
 In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
-
-## [Popup Nav](https://ebay.gitbooks.io/mindpatterns/content/navigation/navmenu.html)
-
-### Before JavaScript Initialisation
-
-The content is a button and a list of links. Use an ordered list if the items are semantically ordered in any way.
-
-```html
-<div class="popupnav">
-    <button disabled>Open Nav</button>
-    <div>
-        <ul>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-        </ul>
-    </div>
-</div>
-```
-
-Remember that this button will not work without JavaScript. Therefore we disable it in our markup and then enable it with JavaScript.
-
-### After JavaScript Initialisation
-
-```html
-<div class="popupnav popupnav--js" id="popupnav_0">
-    <button aria-controls="popupnav_0_flyout" aria-expanded="false">Open Nav</button>
-    <div id="popupnav_0_flyout">
-        <ul>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-        </ul>
-    </div>
-</div>
-```
-
-If you require a popup nav that is opened by hovering on a link, rather than clicking on a button, then append an offscreen popup button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
 
 ## [Radio](https://ebay.gitbooks.io/mindpatterns/content/input/radio.html)
 
