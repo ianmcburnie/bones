@@ -347,6 +347,8 @@ If you only require a flat list of menu items, with no groups or separators, you
 </div>
 ```
 
+In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
+
 ## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
 
 ### Server-Side Pagination
@@ -394,8 +396,6 @@ Assuming current page is 1.
     <a class="icon-chevron-right" href="2.html" aria-label="Next results"></a>
 </nav>
 ```
-
-In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
 
 ## [Radio](https://ebay.gitbooks.io/mindpatterns/content/input/radio.html)
 
