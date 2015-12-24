@@ -12,8 +12,8 @@
 1. [Dialog](#user-content-dialog)
 1. [Faux Menu](#user-content-faux-menu)
 1. [Input Validation](#user-content-input-validation)
-1. [Pagination](#user-content-pagination)
 1. [Menu](#user-content-menu)
+1. [Pagination](#user-content-pagination)
 1. [Radio](#user-content-radio)
 1. [Tabs](#user-content-tabs)
 
@@ -302,29 +302,6 @@ A scrolling listbox is created by using a select tag and specifying an arbitrary
 ```
 -->
 
-## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
-
-### Stateless Pagination
-
-```html
-<nav class="pagination" aria-labelledby="pagination_heading" role="navigation">
-    <h2 id="pagination_heading" class="clipped">Results pagination</h2>
-    <a class="icon-chevron-left-disabled" aria-disabled="true" href="index.html" aria-label="Previous results" tabindex="-1"></a>
-    <ol>
-        <li>
-            <a href="index.html" aria-disabled="true" tabindex="-1">1</a>
-        </li>
-        <li>
-            <a href="2.html">2</a>
-        </li>
-        <li>
-            <a href="3.html">3</a>
-        </li>
-    </ol>
-    <a class="icon-chevron-right" href="2.html" aria-label="Next results"></a>
-</nav>
-```
-
 ## [Menu](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
 
 A menu contains commands (menuitem, menuitemradio, or menuitemcheckbox) that execute JavaScript. If you require a non-JavaScript fallback, consider using native form controls (e.g. regular buttons, radios and checkboxes).
@@ -368,6 +345,54 @@ If you only require a flat list of menu items, with no groups or separators, you
         </div>
     </div>
 </div>
+```
+
+## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
+
+### Server-Side Pagination
+
+Assuming current page is 1.
+
+```html
+<nav class="pagination" aria-labelledby="pagination_heading" role="navigation">
+    <h2 id="pagination_heading" class="clipped">Results pagination</h2>
+    <span class="icon-chevron-left-disabled"></span>
+    <ol>
+        <li>
+            <span>1</span>
+        </li>
+        <li>
+            <a href="2.html">2</a>
+        </li>
+        <li>
+            <a href="3.html">3</a>
+        </li>
+    </ol>
+    <a class="icon-chevron-right" href="2.html" aria-label="Next results"></a>
+</nav>
+```
+
+### Client-Side Pagination
+
+Assuming current page is 1.
+
+```html
+<nav class="pagination" aria-labelledby="pagination_heading" role="navigation">
+    <h2 id="pagination_heading" class="clipped">Results pagination</h2>
+    <a class="icon-chevron-left-disabled" aria-disabled="true" href="index.html" aria-label="Previous results" tabindex="-1"></a>
+    <ol>
+        <li>
+            <a href="index.html" aria-disabled="true" tabindex="-1">1</a>
+        </li>
+        <li>
+            <a href="2.html">2</a>
+        </li>
+        <li>
+            <a href="3.html">3</a>
+        </li>
+    </ol>
+    <a class="icon-chevron-right" href="2.html" aria-label="Next results"></a>
+</nav>
 ```
 
 In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
