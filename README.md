@@ -11,6 +11,7 @@
 1. [Combobox](#user-content-combobox)
 1. [Dialog](#user-content-dialog)
 1. [Faux Menu](#user-content-faux-menu)
+1. [Faux Tabs](#user-content-faux-tabs)
 1. [Input Validation](#user-content-input-validation)
 1. [Menu](#user-content-menu)
 1. [Pagination](#user-content-pagination)
@@ -233,6 +234,29 @@ Remember that this button will not work without JavaScript. Therefore we disable
 ```
 
 If you require a faux menu that is opened by hovering on a link, rather than clicking on a button, then append an offscreen popup button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
+
+## Faux Tabs
+
+Faux tabs appear like regular tabs, but behave like a regular list of links. No JavaScript or ARIA is required.
+
+```html
+<div class="faux-tabs" id="faux-tabs-1">
+    <h2 class="clipped">Faux Tabs Heading</h2>
+    <ul>
+        <li>
+            <a href="http://www.ebay.com/1">Page 1</a>
+        </li>
+        <li>
+            <a href="http://www.ebay.com/2">Page 2</a>
+        </li>
+        <li>
+            <a href="http://www.ebay.com/3">Page 3</a>
+        </li>
+    </ul>
+</div>
+```
+
+NOTE: You may wish to use `role="navigation"` on the root div if these links are prominent navigation links.
 
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/inputvalidation.html)
 
@@ -515,7 +539,7 @@ Tree structure remains identical, but many new attributes are added. Only one pa
 
 ```html
 <div class="tabs tab--js" id="tabs1">
-    <h2>Tabs Heading</h2>
+    <h2 class="clipped">Tabs Heading</h2>
     <ul role="tablist">
         <li role="tab" aria-controls="tabs1_panel1" aria-selected="true" id="tabs1_tab1" tabindex="0">
             <a role="presentation">Tab 1</a>
@@ -552,7 +576,7 @@ If you do not wish to support progressive enhancement, simply replace the list o
 
 ```html
 <div class="tabs tab--js" id="tabs1">
-    <h2>Tabs Heading</h2>
+    <h2 class="clipped">Tabs Heading</h2>
     <div role="tablist">
         <div role="tab" aria-controls="tabs1_panel1" aria-selected="true" id="tabs1_tab1" tabindex="0">
             <span>Tab 1</span>
