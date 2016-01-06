@@ -162,7 +162,7 @@ Without JavaScript, the combobox markup is a simple text input with label.
 JavaScript adds the button, instructions and listbox to the markup.
 
 ```html
-<div class="combobox" id="combobox-1">
+<div class="combobox" id="combobox-1" role="application">
     <label for="combobox-1-input">Combobox Label</label>
     <input id="combobox-1-input" name="combobox-1-name" type="text" role="combobox" aria-expanded="false" autocomplete="off" aria-owns="combobox-1-listbox" aria-describedby="combobox-1-instructions">
     <button type="button" tabindex="-1" aria-label="Expand Options"></button>
@@ -175,6 +175,8 @@ JavaScript adds the button, instructions and listbox to the markup.
     </ul>
 </div>
 ```
+
+Notice that `role="application"` is required for JAWS screenreader.
 
 ## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/structure/dialog.html)
 
