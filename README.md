@@ -165,17 +165,19 @@ JavaScript adds the button, instructions and listbox to the markup.
 ```html
 <div class="combobox" id="combobox-1" role="application">
     <label for="combobox-1-input">Combobox Label</label>
-    <input id="combobox-1-input" name="combobox-1-name" type="text" role="combobox" aria-expanded="false" autocomplete="off" aria-owns="combobox-1-listbox" aria-describedby="combobox-1-instructions">
+    <input id="combobox-1-input" name="combobox-1-name" type="text" role="combobox" aria-activedescendant="combobox-1-option-1" aria-expanded="false" autocomplete="off" aria-owns="combobox-1-listbox" aria-describedby="combobox-1-instructions">
     <button type="button" tabindex="-1" aria-label="Expand Options"></button>
     <span id="combobox-1-instructions">Use up and down arrow keys to navigate options</span>
     <ul id="combobox-1-listbox" role="listbox">
-        <li role="option" id="combobox-1-activedescendant">Option 1</li>
-        <li role="option">Option 2</li>
-        <li role="option">Option 3</li>
+        <li role="option" id="combobox-1-option-1">Option 1</li>
+        <li role="option" id="combobox-1-option-2">Option 2</li>
+        <li role="option" id="combobox-1-option-3">Option 3</li>
         ...
     </ul>
 </div>
 ```
+
+The `aria-activedescendant` value in this example assumes user has pressed down arrow key to move pseudo focus to first listbox option. The initial value would actually be empty when there is no pseudo focus.
 
 Notice that `role="application"` is required for JAWS screenreader.
 
