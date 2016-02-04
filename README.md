@@ -14,6 +14,7 @@
 1. [Faux Tabs](#user-content-faux-tabs)
 1. [Input Validation](#user-content-input-validation)
 1. [Menu](#user-content-menu)
+1. [Page Alert](#user-content-page-alert)
 1. [Pagination](#user-content-pagination)
 1. [Radio](#user-content-radio)
 1. [Tabs](#user-content-tabs)
@@ -376,6 +377,26 @@ If you only require a flat list of menu items, with no groups or separators, you
 ```
 
 In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
+
+## [Page Alert](http://ianmcburnie.github.io/mindpatterns/pagealert/)
+
+If the page alert is rendered visible on the server, and will not be updated by the client, use `role=region` and `aria-label` to mark the alert as a landmark for assistive technology.
+
+```html
+<div class="page-alert" role="region" aria-label="Page alert: high priority">
+    <button type="button">Close</button>
+    <p>Something went wrong. Please try again.</p>
+</div>
+```
+
+If the page alert content or visibility will be updated by the client, use `role=alert` to mark the alert as a live region for assistive technology.
+
+```html
+<div class="page-alert" role="alert" aria-label="Page alert: high priority">
+    <button type="button">Close</button>
+    <p>Something went wrong. Please try again.</p>
+</div>
+```
 
 ## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
 
