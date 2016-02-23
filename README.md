@@ -150,7 +150,7 @@ JavaScript must maintain the aria-hidden state of items as they scroll in and ou
 
 ### Before JavaScript Initialisation
 
-Without JavaScript, the combobox markup is a simple text input with label.
+Without JavaScript, the combobox markup is a simple text input with label:
 
 ```html
 <div class="combobox" id="combobox-1">
@@ -166,7 +166,7 @@ JavaScript adds the button, instructions and listbox to the markup.
 ```html
 <div class="combobox" id="combobox-1" role="application">
     <label for="combobox-1-input">Combobox Label</label>
-    <input id="combobox-1-input" name="combobox-1-name" type="text" role="combobox" aria-activedescendant="combobox-1-option-1" aria-expanded="false" autocomplete="off" aria-owns="combobox-1-listbox" aria-describedby="combobox-1-instructions">
+    <input id="combobox-1-input" name="combobox-1-name" type="text" role="combobox" aria-expanded="false" autocomplete="off" aria-owns="combobox-1-listbox" aria-describedby="combobox-1-instructions">
     <button type="button" tabindex="-1" aria-label="Expand Options"></button>
     <span id="combobox-1-instructions">Use up and down arrow keys to navigate options</span>
     <ul id="combobox-1-listbox" role="listbox">
@@ -178,9 +178,24 @@ JavaScript adds the button, instructions and listbox to the markup.
 </div>
 ```
 
-The `aria-activedescendant` value in this example assumes user has pressed down arrow key to move pseudo focus to first listbox option. The initial value would actually be empty when there is no pseudo focus.
+After arrow key up or down, JavaScript must update the `aria-activedescendant` attribute to reflect the state of the currently active descendant item. For example, if arrow key down is pressed:
 
-Notice that `role="application"` is required for JAWS screenreader.
+```html
+<div class="combobox" id="combobox-1" role="application">
+    <label for="combobox-1-input">Combobox Label</label>
+    <input id="combobox-1-input" name="combobox-1-name" type="text" role="combobox" aria-activedescendant="combobox-1-option-1" aria-expanded="true" autocomplete="off" aria-owns="combobox-1-listbox" aria-describedby="combobox-1-instructions">
+    <button type="button" tabindex="-1" aria-label="Expand Options"></button>
+    <span id="combobox-1-instructions">Use up and down arrow keys to navigate options</span>
+    <ul id="combobox-1-listbox" role="listbox">
+        <li role="option" id="combobox-1-option-1" aria-selected="true">Option 1</li>
+        <li role="option" id="combobox-1-option-2">Option 2</li>
+        <li role="option" id="combobox-1-option-3">Option 3</li>
+        ...
+    </ul>
+</div>
+```
+
+Notice that `role="application"` is required to prevent JAWS virtual cursor from leaving listbox when up/down arrow keys are used. This role essentially forces JAWS into application mode, and is one of the few valid use cases we have for this role.
 
 ## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/structure/dialog.html)
 
