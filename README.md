@@ -353,23 +353,21 @@ A menu contains commands (menuitem, menuitemradio, or menuitemcheckbox) that exe
 ```html
 <div class="menu" id="menu_0">
     <button aria-controls="menu_0_flyout" aria-expanded="false" aria-haspopup="true" disabled>Open Menu</button>
-    <div id="menu_0_flyout">
-        <div role="menu">
-            <div role="presentation">
-                <div role="menuitem" tabindex="0">Button 1</div>
-                <div role="menuitem" tabindex="-1">Button 2</div>
-            </div>
-            <hr />
-            <div role="presentation">
-                <div aria-checked="true" role="menuitemradio" tabindex="-1">Radio Button 1 (checked)</div>
-                <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 2 </div>
-                <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 3</div>
-            </div>
-            <hr />
-            <div role="presentation">
-                <div aria-checked="true" role="menuitemcheckbox" tabindex="-1">Checkbox 1 (checked)</div>
-                <div aria-checked="true" role="menuitemcheckbox"  tabindex="-1">Checkbox 2 (checked)</div>
-            </div>
+    <div id="menu_0_flyout" role="menu">
+        <div role="presentation">
+            <div role="menuitem" tabindex="0">Button 1</div>
+            <div role="menuitem" tabindex="-1">Button 2</div>
+        </div>
+        <hr />
+        <div role="presentation">
+            <div aria-checked="true" role="menuitemradio" tabindex="-1">Radio Button 1 (checked)</div>
+            <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 2 </div>
+            <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 3</div>
+        </div>
+        <hr />
+        <div role="presentation">
+            <div aria-checked="true" role="menuitemcheckbox" tabindex="-1">Checkbox 1 (checked)</div>
+            <div aria-checked="true" role="menuitemcheckbox"  tabindex="-1">Checkbox 2 (checked)</div>
         </div>
     </div>
 </div>
@@ -382,11 +380,9 @@ If you only require a flat list of menu items, with no groups or separators, you
 ```html
 <div class="menu" id="menu_1">
     <button aria-controls="menu_1_flyout" aria-expanded="false" aria-haspopup="true">Open Menu</button>
-    <div id="menu_1_flyout">
-        <div role="menu">
-            <div role="menuitem" tabindex="0">Button 1</div>
-            <div role="menuitem" tabindex="-1">Button 2</div>
-        </div>
+    <div id="menu_1_flyout" role="menu">
+        <div role="menuitem" tabindex="0">Button 1</div>
+        <div role="menuitem" tabindex="-1">Button 2</div>
     </div>
 </div>
 ```
@@ -394,14 +390,12 @@ If you only require a flat list of menu items, with no groups or separators, you
 If you wish to provide a semantic fallback for browser & screen reader combos that do not support menu roles, you can use list markup instead of divs:
 
 ```html
-<div class="menu" id="menu_1">
-    <button aria-controls="menu_1_flyout" aria-expanded="false" aria-haspopup="true">Open Menu</button>
-    <div id="menu_1_flyout">
-        <ul role="menu">
-            <li role="menuitem" tabindex="0">Button 1</li>
-            <li role="menuitem" tabindex="-1">Button 2</li>
-        </ul>
-    </div>
+<div class="menu" id="menu_2">
+    <button aria-controls="menu_2_flyout" aria-expanded="false" aria-haspopup="true">Open Menu</button>
+    <ul id="menu_2_flyout" role="menu">
+        <li role="menuitem" tabindex="0">Button 1</li>
+        <li role="menuitem" tabindex="-1">Button 2</li>
+    </ul>
 </div>
 ```
 
