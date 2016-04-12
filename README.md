@@ -224,13 +224,11 @@ The content is a button and a list of links. Use an ordered list if the items ar
 ```html
 <div class="fauxmenu">
     <button disabled>Open Nav</button>
-    <div>
-        <ul>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-        </ul>
-    </div>
+    <ul>
+        <li><a href="http://www.ebay.com">Link Text</a></li>
+        <li><a href="http://www.ebay.com">Link Text</a></li>
+        <li><a href="http://www.ebay.com">Link Text</a></li>
+    </ul>
 </div>
 ```
 
@@ -241,13 +239,11 @@ Remember that this button will not work without JavaScript. Therefore we disable
 ```html
 <div class="fauxmenu fauxmenu--js" id="fauxmenu_0">
     <button aria-controls="fauxmenu_0_flyout" aria-expanded="false">Open Nav</button>
-    <div id="pfauxmenu_0_flyout">
-        <ul>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-        </ul>
-    </div>
+    <ul id="fauxmenu_0_flyout">
+        <li><a href="http://www.ebay.com">Link Text</a></li>
+        <li><a href="http://www.ebay.com">Link Text</a></li>
+        <li><a href="http://www.ebay.com">Link Text</a></li>
+    </ul>
 </div>
 ```
 
