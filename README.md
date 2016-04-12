@@ -391,6 +391,20 @@ If you only require a flat list of menu items, with no groups or separators, you
 </div>
 ```
 
+If you wish to provide a semantic fallback for browser & screen reader combos that do not support menu roles, you can use list markup instead of divs:
+
+```html
+<div class="menu" id="menu_1">
+    <button aria-controls="menu_1_flyout" aria-expanded="false" aria-haspopup="true">Open Menu</button>
+    <div id="menu_1_flyout">
+        <ul role="menu">
+            <li role="menuitem" tabindex="0">Button 1</li>
+            <li role="menuitem" tabindex="-1">Button 2</li>
+        </ul>
+    </div>
+</div>
+```
+
 In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
 
 ## [Page Alert](http://ianmcburnie.github.io/mindpatterns/pagealert/)
