@@ -94,8 +94,8 @@ Tree structure remains identical, but many new attributes are added. Zero or mor
 The content is an ordered list of links inside a navigation landmark region. Breadcrumbs do not require JavaScript initialisation. CSS can be used to generate → separator content.
 
 ```html
-<nav class="crumbs" aria-labelledby="crumbs_heading">
-    <h3 id="crumbs_heading">You are here</h3>
+<nav class="crumbs" aria-labelledby="crumbs_heading" role="navigation">
+    <h2 id="crumbs_heading">You are here</h2>
     <ol>
         <li><a href="http://www.ebay.com">Great Grandparent Page</a></li>
         <li><a href="http://www.ebay.com">Grandparent Page</a></li>
