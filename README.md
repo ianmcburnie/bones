@@ -467,72 +467,59 @@ Assuming current page is 1.
 
 ## [Radio](https://ebay.gitbooks.io/mindpatterns/content/input/radio.html)
 
+Native HTML radio buttons are 100% accessible by default. To ensure correct grouping and group label semantics, radio buttons should always be placed inside of a fieldset with legend.
+
 ```html
-<div class="radiogroup" id="radiogroup1">
+<div class="radio-group" id="radio-group1">
     <fieldset>
         <legend>Radio Group Title</legend>
         <span>
-            <input id="radiogroup1_input1" name="radiogroup1" type="radio" value="1" checked />
-            <label for="radiogroup1_input1">Input 1</label>
+            <input id="radio-group1_input1" name="radio-group1" type="radio" value="1" checked />
+            <label for="radio-group1_input1">Input 1</label>
         </span>
         <span>
-            <input id="radiogroup1_input2" name="radiogroup1" type="radio" value="2" />
-            <label for="radiogroup1_input2">Input 2</label>
+            <input id="radio-group1_input2" name="radio-group1" type="radio" value="2" />
+            <label for="radio-group1_input2">Input 2</label>
         </span>
         <span>
-            <input id="radiogroup1_input3" name="radiogroup1" type="radio" value="3" />
-            <label for="radiogroup1_input3">Input 3</label>
+            <input id="radio-group1_input3" name="radio-group1" type="radio" value="3" />
+            <label for="radio-group1_input3">Input 3</label>
         </span>
     </fieldset>
 </div>
 ```
 
-If for whatever reason you cannot use the correct &lt;fieldset&gt; and &lt;legend&gt; structural elements, then you must create the grouping semantics with ARIA instead:
+For vertically stacked radios, simply switch the spans to divs.
+
+Using CSS and icon fonts it is possible to 'replace' the natively styled radio button with a custom look and feel, with zero JavaScript required.
+
+### ARIA Radios
+
+For full control over styling of the element, or perhaps if your radio buttons are 'dumb' (i.e. they do not store or post form data) you may wish to consider custom ARIA radio buttons.
 
 ```html
-<div class="radiogroup" id="radiogroup1">
-    <div aria-labelledby="radiogroup1_label" class="radiogroup-fieldset" role="radiogroup">
-        <div class="radiogroup-legend" id="radiogroup1_label">Radio Group Title</div>
-        <!-- radio buttons go here, same as in example above -->
+<div class="aria-radio-group" id="aria-radios1">
+    <div class="aria-radio-group__legend" id="aria-radios1__legend">Auction Type</div>
+    <div class="aria-radio-group__fieldset" role="radiogroup" aria-labelledby="aria-radio-group__label">
+        <div class="aria-radio__container" role="presentation">
+            <span role="radio" aria-checked="false" aria-describedby="aria-radios1__legend" aria-labelledby="aria-radios1_label1"></span>
+            <span class="aria-radio__label" id="aria-radios1_label1" aria-hidden="true">All Listings</span>
+        </div>
+        <div class="aria-radio__container" role="presentation">
+            <span role="radio" aria-checked="false" aria-describedby="aria-radios1__legend" aria-labelledby="aria-radios1_label2"></span>
+            <span class="aria-radio__label" id="aria-radios1_label2" aria-hidden="true">Auction</span>
+        </div>
+        <div class="aria-radio__container" role="presentation">
+            <span role="radio" aria-checked="false" aria-describedby="aria-radios1__legend" aria-labelledby="aria-radios1_label3"></span>
+            <span class="aria-radio__label" id="aria-radios1_label3" aria-hidden="true">Buy it Now</span>
+        </div>
     </div>
 </div>
 ```
 
-Classes 'radiogroup-fieldset' and 'radiogroup-legend' can be added for additional CSS and JS hooks.
+Notice that aria-hidden is applied to the labels. This is to prevent an issue in Voiceover which treats the labels as members of the radiogroup role, thus doubling the number of reported radio items in the group. Don't worry, the label will still be read when focus and virtual cursor is on the custom radio button. Likewise, the 'legend' is also placed outside of the radiogroup.
 
-Radio button elements are traditionally difficult to style the way we want them to be. Modern CSS however, gives us the ability to 'hide' the native radio button element and generate font icon content for both the checked and unchecked states. The only caveat with this approach is that the focus indicator is also masked, meaning we must create our own custom focus indicator.
-
-<!--
-### After JavaScript Initialisation
-
-Using JavaScript we insert custom radio elements which allow for greater styling flexibility. The native elements are now hidden.
-
-```html
-<div class="radiogroup radiogroup--js" id="radiogroup1">
-    <fieldset aria-labelledby="radiogroup1_label" role="radiogroup">
-        <legend id="radiogroup1_label">Radio Group Title</legend>
-        <span>
-            <input aria-hidden="true" id="radiogroup1_input1" name="radiogroup1" type="radio" value="1" checked />
-            <span aria-checked="true" aria-labelledby="radiogroup1_label1" role="radio" tabindex="0" />
-            <label aria-hidden="true" for="radiogroup1_input1" id="radiogroup1_label1">Input 1</label>
-        </span>
-        <span>
-            <input aria-hidden="true" id="radiogroup1_input2" name="radiogroup1" type="radio" value="2" />
-            <span aria-checked="false" aria-labelledby="radiogroup1_label2" role="radio" tabindex="-1" />
-            <label aria-hidden="true" for="radiogroup1_input2" id="radiogroup1_label2">Input 2</label>
-        </span>
-        <span>
-            <input aria-hidden="true" id="radiogroup1_input3" name="radiogroup1" type="radio" value="3" />
-            <span aria-checked="false" aria-labelledby="radiogroup1_label3" role="radio" tabindex="-1" />
-            <label aria-hidden="true" for="radiogroup1_input3" id="radiogroup1_label3">Input 3</label>
-        </span>
-    </fieldset>
-</div>
-```
-
-Notice that aria-hidden is now applied to the labels. This is to prevent an issue in Voiceover which treats the labels as members of the radiogroup role, thus doubling the number of reported radio items in the group. Don't worry, the label will still be read when focus and virtual cursor is on the custom radio button.
-
--->
+Be warned: JavaScript will be required, and you will need to recreate the exact behaviour of native HTML radio buttons in full. It is no easy task. Perhaps a better approach is to progressively enhance the native radios into ARIA radios. This way, the under-the-hood native radios continue to provide all accessibility benefits, whilst the ARIA buttons provide the custom look and feel.
 
 ## [Tabs](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html)
 
