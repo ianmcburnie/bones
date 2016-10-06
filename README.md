@@ -399,21 +399,21 @@ In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-
 
 ## [Page Alert](http://ianmcburnie.github.io/mindpatterns/pagealert/)
 
-If the page alert is rendered visible on the server, and will not be updated by the client, use `role=region` and `aria-label` to mark the alert as a landmark for assistive technology.
+Use `role=region` and `aria-label` to mark the page alert as a landmark for assistive technology.
 
 ```html
 <div class="page-alert" role="region" aria-label="Page alert: high priority">
-    <button type="button">Close</button>
     <p>Something went wrong. Please try again.</p>
 </div>
 ```
 
-If the page alert content or visibility will be updated by the client, use `role=alert` to mark the alert as a live region for assistive technology.
+If the page alert content or display will be dynamically updated on the client, wrap the alert with `role=alert` or `role=status` to create a live region for assistive technology.
 
 ```html
-<div class="page-alert" role="alert" aria-label="Page alert: high priority">
-    <button type="button">Close</button>
-    <p>Something went wrong. Please try again.</p>
+<div role="alert">
+    <div class="page-alert" role="region" aria-label="Page alert: high priority">
+        <p>Oops. Something is still wrong. Please try again later.</p>
+    </div>
 </div>
 ```
 
