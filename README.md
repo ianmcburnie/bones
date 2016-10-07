@@ -12,6 +12,7 @@
 1. [Dialog](#user-content-dialog)
 1. [Faux Menu](#user-content-faux-menu)
 1. [Faux Tabs](#user-content-faux-tabs)
+1. [Flyout](#user-content-flyout)
 1. [Input Validation](#user-content-input-validation)
 1. [Menu](#user-content-menu)
 1. [Page Alert](#user-content-page-alert)
@@ -271,6 +272,25 @@ Faux tabs appear like regular tabs, but behave like a regular list of links. No 
 ```
 
 NOTE: You may wish to use `role="navigation"` on the root div if these links are prominent navigation links.
+
+## [Flyout](https://ebay.gitbooks.io/mindpatterns/content/disclosure/flyout.html)
+
+A flyout might open on click, focus or hover, on any kind of button, input or link. Regardless of what type of element or interaction is used to trigger the flyout, the overlay element must immediately follow the trigger element. This structure ensures a seamless and natural reading order and focus order.
+
+```html
+<div class="flyout">
+    <button aria-expanded="false|true">Button</button>
+    <div class="flyout__overlay-container" aria-live="off|polite|assertive">
+        <div class="flyout__overlay">
+            <!-- flyout contents -->
+        </div>
+    </div>
+</div>
+```
+
+In order for live-region support to work correctly in Voiceover, any hide/show operation (i.e. display:none|block) must be performed on the `flyout__overlay`, not the `flyout__overlay-container`.
+
+Note that Menu, Faux Menu, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern in that their overlay element must immediately follow the trigger element.
 
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/inputvalidation.html)
 
