@@ -19,6 +19,7 @@
 1. [Pagination](#user-content-pagination)
 1. [Radio](#user-content-radio)
 1. [Tabs](#user-content-tabs)
+1. [Tooltip](#user-content-tooltip)
 
 ## Introduction
 
@@ -656,4 +657,26 @@ If you do not wish to support progressive enhancement, simply replace the list o
 
 If the content of each tabpanel is only a small amount of unstructured text, then you may wish to convert the container of the tab panels into a live region using aria-live="polite".
 
-## More to Come...
+## [Tooltip](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tooltip.html)
+
+Tooltip structure is almost identical to [flyout](#user-content-flyout) structure:
+
+```html
+<span class="tooltip">
+    <input aria-describedby="tooltip0" class="tooltip__trigger" type="submit" value="Submit" />
+    <span class="tooltip__overlay" id="tooltip0" role="tooltip">Hint content</span>
+</span>
+```
+
+The main difference is that a modifier class must be used instead of aria-expanded attribute:
+
+```html
+<span class="tooltip tooltip--expanded">
+    <input aria-describedby="tooltip0" class="tooltip__trigger" type="submit" value="Submit" />
+    <span class="tooltip__overlay" id="tooltip0" role="tooltip">Hint content</span>
+</span>
+```
+
+In this example we have chosen the name `tooltip--expanded` for our modifier class.
+
+Role of `tooltip` is required on the overlay, and `aria-describedby` attribute is required on the trigger element.
