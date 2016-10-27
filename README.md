@@ -111,11 +111,13 @@ The content is an ordered list of links inside a navigation landmark region. Bre
 
 ### Before JavaScript Initialisation
 
-A carousel is a list of *stuff*. This stuff can be anything - text, links, tiles, cards, widgets, you name it.
+A carousel is a list of items. These items can contain anything - text, images, links, tiles, cards, etc. - but we advise against using complex widgets. The usual accessibility rules apply to the contents of these items (tab-order, semantics, etc).
+
+For the server rendered markup you can choose to render as little or as much of the full list as you wish. Client-side script can lazy-load in additional items as desired.
 
 ```html
 <div class="carousel">
-    <h2>List of Stuff</h2>
+    <h2 class="carousel__title">Items<span class="clipped"> - Carousel</span></h2>
     <ul>
         <li>...</li>
         <li>...</li>
@@ -127,26 +129,28 @@ A carousel is a list of *stuff*. This stuff can be anything - text, links, tiles
 
 ### After JavaScript Initialisation
 
-JavaScript wraps the list of stuff in a new div and adds the pagination controls.
+JavaScript adds a live status region after the heading, and two pagination buttons either side of the list.
 
 ```html
 <div class="carousel">
-    <h2>List of Stuff</h2>
-    <div>
-        <button aria-disabled="false" aria-label="Show previous n items of stuff"></button>
-        <ul>
-            <li aria-hidden="false">...</li>
-            <li aria-hidden="false">...</li>
-            <li aria-hidden="false">...</li>
-            ...
-        </ul>
-        <button aria-disabled="false" aria-label="Show next n items of stuff"></button>
-    </div>
-    <!-- additional pagination controls can go here as desired -->
+    <h2 class="carousel__title">List of Stuff<span class="clipped"> - Carousel</span></h2>
+    <p aria-live="polite" class="clipped" role="status">Showing slide 1 of n - Items - Carousel</p>
+    <button aria-disabled="false" aria-label="Show previous n items of stuff"></button>
+    <ul>
+        <li aria-hidden="false">...</li>
+        <li aria-hidden="false">...</li>
+        <li aria-hidden="false">...</li>
+        ...
+    </ul>
+    <button aria-disabled="false" aria-label="Show next n items of stuff"></button>
 </div>
 ```
 
-JavaScript must maintain the aria-hidden state of items as they scroll in and out of view.
+JavaScript must maintain the tabindex and aria-hidden state of items as they scroll in and out of view. Items that are not in view need a tabindex value of "-1" an aria-hidden value of "true" to ensure items are hidden from keyboard users and screen reader users respectively.
+
+JavaScript must also maintain the state of the status region.
+
+For small touch screens, you may wish to utilise swipe gestures. In which case pagination buttons can be hidden offscreen, appearing only on keyboard focus (i.e. 'stealth' buttons) for keyboard users.
 
 ## Combobox
 
