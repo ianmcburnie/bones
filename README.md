@@ -117,7 +117,7 @@ For the server rendered markup you can choose to render as little or as much of 
 
 ```html
 <div class="carousel">
-    <h2 class="carousel__title">Items<span class="clipped"> - Carousel</span></h2>
+    <h2 class="carousel__title">Title<span class="clipped"> - Carousel</span></h2>
     <ul>
         <li>...</li>
         <li>...</li>
@@ -133,16 +133,16 @@ JavaScript adds a live status region after the heading, and two pagination butto
 
 ```html
 <div class="carousel">
-    <h2 class="carousel__title">List of Stuff<span class="clipped"> - Carousel</span></h2>
-    <p aria-live="polite" class="clipped" role="status">Showing slide 1 of n - Items - Carousel</p>
-    <button aria-disabled="false" aria-label="Show previous n items of stuff"></button>
+    <h2 class="carousel__title">Title<span class="clipped"> - Carousel</span></h2>
+    <p aria-live="polite" class="clipped" role="status">Title - Carousel - slide n of n</p>
+    <button aria-disabled="false" aria-label="Previous slide - Title"></button>
     <ul>
         <li aria-hidden="false">...</li>
         <li aria-hidden="false">...</li>
         <li aria-hidden="false">...</li>
         ...
     </ul>
-    <button aria-disabled="false" aria-label="Show next n items of stuff"></button>
+    <button aria-disabled="false" aria-label="Next slide - Title"></button>
 </div>
 ```
 
