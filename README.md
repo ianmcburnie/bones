@@ -209,8 +209,8 @@ Notice that `role="application"` is required to prevent JAWS virtual cursor from
 <div aria-labelledby="dialog_title" class="dialog" role="dialog">
     <div role="document">
         <header role="banner">
-            <button aria-label="Close Dialog" class="dialog__close"></button>
             <h2 id="dialog_title">Dialog Title</h2>
+            <button aria-label="Close dialog" class="dialog__close" type="button"></button>
         </header>
         <div>
             <!-- dialog content goes here -->
