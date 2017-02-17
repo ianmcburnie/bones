@@ -207,7 +207,7 @@ Notice that `role="application"` is required to prevent JAWS virtual cursor from
 
 ```html
 <div aria-labelledby="dialog_title" class="dialog" role="dialog">
-    <div role="document">
+    <div class="dialog__window" role="document">
         <header role="banner">
             <h2 id="dialog_title">Dialog Title</h2>
             <button aria-label="Close dialog" class="dialog__close" type="button"></button>
@@ -216,10 +216,9 @@ Notice that `role="application"` is required to prevent JAWS virtual cursor from
             <!-- dialog content goes here -->
         </div>
     </div>
+    <div class="dialog__mask"></div>
 </div>
 ```
-
-**NOTE:** header tag is not supported in IE8 and below - use HTML5Shiv or substitute for a div tag instead.
 
 ## [Faux Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fauxmenu.html)
 
