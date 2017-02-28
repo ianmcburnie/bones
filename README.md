@@ -298,33 +298,49 @@ Note that Menu, Faux Menu, Tooltip & Combobox are special instances of flyouts, 
 
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/inputvalidation.html)
 
-Input validation messages depend fully on JavaScript; they are considered an enhancement in *addition* to full form validation (form validation does not require JavaScript).
+Input validation messages depend on client-side JavaScript and are considered an *enhancement* to full, server-side form validation.
 
-### Before JavaScript Initialisation
+### Valid State
+
+The error message container is a live-region, and can be primed and ready in the server-side code, or injected dynamically at error-time with client-side JavaScript.
 
 ```html
-<div class="inputvalidation">
+<div class="input-validation">
     <span>
         <label for="input1">Input 1</label>
-        <input aria-invalid="false" aria-required="false" id="input1" name="input1" type="text" value="" />
+        <input aria-describedby="input1-description" aria-invalid="false" id="input1" name="input1" type="text" />
     </span>
-    <!-- error container will be inserted here -->
+    <span aria-live="polite" class="input-validation__status" role="status">
+        <span class="input-validation__description" id="input1-description" >
+            <!-- this content should be empty in a valid state -->
+        </span>
+    </span>
 </div>
 ```
 
-### After JavaScript Initialisation
+For Voiceover to correctly detect live-region updates, the updates must happen on direct-descendant(s) of the live-region, not on the live-region itself.
+
+### Invalid State
+
+Changing the content of a directly-descendant element will trigger a live-region update.
 
 ```html
-<div class="inputvalidation inputvalidation--js">
+<div class="input-validation input-validation--js">
     <span>
         <label for="input1">Input 1</label>
-        <input aria-describedby="input1_elementnotice" aria-invalid="false" aria-required="false" id="input1" name="input1" type="text" value="" />
+        <input aria-describedby="input1-description" aria-invalid="true" id="input1" name="input1" type="text" />
     </span>
-    <span id="input1_elementnotice" aria-live="polite">
-        <!-- error message will be inserted here -->
+    <span aria-live="polite" class="input-validation__status" role="status">
+        <span class="input-validation__description" id="input1-description">
+            <!-- this content should be populated in an invalid state -->
+        </span>
     </span>
 </div>
 ```
+
+Notice that the `aria-described` attribute supplements the live-region, by using the same live-region content as a *description* for the input. Descriptions can be read at any time, live-regions only once at the time they are triggered.
+
+Be warned that even a hidden description (using display: none or `hidden` property) will be announced. Therefore if you plan on simply toggling the display of an error message, be sure to also toggle the presence of the `aria-describedby` attribute.
 
 <!--
 ## [Listbox](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
