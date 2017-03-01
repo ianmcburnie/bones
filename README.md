@@ -224,7 +224,7 @@ Notice that `role="application"` is required to prevent JAWS virtual cursor from
 
 ### Before JavaScript Initialisation
 
-The content is a button and a list of links. Use an ordered list if the items are semantically ordered in any way.
+The content is a button and a list of links.
 
 ```html
 <div class="fauxmenu">
@@ -252,7 +252,9 @@ Remember that this button will not work without JavaScript. Therefore we disable
 </div>
 ```
 
-If you require a faux menu that is opened by hovering on a link, rather than clicking on a button, then append an offscreen popup button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
+The `aria-controls` attribute should only be present when aria-expanded state is true.
+
+If you require a faux menu that is opened by hovering on a link, rather than clicking on a button, then append a stealth button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
 
 ## Faux Tabs
 
@@ -279,22 +281,40 @@ NOTE: You may wish to use `role="navigation"` on the root div if these links are
 
 ## [Flyout](https://ebay.gitbooks.io/mindpatterns/content/disclosure/flyout.html)
 
-A flyout might open on click, focus or hover, on any kind of button, input or link. Regardless of what type of element or interaction is used to trigger the flyout, the overlay element must immediately follow the trigger element. This structure ensures a seamless and natural reading order and focus order.
+A flyout might open on click, focus or hover, on any kind of button, input or link. Regardless of what type of element or interaction is used to trigger the flyout, the overlay element must immediately follow the host element in the DOM. This structure ensures a seamless and natural reading order and focus order.
 
 ```html
 <div class="flyout">
-    <button aria-expanded="false|true">Button</button>
-    <div class="flyout__overlay-container" aria-live="off|polite|assertive">
+    <button class="flyout__host" aria-expanded="false|true">Button</button>
+    <div class="flyout__overlay-container">
         <div class="flyout__overlay">
-            <!-- flyout contents -->
+            <!-- overlay content -->
         </div>
     </div>
 </div>
 ```
 
-In order for live-region support to work correctly in Voiceover, any hide/show operation (i.e. display:none|block) must be performed on the `flyout__overlay`, not the `flyout__overlay-container`.
+The `flyout__overlay-container` element acts as a hook for an ARIA live-region (see below), this element can be dropped if live-region support is not required.
 
 Note that Menu, Faux Menu, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern in that their overlay element must immediately follow the trigger element.
+
+### Live Region
+
+Live region support is optional. We have added support for live-region based on feedback from users who want the contents of flyouts to be announced when opened in certain cases (not all cases).
+
+```html
+<div class="flyout">
+    <button class="flyout__host" aria-expanded="false|true">Button</button>
+    <div class="flyout__overlay-container" aria-live="polite">
+        <div class="flyout__overlay">
+            <!-- overlay content -->
+        </div>
+    </div>
+</div>
+```
+
+In order for live-region support to work correctly in Voiceover, any hide/show operation (i.e. display:none|block) or content update must be performed on the `flyout__overlay`, not the `flyout__overlay-container`.
+
 
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/inputvalidation.html)
 
