@@ -498,7 +498,9 @@ Assuming current page is 1.
             <a href="3.html">3</a>
         </li>
     </ol>
-    <a class="icon-chevron-right" href="2.html" aria-label="Next results"></a>
+    <a class="icon-chevron-right" href="2.html">
+        <span class="clipped">Next page</span>
+    </a>
 </nav>
 ```
 
@@ -509,7 +511,9 @@ Assuming current page is 1.
 ```html
 <nav class="pagination" aria-labelledby="pagination_heading" role="navigation">
     <h2 id="pagination_heading" class="clipped">Results pagination</h2>
-    <a class="icon-chevron-left-disabled" aria-disabled="true" href="index.html" aria-label="Previous results" tabindex="-1"></a>
+    <a class="icon-chevron-left-disabled" aria-disabled="true" href="index.html" tabindex="-1">
+        <span class="clipped">Previous page</span>
+    </a>
     <ol>
         <li>
             <a href="index.html" aria-disabled="true" tabindex="-1">1</a>
@@ -521,7 +525,9 @@ Assuming current page is 1.
             <a href="3.html">3</a>
         </li>
     </ol>
-    <a class="icon-chevron-right" href="2.html" aria-label="Next results"></a>
+    <a class="icon-chevron-right" href="2.html">
+        <span class="clipped">Next page</span>
+    </a>
 </nav>
 ```
 
