@@ -479,44 +479,21 @@ If the page alert content or display will be dynamically updated on the client, 
 
 ## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
 
-### Server-Side Pagination
+Pagination provides support for multi-page navigation of a URL based data set.
 
-Assuming current page is 1.
+Pagination links may update the results immediately on the client via AJAX, or on the server via a full page reload. In both cases, the browser's URL will be updated. For more information, please refer to the <a href="https://ebay.gitbooks.io/mindpatterns/content/navigation/pagination.html">pagination pattern</a>.
 
-```html
-<nav class="pagination" aria-labelledby="pagination_heading" role="navigation">
-    <h2 id="pagination_heading" class="clipped">Results pagination</h2>
-    <span class="icon-chevron-left-disabled"></span>
-    <ol>
-        <li>
-            <span>1</span>
-        </li>
-        <li>
-            <a href="2.html">2</a>
-        </li>
-        <li>
-            <a href="3.html">3</a>
-        </li>
-    </ol>
-    <a class="icon-chevron-right" href="2.html">
-        <span class="clipped">Next page</span>
-    </a>
-</nav>
-```
-
-### Client-Side Pagination
-
-Assuming current page is 1.
+The example below assumes that the first result set item is the current page (hence the 'Previous' link would appear 'disabled' in this state).
 
 ```html
-<nav class="pagination" aria-labelledby="pagination_heading" role="navigation">
-    <h2 id="pagination_heading" class="clipped">Results pagination</h2>
-    <a class="icon-chevron-left-disabled" aria-disabled="true" href="index.html" tabindex="-1">
+<nav class="pagination" aria-labelledby="pagination-heading" role="navigation">
+    <h2 id="pagination-heading" class="clipped">Results Pagination</h2>
+    <a aria-disabled="true" class="pagination__previous" href="1.html">
         <span class="clipped">Previous page</span>
     </a>
     <ol>
         <li>
-            <a href="index.html" aria-disabled="true" tabindex="-1">1</a>
+            <a aria-current="page" href="1.html">1<span class="clipped"> - current page</span></a>
         </li>
         <li>
             <a href="2.html">2</a>
@@ -525,7 +502,7 @@ Assuming current page is 1.
             <a href="3.html">3</a>
         </li>
     </ol>
-    <a class="icon-chevron-right" href="2.html">
+    <a class="pagination__next" href="2.html">
         <span class="clipped">Next page</span>
     </a>
 </nav>
