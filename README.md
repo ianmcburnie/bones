@@ -479,7 +479,7 @@ If the page alert content or display will be dynamically updated on the client, 
 
 ## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
 
-Pagination provides support for multi-page navigation of a URL based data set.
+The pagination pattern allows a user to navigate back and forwards through a URL based dataset, or jump directly to any specific URL in that set.
 
 Pagination links may update the results immediately on the client via AJAX, or on the server via a full page reload. In both cases, the browser's URL will be updated. For more information, please refer to the <a href="https://ebay.gitbooks.io/mindpatterns/content/navigation/pagination.html">pagination pattern</a>.
 
@@ -487,7 +487,9 @@ The example below assumes that the first result set item is the current page (he
 
 ```html
 <nav class="pagination" aria-labelledby="pagination-heading" role="navigation">
-    <h2 id="pagination-heading" class="clipped">Results Pagination</h2>
+    <span aria-live="polite" role="status">
+        <h2 id="pagination-heading" class="clipped">Results Pagination - Page 1</h2>
+    </span>
     <a aria-disabled="true" class="pagination__previous" href="1.html">
         <span class="clipped">Previous page</span>
     </a>
