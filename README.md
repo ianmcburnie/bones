@@ -481,7 +481,7 @@ If the page alert content or display will be dynamically updated on the client, 
 
 The pagination pattern allows a user to navigate back and forwards through a URL based dataset, or jump directly to any specific URL in that set.
 
-Pagination links may update the results immediately on the client via AJAX, or on the server via a full page reload. In both cases, the browser's URL will be updated. For more information, please refer to the <a href="https://ebay.gitbooks.io/mindpatterns/content/navigation/pagination.html">pagination pattern</a>.
+Pagination links may update the results immediately on the client via AJAX, or on the server via a full page reload. In both cases, the browser's URL will be updated.
 
 The example below assumes that the first result set item is the current page (hence the 'Previous' link would appear 'disabled' in this state).
 
@@ -491,7 +491,10 @@ The example below assumes that the first result set item is the current page (he
         <h2 id="pagination-heading" class="clipped">Results Pagination - Page 1</h2>
     </span>
     <a aria-disabled="true" class="pagination__previous" href="1.html">
-        <span class="clipped">Previous page</span>
+        <svg aria-labelledby="pagination-previous-title" role="img">
+            <title id="pagination-previous-title">Previous Page</title>
+            <use xlink:href="#svg-icon-chevron-light-left"></use>
+        </svg>
     </a>
     <ol>
         <li>
@@ -505,10 +508,15 @@ The example below assumes that the first result set item is the current page (he
         </li>
     </ol>
     <a class="pagination__next" href="2.html">
-        <span class="clipped">Next page</span>
+        <svg aria-labelledby="pagination-next-title" role="img">
+            <title id="pagination-next-title">Previous Page</title>
+            <use xlink:href="#svg-icon-chevron-light-left"></use>
+        </svg>
     </a>
 </nav>
 ```
+
+**NOTE:** The heading need only be wrapped in an ARIA live-region if client-side pagination is implemented (i.e. partial page updates).
 
 ## [Radio](https://ebay.gitbooks.io/mindpatterns/content/input/radio.html)
 
