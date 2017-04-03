@@ -258,14 +258,14 @@ If you require a faux menu that is opened by hovering on a link, rather than cli
 
 ## Faux Tabs
 
-Faux tabs appear like regular tabs, but behave like a regular list of links. No JavaScript or ARIA is required.
+Faux tabs appear like regular tabs, but behave like a regular list of links. No JavaScript is required.
 
 ```html
-<div class="faux-tabs" id="faux-tabs-1">
-    <h2 class="clipped">Faux Tabs Heading</h2>
+<nav aria-labelledby="faux-tabs-title" class="faux-tabs" role="navigation">
+    <h2 class="clipped" id="faux-tabs-title">Faux Tabs Heading</h2>
     <ul>
         <li>
-            <a href="http://www.ebay.com/1">Page 1</a>
+            <a aria-current="page" href="http://www.ebay.com/1">Page 1<span class="clipped"> - Current Page</span></a>
         </li>
         <li>
             <a href="http://www.ebay.com/2">Page 2</a>
@@ -274,10 +274,10 @@ Faux tabs appear like regular tabs, but behave like a regular list of links. No 
             <a href="http://www.ebay.com/3">Page 3</a>
         </li>
     </ul>
-</div>
+</nav>
 ```
 
-NOTE: You may wish to use `role="navigation"` on the root div if these links are prominent navigation links.
+NOTE: We say 'Current Page', rather than 'Current Tab', because the controls are links, not tabs.
 
 ## [Flyout](https://ebay.gitbooks.io/mindpatterns/content/disclosure/flyout.html)
 
