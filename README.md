@@ -256,7 +256,7 @@ The `aria-controls` attribute should only be present when aria-expanded state is
 
 If you require a faux menu that is opened by hovering on a link, rather than clicking on a button, then append a stealth button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
 
-## Faux Tabs
+## [Faux Tabs](https://ebay.gitbooks.io/mindpatterns/content/navigation/fauxtabs.html)
 
 Faux tabs appear like regular tabs, but behave like a regular list of links. No JavaScript is required.
 
