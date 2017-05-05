@@ -490,9 +490,8 @@ The example below assumes that the first result set item is the current page (he
     <span aria-live="polite" role="status">
         <h2 id="pagination-heading" class="clipped">Results Pagination - Page 1</h2>
     </span>
-    <a aria-disabled="true" class="pagination__previous" href="1.html">
-        <svg aria-labelledby="pagination-previous-title" role="img">
-            <title id="pagination-previous-title">Previous Page</title>
+    <a aria-disabled="true" aria-label="Previous Page" class="pagination__previous" href="1.html">
+        <svg aria-hidden="true">
             <use xlink:href="#svg-icon-chevron-light-left"></use>
         </svg>
     </a>
@@ -507,10 +506,9 @@ The example below assumes that the first result set item is the current page (he
             <a href="3.html">3</a>
         </li>
     </ol>
-    <a class="pagination__next" href="2.html">
-        <svg aria-labelledby="pagination-next-title" role="img">
-            <title id="pagination-next-title">Previous Page</title>
-            <use xlink:href="#svg-icon-chevron-light-left"></use>
+    <a aria-label="Next Page" class="pagination__next" href="2.html">
+        <svg aria-hidden="true">
+            <use xlink:href="#svg-icon-chevron-light-right"></use>
         </svg>
     </a>
 </nav>
