@@ -15,7 +15,7 @@
 1. [Flyout](#user-content-flyout)
 1. [Input Validation](#user-content-input-validation)
 1. [Menu](#user-content-menu)
-1. [Page Alert](#user-content-page-alert)
+1. [Page Notice](#user-content-page-notice)
 1. [Pagination](#user-content-pagination)
 1. [Radio](#user-content-radio)
 1. [Tabs](#user-content-tabs)
@@ -457,12 +457,12 @@ If you wish to provide a semantic fallback for browser & screen reader combos th
 
 In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
 
-## [Page Alert](http://ianmcburnie.github.io/mindpatterns/pagealert/)
+## [Page Notice](http://ianmcburnie.github.io/mindpatterns/messaging/pagenotice/)
 
-Use `role=region` and `aria-label` to mark the page alert as a landmark for assistive technology.
+Use `role=region` and `aria-label` to mark the page notice as a landmark for assistive technology.
 
 ```html
-<section class="page-alert" role="region" aria-label="Page alert: high priority">
+<section class="page-notice" role="region" aria-label="Page notice: high priority">
     <p>Something went wrong. Please try again.</p>
 </section>
 ```
@@ -471,7 +471,7 @@ If the page alert content or display will be dynamically updated on the client, 
 
 ```html
 <span role="alert">
-    <section class="page-alert" role="region" aria-label="Page alert: high priority">
+    <section class="page-notice" role="region" aria-label="Page notice: high priority">
         <p>Oops. Something is still wrong. Please try again later.</p>
     </section>
 </span>
