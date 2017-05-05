@@ -467,7 +467,7 @@ Use `role=region` and `aria-label` to mark the page notice as a landmark for ass
 </section>
 ```
 
-If the page alert content or display will be dynamically updated on the client, wrap the alert with `role=alert` or `role=status` to create a live region for assistive technology.
+If the page notice content or display will be dynamically updated on the client, wrap the notice with `role=alert` or `role=status` to create a live region for assistive technology.
 
 ```html
 <span role="alert">
