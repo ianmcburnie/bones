@@ -117,7 +117,9 @@ For the server rendered markup you can choose to render as little or as much of 
 
 ```html
 <div class="carousel">
-    <h2 class="carousel__title">Title<span class="clipped"> - Carousel</span></h2>
+    <span aria-live="polite" role="status">
+        <h2 class="carousel__title">Title</h2>
+    </span>
     <ul>
         <li>...</li>
         <li>...</li>
@@ -129,12 +131,13 @@ For the server rendered markup you can choose to render as little or as much of 
 
 ### After JavaScript Initialisation
 
-JavaScript adds a live status region after the heading, and two pagination buttons either side of the list.
+JavaScript adds a description and state to the heading inside of live region, and two pagination buttons either side of the list.
 
 ```html
 <div class="carousel">
-    <h2 class="carousel__title">Title<span class="clipped"> - Carousel</span></h2>
-    <p aria-live="polite" class="clipped" role="status">Title - Carousel - slide n of n</p>
+    <span aria-live="polite" role="status">
+        <h2 class="carousel__title">Title<span class="clipped"> - Carousel - slide n of n</span></h2>
+    </span>
     <button aria-disabled="false" aria-label="Previous slide - Title"></button>
     <ul>
         <li aria-hidden="false">...</li>
@@ -148,7 +151,7 @@ JavaScript adds a live status region after the heading, and two pagination butto
 
 JavaScript must maintain the tabindex and aria-hidden state of items as they scroll in and out of view. Items that are not in view need a tabindex value of "-1" an aria-hidden value of "true" to ensure items are hidden from keyboard users and screen reader users respectively.
 
-JavaScript must also maintain the state of the status region.
+JavaScript must also maintain the state of the heading inside the live region.
 
 For small touch screens, you may wish to utilise swipe gestures. In which case pagination buttons can be hidden offscreen, appearing only on keyboard focus (i.e. 'stealth' buttons) for keyboard users.
 
