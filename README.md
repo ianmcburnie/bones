@@ -240,6 +240,8 @@ The content is a button and a list of links.
 </div>
 ```
 
+If the href value of a faux menu item matches the current page url, then add `aria-current="page"` to that anchor tag.
+
 Remember that this button will not work without JavaScript. Therefore we disable it in our markup and then enable it with JavaScript.
 
 ### After JavaScript Initialisation
@@ -268,7 +270,7 @@ Faux tabs appear like regular tabs, but behave like a regular list of links. No 
     <h2 class="clipped" id="faux-tabs-title">Faux Tabs Heading</h2>
     <ul>
         <li>
-            <a aria-current="page" href="http://www.ebay.com/1">Page 1<span class="clipped"> - Current Page</span></a>
+            <a aria-current="page" href="http://www.ebay.com/1">Page 1</a>
         </li>
         <li>
             <a href="http://www.ebay.com/2">Page 2</a>
