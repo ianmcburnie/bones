@@ -10,8 +10,8 @@
 1. [Carousel](#user-content-carousel)
 1. [Combobox](#user-content-combobox)
 1. [Dialog](#user-content-dialog)
-1. [Faux Menu](#user-content-faux-menu)
-1. [Faux Tabs](#user-content-faux-tabs)
+1. [Fake Menu](#user-content-fake-menu)
+1. [Fake Tabs](#user-content-fake-tabs)
 1. [Flyout](#user-content-flyout)
 1. [Input Validation](#user-content-input-validation)
 1. [Menu](#user-content-menu)
@@ -223,14 +223,14 @@ Notice that `role="application"` is required to prevent JAWS virtual cursor from
 </div>
 ```
 
-## [Faux Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fauxmenu.html)
+## [Fake Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fakemenu.html)
 
 ### Before JavaScript Initialisation
 
 The content is a button and a list of links.
 
 ```html
-<div class="fauxmenu">
+<div class="fake-menu">
     <button disabled>Open Nav</button>
     <ul>
         <li><a href="http://www.ebay.com">Link Text</a></li>
@@ -240,16 +240,16 @@ The content is a button and a list of links.
 </div>
 ```
 
-If the href value of a faux menu item matches the current page url, then add `aria-current="page"` to that anchor tag.
+If the href value of a fake menu item matches the current page url, then add `aria-current="page"` to that anchor tag.
 
 Remember that this button will not work without JavaScript. Therefore we disable it in our markup and then enable it with JavaScript.
 
 ### After JavaScript Initialisation
 
 ```html
-<div class="fauxmenu fauxmenu--js" id="fauxmenu_0">
-    <button aria-controls="fauxmenu_0_flyout" aria-expanded="false">Open Nav</button>
-    <ul id="fauxmenu_0_flyout">
+<div class="fake-menu fake-menu--js" id="fake-menu-0">
+    <button aria-controls="fake-menu-0-flyout" aria-expanded="false">Open Nav</button>
+    <ul id="fake-menu-0-flyout">
         <li><a href="http://www.ebay.com">Link Text</a></li>
         <li><a href="http://www.ebay.com">Link Text</a></li>
         <li><a href="http://www.ebay.com">Link Text</a></li>
@@ -259,15 +259,15 @@ Remember that this button will not work without JavaScript. Therefore we disable
 
 The `aria-controls` attribute should only be present when aria-expanded state is true.
 
-If you require a faux menu that is opened by hovering on a link, rather than clicking on a button, then append a stealth button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
+If you require a fake menu that is opened by hovering on a link, rather than clicking on a button, then append a stealth button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
 
-## [Faux Tabs](https://ebay.gitbooks.io/mindpatterns/content/navigation/fauxtabs.html)
+## [Fake Tabs](https://ebay.gitbooks.io/mindpatterns/content/navigation/faketabs.html)
 
-Faux tabs appear like regular tabs, but behave like a regular list of links. No JavaScript is required.
+Fake tabs *look* like regular tabs, but behave like a list of links. No JavaScript is required.
 
 ```html
-<nav aria-labelledby="faux-tabs-title" class="faux-tabs" role="navigation">
-    <h2 class="clipped" id="faux-tabs-title">Faux Tabs Heading</h2>
+<nav aria-labelledby="fake-tabs-title" class="fake-tabs" role="navigation">
+    <h2 class="clipped" id="fake-tabs-title">Fake Tabs Heading</h2>
     <ul>
         <li>
             <a aria-current="page" href="http://www.ebay.com/1">Page 1</a>
@@ -301,7 +301,7 @@ A flyout might open on click, focus or hover, on any kind of button, input or li
 
 The `flyout__overlay-container` element acts as a hook for an ARIA live-region (see below), this element can be dropped if live-region support is not required.
 
-Note that Menu, Faux Menu, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern in that their overlay element must immediately follow the trigger element.
+Note that Menu, Fake Menu, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern in that their overlay element must immediately follow the trigger element.
 
 ### Live Region
 
