@@ -666,27 +666,27 @@ If you wish to support progressive enhancement, your markup should start out as 
 ```html
 <div class="tabs" id="tabs1">
     <h2>Tabs Heading</h2>
-    <ul>
-        <li>
+    <ul class="tabs__items">
+        <li class="tabs__item">
             <a href="#tabs1_panel1">Tab 1</a>
         </li>
-        <li>
+        <li class="tabs__item">
             <a href="#tabs1_panel2">Tab 2</a>
         </li>
-        <li>
+        <li class="tabs__item">
             <a href="#tabs1_panel3">Tab 3</a>
         </li>
     </ul>
-    <div>
-        <div id="tabs1_panel1" tabindex="-1">
+    <div class="tabs__content">
+        <div class="tabs__panel" id="tabs1_panel1" tabindex="-1">
             <h3>Panel 1 heading</h3>
             <!-- panel content goes here -->
         </div>
-        <div id="tabs1_panel2" tabindex="-1">
+        <div class="tabs__panel" id="tabs1_panel2" tabindex="-1">
             <h3>Panel 2 heading</h3>
             <!-- panel content goes here -->
         </div>
-        <div id="tabs1_panel3" tabindex="-1">
+        <div class="tabs__panel" id="tabs1_panel3" tabindex="-1">
             <h3>Panel 3 heading</h3>
             <!-- panel content goes here -->
         </div>
@@ -701,27 +701,27 @@ Tree structure remains identical, but many new attributes are added. Only one pa
 ```html
 <div class="tabs tab--js" id="tabs1">
     <h2 class="clipped">Tabs Heading</h2>
-    <ul role="tablist">
-        <li role="tab" aria-controls="tabs1_panel1" aria-selected="true" id="tabs1_tab1" tabindex="0">
+    <ul class="tabs__items" role="tablist">
+        <li class="tabs__item" role="tab" aria-controls="tabs1_panel1" aria-selected="true" id="tabs1_tab1" tabindex="0">
             <a role="presentation">Tab 1</a>
         </li>
-        <li role="tab" aria-controls="tabs1_panel2" aria-selected="false" id="tabs1_tab2" tabindex="-1">
+        <li class="tabs__item" role="tab" aria-controls="tabs1_panel2" aria-selected="false" id="tabs1_tab2" tabindex="-1">
             <a role="presentation">Tab 2</a>
         </li>
-        <li role="tab" aria-controls="tabs1_panel3" aria-selected="false" id="tabs1_tab3" tabindex="-1">
+        <li class="tabs__item" role="tab" aria-controls="tabs1_panel3" aria-selected="false" id="tabs1_tab3" tabindex="-1">
             <a role="presentation">Tab 3</a>
         </li>
     </ul>
-    <div>
-        <div role="tabpanel" aria-hidden="false" aria-labelledby="tabs1_tab1" id="tabs1_panel1">
+    <div class="tabs__content">
+        <div aria-labelledby="tabs1_tab1" class="tabs__panel" role="tabpanel" id="tabs1_panel1">
             <h3>Panel 1 heading</h3>
             <!-- panel content goes here -->
         </div>
-        <div role="tabpanel" aria-hidden="true" aria-labelledby="tabs1_tab2" id="tabs1_panel2">
+        <div aria-labelledby="tabs1_tab2" class="tabs__panel" role="tabpanel" hidden id="tabs1_panel2">
             <h3>Panel 2 heading</h3>
             <!-- panel content goes here -->
         </div>
-        <div role="tabpanel" aria-hidden="true" aria-labelledby="tabs1_tab3" id="tabs1_panel3">
+        <div aria-labelledby="tabs1_tab3" class="tabs__panel" role="tabpanel" hidden id="tabs1_panel3">
             <h3>Panel 3 heading</h3>
             <!-- panel content goes here -->
         </div>
@@ -738,27 +738,27 @@ If you do not wish to support progressive enhancement, simply replace the list o
 ```html
 <div class="tabs tab--js" id="tabs1">
     <h2 class="clipped">Tabs Heading</h2>
-    <div role="tablist">
-        <div role="tab" aria-controls="tabs1_panel1" aria-selected="true" id="tabs1_tab1" tabindex="0">
+    <div class="tabs__items" role="tablist">
+        <div class="tabs__item" role="tab" aria-controls="tabs1_panel1" aria-selected="true" id="tabs1_tab1" tabindex="0">
             <span>Tab 1</span>
         </div>
-        <div role="tab" aria-controls="tabs1_panel2" aria-selected="false" id="tabs1_tab2" tabindex="-1">
+        <div class="tabs__item" role="tab" aria-controls="tabs1_panel2" aria-selected="false" id="tabs1_tab2" tabindex="-1">
             <span>Tab 2</span>
         </div>
-        <div role="tab" aria-controls="tabs1_panel3" aria-selected="false" id="tabs1_tab3" tabindex="-1">
+        <div class="tabs__item" role="tab" aria-controls="tabs1_panel3" aria-selected="false" id="tabs1_tab3" tabindex="-1">
             <span>Tab 3</span>
         </div>
     </div>
-    <div>
-        <div role="tabpanel" aria-hidden="false" aria-labelledby="tabs1_tab1" id="tabs1_panel1">
+    <div class="tabs__content">
+        <div aria-labelledby="tabs1_tab1" class="tabs__panel" role="tabpanel" id="tabs1_panel1">
             <h3>Panel 1 heading</h3>
             <!-- panel content goes here -->
         </div>
-        <div role="tabpanel" aria-hidden="true" aria-labelledby="tabs1_tab2" id="tabs1_panel2">
+        <div aria-labelledby="tabs1_tab2" class="tabs__panel" role="tabpanel" hidden id="tabs1_panel2">
             <h3>Panel 2 heading</h3>
             <!-- panel content goes here -->
         </div>
-        <div role="tabpanel" aria-hidden="true" aria-labelledby="tabs1_tab3" id="tabs1_panel3">
+        <div aria-labelledby="tabs1_tab3" class="tabs__panel" role="tabpanel" hidden id="tabs1_panel3">
             <h3>Panel 3 heading</h3>
             <!-- panel content goes here -->
         </div>
