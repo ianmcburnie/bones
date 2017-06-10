@@ -8,6 +8,7 @@
 1. [Accordion](#user-content-accordion)
 1. [Breadcrumbs](#user-content-breadcrumbs)
 1. [Carousel](#user-content-carousel)
+1. [Checkbox](#user-content-checkbox)
 1. [Combobox](#user-content-combobox)
 1. [Dialog](#user-content-dialog)
 1. [Fake Menu](#user-content-fake-menu)
@@ -155,7 +156,71 @@ JavaScript must also maintain the state of the heading inside the live region.
 
 For small touch screens, you may wish to utilise swipe gestures. In which case pagination buttons can be hidden offscreen, appearing only on keyboard focus (i.e. 'stealth' buttons) for keyboard users.
 
-## Combobox
+## [Checkbox](https://ebay.gitbooks.io/mindpatterns/content/input/checkbox.html)
+
+```html
+<h3>Native HTML</h3>
+<fieldset>
+    <legend>Auction Type</legend>
+    <div>
+        <input id="checkbox1_freeshipping1" type="checkbox" name="freeshipping1" />
+        <label for="checkbox1_freeshipping1">Free Shipping</label>
+    </div>
+    <div>
+        <input id="checkbox2_endssoon1" type="checkbox" name="endssoon1" />
+        <label for="checkbox2_endssoon1">Ends soon</label>
+    </div>
+    <div>
+        <input id="checkbox3_zerobids1" type="checkbox" name="zerobids1" />
+        <label for="checkbox3_zerobids1">Zero bids</label>
+    </div>
+</fieldset>
+```
+
+### Custom Checkbox
+
+Using CSS, two inline SVG paths (one for checked, one for unchecked) can be used to replace the default checkbox style. No JavaScript is required.
+
+```html
+<fieldset>
+    <legend>Auction Type</legend>
+    <div>
+        <span class="checkbox">
+            <input class="checkbox__control" id="checkbox1_freeshipping2" type="checkbox" name="freeshipping2" />
+            <span class="checkbox__icon" hidden>
+                <svg aria-hidden="true" focusable="false">
+                    <use xlink:href="#svg-icon-checkbox"></use>
+                </svg>
+            </span>
+        </span>
+        <label for="checkbox1_freeshipping2">Free Shipping</label>
+    </div>
+    <div>
+        <span class="checkbox">
+            <input class="checkbox__control" id="checkbox2_endssoon2" type="checkbox" name="endssoon2" />
+            <span class="checkbox__icon" hidden>
+                <svg aria-hidden="true" focusable="false">
+                    <use xlink:href="#svg-icon-checkbox"></use>
+                </svg>
+            </span>
+        </span>
+        <label for="checkbox2_endssoon2">Ends soon</label>
+    </div>
+    <div>
+        <span class="checkbox">
+            <input class="checkbox__control" id="checkbox3_zerobids2" type="checkbox" name="zerobids2" />
+            <span class="checkbox__icon" hidden>
+                <svg aria-hidden="true" focusable="false">
+                    <use xlink:href="#svg-icon-checkbox"></use>
+                </svg>
+            </span>
+        </span>
+        <label for="checkbox3_zerobids2">Zero bids</label>
+    </div>
+</fieldset>
+```
+
+## [Combobox](https://ebay.gitbooks.io/mindpatterns/content/input/combobox.html))
 
 ### Before JavaScript Initialisation
 
@@ -526,56 +591,67 @@ The example below assumes that the first result set item is the current page (he
 Native HTML radio buttons are 100% accessible by default. To ensure correct grouping and group label semantics, radio buttons should always be placed inside of a fieldset with legend.
 
 ```html
-<div class="radio-group" id="radio-group1">
-    <fieldset>
-        <legend>Radio Group Title</legend>
-        <span>
-            <input id="radio-group1_input1" name="radio-group1" type="radio" value="1" checked />
-            <label for="radio-group1_input1">Input 1</label>
-        </span>
-        <span>
-            <input id="radio-group1_input2" name="radio-group1" type="radio" value="2" />
-            <label for="radio-group1_input2">Input 2</label>
-        </span>
-        <span>
-            <input id="radio-group1_input3" name="radio-group1" type="radio" value="3" />
-            <label for="radio-group1_input3">Input 3</label>
-        </span>
-    </fieldset>
-</div>
+<fieldset>
+    <legend>Radio Group Title</legend>
+    <span>
+        <input id="radio-group1_input1" name="radio-group1" type="radio" value="1" checked />
+        <label for="radio-group1_input1">Input 1</label>
+    </span>
+    <span>
+        <input id="radio-group1_input2" name="radio-group1" type="radio" value="2" />
+        <label for="radio-group1_input2">Input 2</label>
+    </span>
+    <span>
+        <input id="radio-group1_input3" name="radio-group1" type="radio" value="3" />
+        <label for="radio-group1_input3">Input 3</label>
+    </span>
+</fieldset>
 ```
 
 For vertically stacked radios, simply switch the spans to divs.
 
-Using CSS and icon fonts it is possible to 'replace' the natively styled radio button with a custom look and feel, with zero JavaScript required.
+### Custom Radios
 
-### ARIA Radios
-
-For full control over styling of the element, or perhaps if your radio buttons are 'dumb' (i.e. they do not store or post form data) you may wish to consider custom ARIA radio buttons.
+Using CSS, two inline SVG paths (one for checked, and another for unchecked) can be used to replace the default radio style. No JavaScript is required.
 
 ```html
-<div class="aria-radio-group" id="aria-radios1">
-    <div class="aria-radio-group__legend" id="aria-radios1__legend">Auction Type</div>
-    <div class="aria-radio-group__fieldset" role="radiogroup" aria-labelledby="aria-radio-group__label">
-        <div class="aria-radio__container" role="presentation">
-            <span role="radio" aria-checked="false" aria-describedby="aria-radios1__legend" aria-labelledby="aria-radios1_label1"></span>
-            <span class="aria-radio__label" id="aria-radios1_label1" aria-hidden="true">All Listings</span>
-        </div>
-        <div class="aria-radio__container" role="presentation">
-            <span role="radio" aria-checked="false" aria-describedby="aria-radios1__legend" aria-labelledby="aria-radios1_label2"></span>
-            <span class="aria-radio__label" id="aria-radios1_label2" aria-hidden="true">Auction</span>
-        </div>
-        <div class="aria-radio__container" role="presentation">
-            <span role="radio" aria-checked="false" aria-describedby="aria-radios1__legend" aria-labelledby="aria-radios1_label3"></span>
-            <span class="aria-radio__label" id="aria-radios1_label3" aria-hidden="true">Buy it Now</span>
-        </div>
-    </div>
-</div>
+<fieldset>
+    <legend>Radio Group Title</legend>
+    <span>
+        <span class="radio">
+            <input class="radio__control" id="radio-group1_input1" name="radio-group1" type="radio" value="1" checked />
+            <span class="radio__icon" hidden>
+                <svg aria-hidden="true" focusable="false">
+                    <use xlink:href="#svg-icon-radio"></use>
+                </svg>
+            </span>
+        </span>
+        <label for="radio-group1_input1">Input 1</label>
+    </span>
+    <span>
+        <span class="radio">
+            <input class="radio__control" id="radio-group1_input2" name="radio-group1" type="radio" value="2" />
+            <span class="radio__icon" hidden>
+                <svg aria-hidden="true" focusable="false">
+                    <use xlink:href="#svg-icon-radio"></use>
+                </svg>
+            </span>
+        </span>
+        <label for="radio-group1_input2">Input 2</label>
+    </span>
+    <span>
+        <span class="radio">
+            <input class="radio__control" id="radio-group1_input3" name="radio-group1" type="radio" value="3" />
+            <span class="radio__icon" hidden>
+                <svg aria-hidden="true" focusable="false">
+                    <use xlink:href="#svg-icon-radio"></use>
+                </svg>
+            </span>
+        </span>
+        <label for="radio-group1_input3">Input 3</label>
+    </span>
+</fieldset>
 ```
-
-Notice that aria-hidden is applied to the labels. This is to prevent an issue in Voiceover which treats the labels as members of the radiogroup role, thus doubling the number of reported radio items in the group. Don't worry, the label will still be read when focus and virtual cursor is on the custom radio button. Likewise, the 'legend' is also placed outside of the radiogroup.
-
-Be warned: JavaScript will be required, and you will need to recreate the exact behaviour of native HTML radio buttons in full. It is no easy task. Perhaps a better approach is to progressively enhance the native radios into ARIA radios. This way, the under-the-hood native radios continue to provide all accessibility benefits, whilst the ARIA buttons provide the custom look and feel.
 
 ## [Tabs](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html)
 
