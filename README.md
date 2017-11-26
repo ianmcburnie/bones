@@ -26,13 +26,13 @@
 
 Bones provides lean, mean, semantic HTML markup for widgets; ensuring maximum Accessibility, SEO and Site Speed performance. Bones markup has full support for <a href="http://www.w3.org/WAI/intro/aria"> WAI-ARIA</a> roles, states and properties.
 
-Bones favors the <a href="http://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a> paradigm. A convention for widget structure allows us to add only a minimal amount of CSS and JavaScript 'hooks' to the base markup.<sup>1</sup>
+Bones advocates the [Progressive Enhancement](http://en.wikipedia.org/wiki/Progressive_enhancement) web-design strategy; building the web in a layered fashion that allows **everyone** to access the **most important** content and functionality. We supply HTML markup for both the *before* and *after*  JavaScript initialisation states of a widget, i.e. before-enhancement and after-enhancement. If you do not wish to support progressive enhancement we also provide alternatives.<sup>1</sup>
 
-Bones advocates the [Progressive Enhancement](http://en.wikipedia.org/wiki/Progressive_enhancement) web-design strategy; building the web in a layered fashion that allows **everyone** to access the **most important** content and functionality. We supply HTML markup for both the *before* and *after*  JavaScript initialisation states of a widget, i.e. before-enhancement and after-enhancement. If you do not wish to support progressive enhancement we also provide alternatives.<sup>2</sup>
+<strike>Bones favors the <a href="http://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a> paradigm. A convention for widget structure allows us to add only a minimal amount of CSS and JavaScript 'hooks' to the base markup. Typically, we define a single module name on our root node, alongside any additional *modifier* class names, such as states & themes.</strike>
 
-<sub><sup>1</sup> Bones has a class naming convention similar to the <a href="http://smacss.com">SMACSS</a> architecture, whereby we define a single module name on our root node, alongside any additional *modifier* class names, such as states & themes. If additional classes are needed in the inner HTML, we encourage a BEM-style (block-level-element) naming convention and syntax.</sub>
+**UPDATE**: Bones is evolving from it's original  ultra-minimalist "convention over configuration" paradigm, to the [BEM](http://getbem.com) (block, element, modifier) naming methodology. With this change we hope to strike the right balance between lean HTML and performant, flexible CSS. Not all patterns have been updated yet. Please bear with us.
 
-<sub><sup>2</sup> Building an app that is rendered entirely on the client-side? If so, you will only need to refer to the enhanced/initialised code. However, best practice is to build apps in an <a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/">isomorphic</a> fashion so that first page load is rendered by the server then *enhanced* on the client.</sub>
+<sub><sup>1</sup> Building an app that is rendered entirely on the client-side? If so, you will only need to refer to the enhanced/initialised code. However, best practice is to build apps in an <a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/">isomorphic</a> fashion so that first page load is rendered by the server then *enhanced* on the client.</sub>
 
 ## [Accordion](https://ebay.gitbooks.io/mindpatterns/content/disclosure/accordion.html)
 
@@ -43,21 +43,21 @@ An accordion requires 2 or more panels of content.
 ```html
 <div class="accordion" id="accordion1">
     <h2>Accordion Title</h2>
-    <div>
-        <h3>Panel 1 Title</h3>
-        <div>
+    <div class="accordion__item">
+        <h3 class="accordion__tab">Panel 1 Title</h3>
+        <div class="accordion__panel">
             <!-- panel contents go here -->
         </div>
     </div>
-    <div>
-        <h3>Panel 2 Title</h3>
-        <div>
+    <div class="accordion__item">
+        <h3 class="accordion__tab">Panel 2 Title</h3>
+        <div class="accordion__panel">
             <!-- panel contents go here -->
         </div>
     </div>
-    <div>
-        <h3>Panel 3 Title</h3>
-        <div>
+    <div class="accordion__item">
+        <h3 class="accordion__tab">Panel 3 Title</h3>
+        <div class="accordion__panel">
             <!-- panel contents go here -->
         </div>
     </div>
@@ -71,21 +71,21 @@ Tree structure remains identical, but many new attributes are added. Zero or mor
 ```html
 <div class="accordion accordion--js" role="tablist">
     <h2>Accordion Title</h2>
-    <div>
-        <h3 aria-controls="accordion1_panel1" aria-selected="false" id="accordion1_tab1" role="tab" tabindex="0">Panel 1 Title</h3>
-        <div aria-hidden="true" aria-labelledby="accordion1_tab1" id="accordion1_panel1" role="tabpanel">
+    <div class="accordion__item">
+        <h3 class="accordion__tab" aria-controls="accordion1_panel1" aria-selected="false" id="accordion1_tab1" role="tab" tabindex="0">Panel 1 Title</h3>
+        <div class="accordion__panel" aria-hidden="true" aria-labelledby="accordion1_tab1" id="accordion1_panel1" role="tabpanel">
             <!-- panel contents go here -->
         </div>
     </div>
-    <div>
-        <h3 aria-controls="accordion1_panel2" aria-selected="false" id="accordion1_tab2" role="tab" tabindex="-1">Panel 2 Title</h3>
-        <div aria-hidden="true" aria-labelledby="accordion1_tab2" id="accordion1_panel2" role="tabpanel">
+    <div class="accordion__item">
+        <h3 class="accordion__tab" aria-controls="accordion1_panel2" aria-selected="false" id="accordion1_tab2" role="tab" tabindex="-1">Panel 2 Title</h3>
+        <div class="accordion__panel" aria-hidden="true" aria-labelledby="accordion1_tab2" id="accordion1_panel2" role="tabpanel">
             <!-- panel contents go here -->
         </div>
     </div>
-    <div>
-        <h3 aria-controls="accordion1_panel3" aria-selected="false" id="accordion1_tab3" role="tab" tabindex="-1">Panel 3 Title</h3>
-        <div aria-hidden="true" aria-labelledby="accordion1_tab3" id="accordion1_panel3" role="tabpanel">
+    <div class="accordion__item">
+        <h3 class="accordion__tab" aria-controls="accordion1_panel3" aria-selected="false" id="accordion1_tab3" role="tab" tabindex="-1">Panel 3 Title</h3>
+        <div class="accordion__panel" aria-hidden="true" aria-labelledby="accordion1_tab3" id="accordion1_panel3" role="tabpanel">
             <!-- panel contents go here -->
         </div>
     </div>
