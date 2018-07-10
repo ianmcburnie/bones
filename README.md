@@ -158,67 +158,60 @@ For small touch screens, you may wish to utilise swipe gestures. In which case p
 
 ## [Checkbox](https://ebay.gitbooks.io/mindpatterns/content/input/checkbox.html)
 
-```html
-<h3>Native HTML</h3>
-<fieldset>
-    <legend>Auction Type</legend>
-    <div>
-        <input id="checkbox1_freeshipping1" type="checkbox" name="freeshipping1" />
-        <label for="checkbox1_freeshipping1">Free Shipping</label>
-    </div>
-    <div>
-        <input id="checkbox2_endssoon1" type="checkbox" name="endssoon1" />
-        <label for="checkbox2_endssoon1">Ends soon</label>
-    </div>
-    <div>
-        <input id="checkbox3_zerobids1" type="checkbox" name="zerobids1" />
-        <label for="checkbox3_zerobids1">Zero bids</label>
-    </div>
-</fieldset>
-```
-
-### Custom Checkbox
-
-Using CSS, two inline SVG paths (one for checked, one for unchecked) can be used to replace the default checkbox style. No JavaScript is required.
+Native HTML checkboxes are 100% accessible by default. To ensure correct grouping and group label semantics, groups of checkboxes should always be placed inside of a fieldset with legend.
 
 ```html
 <fieldset>
     <legend>Auction Type</legend>
     <div>
-        <span class="checkbox">
-            <input class="checkbox__control" id="checkbox1_freeshipping2" type="checkbox" name="freeshipping2" />
-            <span class="checkbox__icon" hidden>
-                <svg aria-hidden="true" focusable="false">
-                    <use xlink:href="#svg-icon-checkbox"></use>
-                </svg>
-            </span>
-        </span>
-        <label for="checkbox1_freeshipping2">Free Shipping</label>
+        <input id="freeshipping" type="checkbox" name="freeshipping" />
+        <label for="freeshipping">Free Shipping</label>
     </div>
     <div>
-        <span class="checkbox">
-            <input class="checkbox__control" id="checkbox2_endssoon2" type="checkbox" name="endssoon2" />
-            <span class="checkbox__icon" hidden>
-                <svg aria-hidden="true" focusable="false">
-                    <use xlink:href="#svg-icon-checkbox"></use>
-                </svg>
-            </span>
-        </span>
-        <label for="checkbox2_endssoon2">Ends soon</label>
+        <input id="endssoon" type="checkbox" name="endssoon" />
+        <label for="endssoon">Ends soon</label>
     </div>
     <div>
-        <span class="checkbox">
-            <input class="checkbox__control" id="checkbox3_zerobids2" type="checkbox" name="zerobids2" />
-            <span class="checkbox__icon" hidden>
-                <svg aria-hidden="true" focusable="false">
-                    <use xlink:href="#svg-icon-checkbox"></use>
-                </svg>
-            </span>
-        </span>
-        <label for="checkbox3_zerobids2">Zero bids</label>
+        <input id="zerobids" type="checkbox" name="zerobids" />
+        <label for="zerobids">Zero bids</label>
     </div>
 </fieldset>
 ```
+
+For vertically stacked checkboxes, simply switch the spans to divs.
+
+### Custom Icon
+
+To create a custom checkbox style, either background or foreground SVG can be used as a facade over the real checkbox.
+
+Background SVG:
+
+```html
+<span class="checkbox">
+    <input class="checkbox__control" id="freeshipping" type="checkbox" name="freeshipping" />
+    <span class="checkbox__icon"></span>
+</span>
+```
+
+Foreground SVG:
+
+```html
+<span class="checkbox">
+  <input class="checkbox__control" id="freeshipping" type="checkbox" name="freeshipping" />
+  <span class="checkbox__icon" hidden>
+    <svg aria-hidden="true" class="checkbox__unchecked" focusable="false">
+      <use xlink:href="#icon-checkbox-unchecked"></use>
+    </svg>
+    <svg aria-hidden="true" class="checkbox__checked" focusable="false">
+      <use xlink:href="#icon-checkbox-checked"></use>
+    </svg>
+  </span>
+</span>
+```
+
+This latter markup assumes that the symbol definitions for #icon-checkbox-unchecked and #icon-checkbox-checked exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
+
+In both cases, don't forget to add a label!
 
 ## [Combobox](https://ebay.gitbooks.io/mindpatterns/content/input/combobox.html))
 
@@ -612,46 +605,34 @@ For vertically stacked radios, simply switch the spans to divs.
 
 ### Custom Radios
 
-Using CSS, two inline SVG paths (one for checked, and another for unchecked) can be used to replace the default radio style. No JavaScript is required.
+To create a custom radio style, either background or foreground SVG can be used as a facade over the real radio.
 
-```html
-<fieldset>
-    <legend>Radio Group Title</legend>
-    <span>
-        <span class="radio">
-            <input class="radio__control" id="radio-group1_input1" name="radio-group1" type="radio" value="1" checked />
-            <span class="radio__icon" hidden>
-                <svg aria-hidden="true" focusable="false">
-                    <use xlink:href="#svg-icon-radio"></use>
-                </svg>
-            </span>
-        </span>
-        <label for="radio-group1_input1">Input 1</label>
-    </span>
-    <span>
-        <span class="radio">
-            <input class="radio__control" id="radio-group1_input2" name="radio-group1" type="radio" value="2" />
-            <span class="radio__icon" hidden>
-                <svg aria-hidden="true" focusable="false">
-                    <use xlink:href="#svg-icon-radio"></use>
-                </svg>
-            </span>
-        </span>
-        <label for="radio-group1_input2">Input 2</label>
-    </span>
-    <span>
-        <span class="radio">
-            <input class="radio__control" id="radio-group1_input3" name="radio-group1" type="radio" value="3" />
-            <span class="radio__icon" hidden>
-                <svg aria-hidden="true" focusable="false">
-                    <use xlink:href="#svg-icon-radio"></use>
-                </svg>
-            </span>
-        </span>
-        <label for="radio-group1_input3">Input 3</label>
-    </span>
-</fieldset>
+Background SVG:
+
+```HTML
+<span class="radio">
+    <input class="radio__control" id="radio-group1_input1" type="radio" value="3" name="radio-group-1" />
+    <span class="radio__icon"></span>
+</span>
 ```
+
+Foreground SVG:
+
+```HTML
+<span class="radio__icon" hidden>
+    <input class="radio__control" id="radio-group1_input1" type="radio" value="3" name="radio-group-1" />
+    <svg aria-hidden="true" class="radio__unchecked" focusable="false">
+        <use xlink:href="#svg-icon-radio-unchecked"></use>
+    </svg>
+    <svg aria-hidden="true" class="radio__checked" focusable="false">
+        <use xlink:href="#svg-icon-confirmation"></use>
+    </svg>
+</span>
+```
+
+This latter markup assumes that the symbol definitions for #icon-radio-unchecked and #icon-radio-checked exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
+
+In both cases, don't forget to add a label!
 
 ## [Tabs](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html)
 
