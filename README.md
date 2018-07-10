@@ -213,7 +213,7 @@ This latter markup assumes that the symbol definitions for #icon-checkbox-unchec
 
 In both cases, don't forget to add a label!
 
-## [Combobox](https://ebay.gitbooks.io/mindpatterns/content/input/combobox.html))
+## [Combobox](https://ebay.gitbooks.io/mindpatterns/content/input/combobox.html)
 
 ### Before JavaScript Initialisation
 
