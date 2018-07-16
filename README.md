@@ -36,6 +36,8 @@ Bones advocates the [Progressive Enhancement](http://en.wikipedia.org/wiki/Progr
 
 ## [Accordion](https://ebay.gitbooks.io/mindpatterns/content/disclosure/accordion.html)
 
+TIP: A lightweight alternative to an accordion is a simple list of buttons with `aria-expanded` state.
+
 ### Before JavaScript Initialisation
 
 An accordion requires 2 or more panels of content.
@@ -94,7 +96,7 @@ Tree structure remains identical, but many new attributes are added. Zero or mor
 
 ## [Breadcrumbs](https://ebay.gitbooks.io/mindpatterns/content/navigation/breadcrumbs.html)
 
-The content is an ordered list of links inside a navigation landmark region. Breadcrumbs do not require JavaScript initialisation. CSS can be used to generate → separator content.
+The content is an ordered list of links inside a navigation landmark region. Breadcrumbs do not require JavaScript initialisation. CSS can be used to generate a separator image or glyph using the `::after` pseudo element.
 
 ```html
 <nav class="crumbs" aria-labelledby="crumbs_heading" role="navigation">
@@ -103,7 +105,7 @@ The content is an ordered list of links inside a navigation landmark region. Bre
         <li><a href="http://www.ebay.com">Great Grandparent Page</a></li>
         <li><a href="http://www.ebay.com">Grandparent Page</a></li>
         <li><a href="http://www.ebay.com">Parent Page</a></li>
-        <li><span>Current Page</span></li>
+        <li><a aria-current="location">Current Page</a></li>
     </ol>
 </nav>
 ```
