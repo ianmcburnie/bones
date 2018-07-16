@@ -552,17 +552,17 @@ The example below assumes that the first result set item is the current page (he
 
 ```html
 <nav class="pagination" aria-labelledby="pagination-heading" role="navigation">
-    <span aria-live="polite" role="status">
+    <span aria-live="off">
         <h2 id="pagination-heading" class="clipped">Results Pagination - Page 1</h2>
     </span>
     <a aria-disabled="true" aria-label="Previous Page" class="pagination__previous" href="1.html">
         <svg aria-hidden="true">
-            <use xlink:href="#svg-icon-chevron-light-left"></use>
+            <use xlink:href="#icon-chevron-light-left"></use>
         </svg>
     </a>
     <ol>
         <li>
-            <a aria-current="page" href="1.html">1<span class="clipped"> - current page</span></a>
+            <a aria-current="page" href="1.html">1</a>
         </li>
         <li>
             <a href="2.html">2</a>
@@ -573,7 +573,7 @@ The example below assumes that the first result set item is the current page (he
     </ol>
     <a aria-label="Next Page" class="pagination__next" href="2.html">
         <svg aria-hidden="true">
-            <use xlink:href="#svg-icon-chevron-light-right"></use>
+            <use xlink:href="#icon-chevron-light-right"></use>
         </svg>
     </a>
 </nav>
@@ -624,10 +624,10 @@ Foreground SVG:
 <span class="radio__icon" hidden>
     <input class="radio__control" id="radio-group1_input1" type="radio" value="3" name="radio-group-1" />
     <svg aria-hidden="true" class="radio__unchecked" focusable="false">
-        <use xlink:href="#svg-icon-radio-unchecked"></use>
+        <use xlink:href="#icon-radio-unchecked"></use>
     </svg>
     <svg aria-hidden="true" class="radio__checked" focusable="false">
-        <use xlink:href="#svg-icon-confirmation"></use>
+        <use xlink:href="#icon-confirmation"></use>
     </svg>
 </span>
 ```
