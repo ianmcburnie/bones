@@ -15,6 +15,7 @@
 1. [Fake Tabs](#user-content-fake-tabs)
 1. [Flyout](#user-content-flyout)
 1. [Input Validation](#user-content-input-validation)
+1. [Listbox](#user-content-listbox)
 1. [Menu](#user-content-menu)
 1. [Page Notice](#user-content-page-notice)
 1. [Pagination](#user-content-pagination)
@@ -466,6 +467,87 @@ A scrolling listbox is created by using a select tag and specifying an arbitrary
 </span>
 ```
 -->
+
+## [Listbox](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
+
+The listbox pattern is intended for use as a custom, progressive enhancement of the native HTML select element.
+
+Because the single-select listbox pattern uses a button element, it's value will not be submitted along with other form data without the assistance of JavaScript.
+
+```html
+<span class="listbox">
+    <button class="expand-btn" aria-expanded="false" aria-haspopup="listbox">
+        <span class="expand-btn__cell">
+            <span>Option 1</span>
+            <span class="expand-btn__icon"></span>
+        </span>
+    </button>
+    <div class="listbox__options" role="listbox" tabindex="-1">
+        <div class="listbox__option" role="option">
+            <span>Option 1</span>
+            <span class="listbox__status"></span>
+        </div>
+        <div class="listbox__option" role="option">
+            <span>Option 2</span>
+            <span class="listbox__status"></span>
+        </div>
+        <div class="listbox__option" role="option">
+            <span>Option 3</span>
+            <span class="listbox__status"></span>
+        </div>
+    </div>
+</span>
+```
+
+By default, the first option should be selected if the user does not specify a selection.
+
+An initial selection can be specified by applying the `aria-selected` state to a single option.
+
+```html
+<span class="listbox">
+    <button class="expand-btn" aria-expanded="false" aria-haspopup="listbox">
+        <span class="expand-btn__cell">
+            <span>Option 1</span>
+            <span class="expand-btn__icon"></span>
+        </span>
+    </button>
+    <div class="listbox__options" role="listbox" tabindex="-1">
+        <div class="listbox__option" role="option">
+            <span>Option 1</span>
+            <span class="listbox__status"></span>
+        </div>
+        <div aria-selected="true" class="listbox__option" role="option">
+            <span>Option 2</span>
+            <span class="listbox__status"></span>
+        </div>
+        <div class="listbox__option" role="option">
+            <span>Option 3</span>
+            <span class="listbox__status"></span>
+        </div>
+    </div>
+</span>
+```
+
+For multi-select, the button element is dropped. Again, this behaves similar to the native HTML select element.
+
+```html
+<span class="listbox">
+    <div class="listbox__options" role="listbox" tabindex="-1">
+        <div class="listbox__option" role="option">
+            <span>Option 1</span>
+            <span class="listbox__status"></span>
+        </div>
+        <div class="listbox__option" role="option">
+            <span>Option 2</span>
+            <span class="listbox__status"></span>
+        </div>
+        <div class="listbox__option" role="option">
+            <span>Option 3</span>
+            <span class="listbox__status"></span>
+        </div>
+    </div>
+</span>
+```
 
 ## [Menu](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
 
