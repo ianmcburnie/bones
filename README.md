@@ -6,10 +6,12 @@
 
 1. [Introduction](#user-content-introduction)
 1. [Accordion](#user-content-accordion)
+1. [Accordion (Legacy)](#user-content-accordion-legacy)
 1. [Breadcrumbs](#user-content-breadcrumbs)
 1. [Carousel](#user-content-carousel)
 1. [Checkbox](#user-content-checkbox)
 1. [Combobox](#user-content-combobox)
+1. [Details](#user-content-details)
 1. [Dialog](#user-content-dialog)
 1. [Fake Menu](#user-content-fake-menu)
 1. [Fake Tabs](#user-content-fake-tabs)
@@ -37,7 +39,36 @@ Bones advocates the [Progressive Enhancement](http://en.wikipedia.org/wiki/Progr
 
 ## [Accordion](https://ebay.gitbooks.io/mindpatterns/content/disclosure/accordion.html)
 
-TIP: A lightweight alternative to an accordion is a simple list of buttons with `aria-expanded` state.
+The accordion is simply a list of [details](#user-content-details) widgets. Each details summary should include a relevant heading level tag.
+
+```html
+<ul class="accordion" role="list" aria-roledescription="accordion">
+    <li>
+        <details class="details">
+            <summary><h3>Panel 1</h3></summary>
+            <ul>
+                <li><a href="http://www.ebay.com">Item 1</a></li>
+                <li><a href="http://www.ebay.com">Item 2</a></li>
+                <li><a href="http://www.ebay.com">Item 3</a></li>
+            </ul>
+        </details>
+    </li>
+    <li>
+        <details class="details">
+            <summary><h3>Panel 2</h3></summary>
+            <ul>
+                <li><a href="http://www.ebay.com">Item 1</a></li>
+                <li><a href="http://www.ebay.com">Item 2</a></li>
+                <li><a href="http://www.ebay.com">Item 3</a></li>
+            </ul>
+        </details>
+    </li>
+</ul>
+```
+
+## [Accordion (Legacy)](https://ebay.gitbooks.io/mindpatterns/content/disclosure/accordionlegacy.html)
+
+This accordion markup is considered "legacy" as it followed an old, outdated version of the WAI-ARIA Authoring Practices.
 
 ### Before JavaScript Initialisation
 
@@ -266,6 +297,21 @@ After arrow key up or down, JavaScript must update the `aria-activedescendant` a
 ```
 
 Notice that `role="application"` is required to prevent JAWS virtual cursor from leaving listbox when up/down arrow keys are used. This role essentially forces JAWS into application mode, and is one of the few valid use cases we have for this role.
+
+## [Details](https://ebay.gitbooks.io/mindpatterns/content/disclosure/details.html)
+
+Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and JavaScript polyfill.
+
+```html
+<details class="details">
+    <summary>Details</summary>
+    <ul>
+        <li><a href="http://www.ebay.com">Link 1</a></li>
+        <li><a href="http://www.ebay.com">Link 2</a></li>
+        <li><a href="http://www.ebay.com">Link 3</a></li>
+    </ul>
+</details>
+```
 
 ## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/structure/dialog.html)
 
