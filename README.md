@@ -19,6 +19,7 @@
 1. [Input Validation](#user-content-input-validation)
 1. [Listbox](#user-content-listbox)
 1. [Menu](#user-content-menu)
+1. [Menu Button](#user-content-menu-button)
 1. [Page Notice](#user-content-page-notice)
 1. [Pagination](#user-content-pagination)
 1. [Radio](#user-content-radio)
@@ -597,12 +598,11 @@ For multi-select, the button element is dropped. Again, this behaves similar to 
 
 ## [Menu](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
 
-A menu contains commands (menuitem, menuitemradio, or menuitemcheckbox) that execute JavaScript. If you require a non-JavaScript fallback, consider using native form controls (e.g. regular buttons, radios and checkboxes).
+A menu contains commands (`menuitem`, `menuitemradio`, or `menuitemcheckbox`) that execute JavaScript. If you require a non-JavaScript fallback, consider using native form controls (e.g. regular buttons, radios and checkboxes).
 
 ```html
-<div class="menu" id="menu_0">
-    <button aria-controls="menu_0_flyout" aria-expanded="false" aria-haspopup="true" disabled>Open Menu</button>
-    <div id="menu_0_flyout" role="menu">
+<div class="menu">
+    <div role="menu">
         <div role="presentation">
             <div role="menuitem" tabindex="0">Button 1</div>
             <div role="menuitem" tabindex="-1">Button 2</div>
@@ -622,14 +622,11 @@ A menu contains commands (menuitem, menuitemradio, or menuitemcheckbox) that exe
 </div>
 ```
 
-Remember that the popup button will not work without JavaScript. Therefore we mark it as disabled in our markup and then enable it with JavaScript.
-
 If you only require a flat list of menu items, with no groups or separators, you can instead use a more compact form of markup:
 
 ```html
-<div class="menu" id="menu_1">
-    <button aria-controls="menu_1_flyout" aria-expanded="false" aria-haspopup="true">Open Menu</button>
-    <div id="menu_1_flyout" role="menu">
+<div class="menu">
+    <div role="menu">
         <div role="menuitem" tabindex="0">Button 1</div>
         <div role="menuitem" tabindex="-1">Button 2</div>
     </div>
@@ -639,16 +636,44 @@ If you only require a flat list of menu items, with no groups or separators, you
 If you wish to provide a semantic fallback for browser & screen reader combos that do not support menu roles, you can use list markup instead of divs:
 
 ```html
-<div class="menu" id="menu_2">
-    <button aria-controls="menu_2_flyout" aria-expanded="false" aria-haspopup="true">Open Menu</button>
-    <ul id="menu_2_flyout" role="menu">
+<div class="menu">
+    <ul role="menu">
         <li role="menuitem" tabindex="0">Button 1</li>
         <li role="menuitem" tabindex="-1">Button 2</li>
     </ul>
 </div>
 ```
 
-In all cases, a popup menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for it's menu items.
+In all cases, a menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for its menu items.
+
+## [Menu Button](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
+
+A menu button opens a [menu](#user-content-menu) in a flyout.
+
+```html
+<div class="menu-button" id="menu-button-0">
+    <button aria-expanded="false" aria-haspopup="true" class="menu-button__button">Open Menu</button>
+    <div class="menu-button__menu" hidden>
+        <div role="menu">
+            <div role="presentation">
+                <div role="menuitem" tabindex="0">Button 1</div>
+                <div role="menuitem" tabindex="-1">Button 2</div>
+            </div>
+            <hr />
+            <div role="presentation">
+                <div aria-checked="true" role="menuitemradio" tabindex="-1">Radio Button 1 (checked)</div>
+                <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 2 </div>
+                <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 3</div>
+            </div>
+            <hr />
+            <div role="presentation">
+                <div aria-checked="true" role="menuitemcheckbox" tabindex="-1">Checkbox 1 (checked)</div>
+                <div aria-checked="true" role="menuitemcheckbox"  tabindex="-1">Checkbox 2 (checked)</div>
+            </div>
+        </div>
+    </div>
+</div>
+```
 
 ## [Page Notice](http://ianmcburnie.github.io/mindpatterns/messaging/pagenotice/)
 
