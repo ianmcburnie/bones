@@ -651,7 +651,7 @@ In all cases, a menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-p
 A menu button opens a [menu](#user-content-menu) in a flyout.
 
 ```html
-<div class="menu-button" id="menu-button-0">
+<div class="menu-button">
     <button aria-expanded="false" aria-haspopup="true" class="menu-button__button">Open Menu</button>
     <div class="menu-button__menu" hidden>
         <div role="menu">
