@@ -18,6 +18,7 @@
 1. [Flyout](#user-content-flyout)
 1. [Input Validation](#user-content-input-validation)
 1. [Listbox](#user-content-listbox)
+1. [Listbox Button](#user-content-listbox-button)
 1. [Menu](#user-content-menu)
 1. [Menu Button](#user-content-menu-button)
 1. [Page Notice](#user-content-page-notice)
@@ -475,61 +476,13 @@ Notice that the `aria-described` attribute supplements the live-region, by using
 
 Be warned that even a hidden description (using display: none or `hidden` property) will be announced. Therefore if you plan on simply toggling the display of an error message, be sure to also toggle the presence of the `aria-describedby` attribute.
 
-<!--
 ## [Listbox](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
 
-### Before JavaScript Initialisation
-
-A scrolling listbox is created by using a select tag and specifying an arbitrary size attribute value.
+The listbox pattern is intended as a JavaScript alternative to the HTML select element. It can be single-select or multi-select.
 
 ```html
 <span class="listbox">
-    <label for="listbox">Select an option</label>
-    <select id="listbox" name="listbox" size="4">
-        <option value="1" selected>Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-        <option value="4">Option 4</option>
-    </select>
-</span>
-```
-
-### After JavaScript Initialisation
-
-```html
-<span class="listbox">
-    <label for="listbox" id="listbox_0_label">Select an option</label>
-    <select aria-hidden="true" id="listbox" name="listbox" size="4">
-        <option value="1" selected>Option 1</option>
-        <option value="2">Option 2</option>
-        <option value="3">Option 3</option>
-        <option value="4">Option 4</option>
-    </select>
-    <div role="listbox" tabindex="0" aria-activedescendant="listbox_0_option_0" aria-labelledby="listbox_0_label">
-        <div aria-selected="true" role="option" id="listbox_0_option_0">Option 1</div>
-        <div aria-selected="false" role="option" id="listbox_0_option_1">Option 2</div>
-        <div aria-selected="false" role="option" id="listbox_0_option_2">Option 3</div>
-        <div aria-selected="false" role="option" id="listbox_0_option_3">Option 4</div>
-    </div>
-</span>
-```
--->
-
-## [Listbox](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
-
-The listbox pattern is intended for use as a custom, progressive enhancement of the native HTML select element.
-
-Because the single-select listbox pattern uses a button element, it's value will not be submitted along with other form data without the assistance of JavaScript.
-
-```html
-<span class="listbox">
-    <button class="expand-btn" aria-expanded="false" aria-haspopup="listbox">
-        <span class="expand-btn__cell">
-            <span>Option 1</span>
-            <span class="expand-btn__icon"></span>
-        </span>
-    </button>
-    <div class="listbox__options" role="listbox" tabindex="-1">
+    <div role="listbox" tabindex="0">
         <div class="listbox__option" role="option">
             <span>Option 1</span>
             <span class="listbox__status"></span>
@@ -546,19 +499,13 @@ Because the single-select listbox pattern uses a button element, it's value will
 </span>
 ```
 
-By default, the first option should be selected if the user does not specify a selection.
+When a single-select listbox receives focus for the first time, the first option should be selected if the user does not specify a selection.
 
-An initial selection can be specified by applying the `aria-selected` state to a single option.
+An initial selection can be specified by applying the `aria-selected` state to one or more options.
 
 ```html
 <span class="listbox">
-    <button class="expand-btn" aria-expanded="false" aria-haspopup="listbox">
-        <span class="expand-btn__cell">
-            <span>Option 1</span>
-            <span class="expand-btn__icon"></span>
-        </span>
-    </button>
-    <div class="listbox__options" role="listbox" tabindex="-1">
+    <div role="listbox" tabindex="-1">
         <div class="listbox__option" role="option">
             <span>Option 1</span>
             <span class="listbox__status"></span>
@@ -575,22 +522,32 @@ An initial selection can be specified by applying the `aria-selected` state to a
 </span>
 ```
 
-For multi-select, the button element is dropped. Again, this behaves similar to the native HTML select element.
+## [Listbox Button](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
+
+Opens a [listbox](#user-content-listbox) via a button flyout.
 
 ```html
-<span class="listbox">
-    <div class="listbox__options" role="listbox" tabindex="-1">
-        <div class="listbox__option" role="option">
+<span class="listbox-button">
+    <button class="listbox-button__button" aria-expanded="false" aria-haspopup="listbox">
+        <span> <!-- flex container -->
             <span>Option 1</span>
-            <span class="listbox__status"></span>
-        </div>
-        <div class="listbox__option" role="option">
-            <span>Option 2</span>
-            <span class="listbox__status"></span>
-        </div>
-        <div class="listbox__option" role="option">
-            <span>Option 3</span>
-            <span class="listbox__status"></span>
+            <span class="listbox-button__icon-expand"></span>
+        </span>
+    </button>
+    <div class="listbox-button__listbox" hidden>
+        <div role="listbox" tabindex="0">
+            <div class="listbox__option" role="option">
+                <span>Option 1</span>
+                <span class="listbox__status"></span>
+            </div>
+            <div class="listbox__option" role="option">
+                <span>Option 2</span>
+                <span class="listbox__status"></span>
+            </div>
+            <div class="listbox__option" role="option">
+                <span>Option 3</span>
+                <span class="listbox__status"></span>
+            </div>
         </div>
     </div>
 </span>
@@ -652,7 +609,12 @@ A menu button opens a [menu](#user-content-menu) in a flyout.
 
 ```html
 <div class="menu-button">
-    <button aria-expanded="false" aria-haspopup="true" class="menu-button__button">Open Menu</button>
+    <button aria-expanded="false" aria-haspopup="true" class="menu-button__button">
+        <span> <!-- flex container (optional) -->
+            <span>Open Menu</span>
+            <span class="menu-button__icon-expand"></span>
+        </span>
+    </button>
     <div class="menu-button__menu" hidden>
         <div role="menu">
             <div role="presentation">
