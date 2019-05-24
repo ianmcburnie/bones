@@ -6,7 +6,6 @@
 
 1. [Introduction](#user-content-introduction)
 1. [Accordion](#user-content-accordion)
-1. [Accordion (Legacy)](#user-content-accordion-legacy)
 1. [Breadcrumbs](#user-content-breadcrumbs)
 1. [Carousel](#user-content-carousel)
 1. [Checkbox](#user-content-checkbox)
@@ -29,15 +28,11 @@
 
 ## Introduction
 
-Bones provides lean, mean, semantic HTML markup for widgets; ensuring maximum Accessibility, SEO and Site Speed performance. Bones markup has full support for <a href="http://www.w3.org/WAI/intro/aria"> WAI-ARIA</a> roles, states and properties.
+Bones provides lean, mean, semantic HTML markup for widgets; ensuring maximum Accessibility, SEO and Site Speed performance. Bones markup uses ARIA only where strictly <a href="http://www.w3.org/WAI/intro/aria"> WAI-ARIA</a> necessary.
 
-Bones advocates the [Progressive Enhancement](http://en.wikipedia.org/wiki/Progressive_enhancement) web-design strategy; building the web in a layered fashion that allows **everyone** to access the **most important** content and functionality. We supply HTML markup for both the *before* and *after*  JavaScript initialisation states of a widget, i.e. before-enhancement and after-enhancement. If you do not wish to support progressive enhancement we also provide alternatives.<sup>1</sup>
+Bones advocates the [Progressive Enhancement](http://en.wikipedia.org/wiki/Progressive_enhancement) web-design strategy; building the web in a layered fashion that allows **everyone** to access the **most important** content and functionality.
 
-<strike>Bones favors the <a href="http://en.wikipedia.org/wiki/Convention_over_configuration">convention over configuration</a> paradigm. A convention for widget structure allows us to add only a minimal amount of CSS and JavaScript 'hooks' to the base markup. Typically, we define a single module name on our root node, alongside any additional *modifier* class names, such as states & themes.</strike>
-
-**UPDATE**: Bones is evolving from it's original  ultra-minimalist "convention over configuration" paradigm, to the [BEM](http://getbem.com) (block, element, modifier) naming methodology. With this change we hope to strike the right balance between lean HTML and performant, flexible CSS. Not all patterns have been updated yet. Please bear with us.
-
-<sub><sup>1</sup> Building an app that is rendered entirely on the client-side? If so, you will only need to refer to the enhanced/initialised code. However, best practice is to build apps in an <a href="http://nerds.airbnb.com/isomorphic-javascript-future-web-apps/">isomorphic</a> fashion so that first page load is rendered by the server then *enhanced* on the client.</sub>
+Bones favors the the [BEM](http://getbem.com) (block, element, modifier) methodology for naming its classes.
 
 ## [Accordion](https://ebay.gitbooks.io/mindpatterns/content/disclosure/accordion.html)
 
@@ -68,69 +63,9 @@ The accordion is simply a list of [details](#user-content-details) widgets. Each
 </ul>
 ```
 
-## [Accordion (Legacy)](https://ebay.gitbooks.io/mindpatterns/content/disclosure/accordionlegacy.html)
-
-This accordion markup is considered "legacy" as it followed an old, outdated version of the WAI-ARIA Authoring Practices.
-
-### Before JavaScript Initialisation
-
-An accordion requires 2 or more panels of content.
-
-```html
-<div class="accordion" id="accordion1">
-    <h2>Accordion Title</h2>
-    <div class="accordion__item">
-        <h3 class="accordion__tab">Panel 1 Title</h3>
-        <div class="accordion__panel">
-            <!-- panel contents go here -->
-        </div>
-    </div>
-    <div class="accordion__item">
-        <h3 class="accordion__tab">Panel 2 Title</h3>
-        <div class="accordion__panel">
-            <!-- panel contents go here -->
-        </div>
-    </div>
-    <div class="accordion__item">
-        <h3 class="accordion__tab">Panel 3 Title</h3>
-        <div class="accordion__panel">
-            <!-- panel contents go here -->
-        </div>
-    </div>
-</div>
-```
-
-### After JavaScript Initialisation
-
-Tree structure remains identical, but many new attributes are added. Zero or more panels can be selected & visible at any time.
-
-```html
-<div class="accordion accordion--js" role="tablist">
-    <h2>Accordion Title</h2>
-    <div class="accordion__item">
-        <h3 class="accordion__tab" aria-controls="accordion1_panel1" aria-selected="false" id="accordion1_tab1" role="tab" tabindex="0">Panel 1 Title</h3>
-        <div class="accordion__panel" aria-hidden="true" aria-labelledby="accordion1_tab1" id="accordion1_panel1" role="tabpanel">
-            <!-- panel contents go here -->
-        </div>
-    </div>
-    <div class="accordion__item">
-        <h3 class="accordion__tab" aria-controls="accordion1_panel2" aria-selected="false" id="accordion1_tab2" role="tab" tabindex="-1">Panel 2 Title</h3>
-        <div class="accordion__panel" aria-hidden="true" aria-labelledby="accordion1_tab2" id="accordion1_panel2" role="tabpanel">
-            <!-- panel contents go here -->
-        </div>
-    </div>
-    <div class="accordion__item">
-        <h3 class="accordion__tab" aria-controls="accordion1_panel3" aria-selected="false" id="accordion1_tab3" role="tab" tabindex="-1">Panel 3 Title</h3>
-        <div class="accordion__panel" aria-hidden="true" aria-labelledby="accordion1_tab3" id="accordion1_panel3" role="tabpanel">
-            <!-- panel contents go here -->
-        </div>
-    </div>
-</div>
-```
-
 ## [Breadcrumbs](https://ebay.gitbooks.io/mindpatterns/content/navigation/breadcrumbs.html)
 
-The content is an ordered list of links inside a navigation landmark region. Breadcrumbs do not require JavaScript initialisation. CSS can be used to generate a separator image or glyph using the `::after` pseudo element.
+The content is an ordered list of links inside a navigation landmark region.
 
 ```html
 <nav class="crumbs" aria-labelledby="crumbs_heading" role="navigation">
@@ -144,9 +79,9 @@ The content is an ordered list of links inside a navigation landmark region. Bre
 </nav>
 ```
 
-## [Carousel](https://ebay.gitbooks.io/mindpatterns/content/disclosure/carousel.html)
+CSS can be used to generate a separator image or glyph using the `::after` pseudo element.
 
-### Before JavaScript Initialisation
+## [Carousel](https://ebay.gitbooks.io/mindpatterns/content/disclosure/carousel.html)
 
 A carousel is a list of items. These items can contain anything - text, images, links, tiles, cards, etc. - but we advise against using complex widgets. The usual accessibility rules apply to the contents of these items (tab-order, semantics, etc).
 
@@ -155,25 +90,10 @@ For the server rendered markup you can choose to render as little or as much of 
 ```html
 <div class="carousel">
     <span aria-live="polite" role="status">
-        <h2 class="carousel__title">Title</h2>
-    </span>
-    <ul>
-        <li>...</li>
-        <li>...</li>
-        <li>...</li>
-        ...
-    </ul>
-</div>
-```
-
-### After JavaScript Initialisation
-
-JavaScript adds a description and state to the heading inside of live region, and two pagination buttons either side of the list.
-
-```html
-<div class="carousel">
-    <span aria-live="polite" role="status">
-        <h2 class="carousel__title">Title<span class="clipped"> - Carousel - slide n of n</span></h2>
+        <h2 class="carousel__title">
+            <span>Title</span>
+            <span class="clipped"> - Carousel - slide n of n</span>
+        </h2>
     </span>
     <button aria-disabled="false" aria-label="Previous slide - Title"></button>
     <ul>
@@ -216,7 +136,7 @@ Native HTML checkboxes are 100% accessible by default. To ensure correct groupin
 
 For vertically stacked checkboxes, simply switch the spans to divs.
 
-### Custom Icon
+### Custom Checkbox Icon
 
 To create a custom checkbox style, either background or foreground SVG can be used as a facade over the real checkbox.
 
@@ -245,33 +165,18 @@ Foreground SVG:
 </span>
 ```
 
-This latter markup assumes that the symbol definitions for #icon-checkbox-unchecked and #icon-checkbox-checked exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
+This latter markup assumes that the symbol definitions for `#icon-checkbox-unchecked` and `#icon-checkbox-checked` exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
 
-In both cases, don't forget to add a label!
+In both cases, don't forget to add a label for the checkbox!
 
 ## [Combobox](https://ebay.gitbooks.io/mindpatterns/content/input/combobox.html)
 
-### Before JavaScript Initialisation
-
-Without JavaScript, the combobox markup is a simple text input with label:
-
 ```html
 <div class="combobox" id="combobox-1">
-    <label for="combobox-1-input">Combobox Label</label>
-    <input id="combobox-1-input" name="combobox-1-name" type="text">
-</div>
-```
-
-### After JavaScript Initialisation
-
-JavaScript adds the button, instructions and listbox to the markup.
-
-```html
-<div class="combobox" id="combobox-1">
-    <label for="combobox-1-input">Combobox Label</label>
-    <input id="combobox-1-input" name="combobox-1-name" type="text" role="combobox" aria-expanded="false" autocomplete="off" aria-owns="combobox-1-listbox" aria-describedby="combobox-1-instructions">
+    <span class="combobox__control">
+        <input name="combobox-1-name" type="text" role="combobox" autocomplete="off" aria-expanded="false" aria-owns="combobox-1-listbox" />
+    </span>
     <button type="button" tabindex="-1" aria-label="Expand Options"></button>
-    <span id="combobox-1-instructions">Use up and down arrow keys to navigate options</span>
     <ul id="combobox-1-listbox" role="listbox">
         <li role="option" id="combobox-1-option-1">Option 1</li>
         <li role="option" id="combobox-1-option-2">Option 2</li>
@@ -281,22 +186,7 @@ JavaScript adds the button, instructions and listbox to the markup.
 </div>
 ```
 
-After arrow key up or down, JavaScript must update the `aria-activedescendant` attribute to reflect the state of the currently active descendant item. For example, if arrow key down is pressed:
-
-```html
-<div class="combobox" id="combobox-1">
-    <label for="combobox-1-input">Combobox Label</label>
-    <input id="combobox-1-input" name="combobox-1-name" type="text" role="combobox" aria-activedescendant="combobox-1-option-1" aria-expanded="true" autocomplete="off" aria-owns="combobox-1-listbox" aria-describedby="combobox-1-instructions">
-    <button type="button" tabindex="-1" aria-label="Expand Options"></button>
-    <span id="combobox-1-instructions">Use up and down arrow keys to navigate options</span>
-    <ul id="combobox-1-listbox" role="listbox">
-        <li role="option" id="combobox-1-option-1" aria-selected="true">Option 1</li>
-        <li role="option" id="combobox-1-option-2">Option 2</li>
-        <li role="option" id="combobox-1-option-3">Option 3</li>
-        ...
-    </ul>
-</div>
-```
+JavaScript must update the `aria-activedescendant` attribute on the textbox to reflect the state of the currently active descendant listbox item.
 
 ## [Details](https://ebay.gitbooks.io/mindpatterns/content/disclosure/details.html)
 
@@ -326,49 +216,39 @@ Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and Jav
             <!-- dialog content goes here -->
         </div>
     </div>
-    <div class="dialog__mask"></div>
 </div>
 ```
 
-## [Fake Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fakemenu.html)
+## [Fake Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-menu.html)
 
-### Before JavaScript Initialisation
+A fake menu is styled like a regular menu, but it contains a list of links and/or buttons instead of menu items. No ARIA roles are required. If the `href` value of a fake menu item matches the current page url, then add `aria-current="page"` to that anchor tag.
 
-The content is a button and a list of links.
+```html
+<ul>
+    <li><a href="http://www.ebay.com">Link Text</a></li>
+    <li><a href="http://www.ebay.com">Link Text</a></li>
+    <li><a href="http://www.ebay.com">Link Text</a></li>
+</ul>
+```
+
+## [Fake-Menu Button](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-menu-button.html)
+
+A button that opens a fake menu.
 
 ```html
 <div class="fake-menu">
-    <button disabled>Open Nav</button>
-    <ul>
-        <li><a href="http://www.ebay.com">Link Text</a></li>
-        <li><a href="http://www.ebay.com">Link Text</a></li>
-        <li><a href="http://www.ebay.com">Link Text</a></li>
-    </ul>
+    <button aria-expanded="false">Fake Menu</button>
+    <div>
+        <ul>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+            <li><a href="http://www.ebay.com">Link Text</a></li>
+        </ul>
+    </div>
 </div>
 ```
 
-If the href value of a fake menu item matches the current page url, then add `aria-current="page"` to that anchor tag.
-
-Remember that this button will not work without JavaScript. Therefore we disable it in our markup and then enable it with JavaScript.
-
-### After JavaScript Initialisation
-
-```html
-<div class="fake-menu fake-menu--js" id="fake-menu-0">
-    <button aria-controls="fake-menu-0-flyout" aria-expanded="false">Open Nav</button>
-    <ul id="fake-menu-0-flyout">
-        <li><a href="http://www.ebay.com">Link Text</a></li>
-        <li><a href="http://www.ebay.com">Link Text</a></li>
-        <li><a href="http://www.ebay.com">Link Text</a></li>
-    </ul>
-</div>
-```
-
-The `aria-controls` attribute should only be present when aria-expanded state is true.
-
-If you require a fake menu that is opened by hovering on a link, rather than clicking on a button, then append a stealth button immediately after the anchor tag. This button will appear, and receive focus, as soon as the user tabs past the hyperlink.
-
-## [Fake Tabs](https://ebay.gitbooks.io/mindpatterns/content/navigation/faketabs.html)
+## [Fake Tabs](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-tabs.html)
 
 Fake tabs *look* like regular tabs, but behave like a list of links. No JavaScript is required.
 
@@ -397,38 +277,16 @@ A flyout might open on click, focus or hover, on any kind of button, input or li
 
 ```html
 <div class="flyout">
-    <button class="flyout__host" aria-expanded="false|true">Button</button>
-    <div class="flyout__overlay-container">
-        <div class="flyout__overlay">
-            <!-- overlay content -->
-        </div>
+    <button class="flyout__host" aria-expanded="false">Button</button>
+    <div class="flyout__content">
+        <!-- overlay content -->
     </div>
 </div>
 ```
-
-The `flyout__overlay-container` element acts as a hook for an ARIA live-region (see below), this element can be dropped if live-region support is not required.
 
 Note that Menu, Fake Menu, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern in that their overlay element must immediately follow the trigger element.
 
-### Live Region
-
-Live region support is optional. We have added support for live-region based on feedback from users who want the contents of flyouts to be announced when opened in certain cases (not all cases).
-
-```html
-<div class="flyout">
-    <button class="flyout__host" aria-expanded="false|true">Button</button>
-    <div class="flyout__overlay-container" aria-live="polite">
-        <div class="flyout__overlay">
-            <!-- overlay content -->
-        </div>
-    </div>
-</div>
-```
-
-In order for live-region support to work correctly in Voiceover, any hide/show operation (i.e. display:none|block) or content update must be performed on the `flyout__overlay`, not the `flyout__overlay-container`.
-
-
-## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/inputvalidation.html)
+## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/input-validation.html)
 
 Input validation messages depend on client-side JavaScript and are considered an *enhancement* to full, server-side form validation.
 
@@ -444,7 +302,7 @@ The error message container is a live-region, and can be primed and ready in the
     </span>
     <span aria-live="polite" class="input-validation__status" role="status">
         <span class="input-validation__description" id="input1-description" >
-            <!-- this content should be empty in a valid state -->
+            <!-- this content should be empty in a valid state, populated in an invalid state -->
         </span>
     </span>
 </div>
@@ -457,14 +315,14 @@ For Voiceover to correctly detect live-region updates, the updates must happen o
 Changing the content of a directly-descendant element will trigger a live-region update.
 
 ```html
-<div class="input-validation input-validation--js">
+<div class="input-validation">
     <span>
         <label for="input1">Input 1</label>
         <input aria-describedby="input1-description" aria-invalid="true" id="input1" name="input1" type="text" />
     </span>
     <span aria-live="polite" class="input-validation__status" role="status">
         <span class="input-validation__description" id="input1-description">
-            <!-- this content should be populated in an invalid state -->
+            <!-- this content should be empty in a valid state, populated in an invalid state -->
         </span>
     </span>
 </div>
@@ -501,26 +359,7 @@ When a single-select listbox receives focus for the first time, the first option
 
 An initial selection can be specified by applying the `aria-selected` state to one or more options.
 
-```html
-<span class="listbox">
-    <div role="listbox" tabindex="-1">
-        <div class="listbox__option" role="option">
-            <span>Option 1</span>
-            <span class="listbox__status"></span>
-        </div>
-        <div aria-selected="true" class="listbox__option" role="option">
-            <span>Option 2</span>
-            <span class="listbox__status"></span>
-        </div>
-        <div class="listbox__option" role="option">
-            <span>Option 3</span>
-            <span class="listbox__status"></span>
-        </div>
-    </div>
-</span>
-```
-
-## [Listbox Button](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
+## [Listbox Button](https://ebay.gitbooks.io/mindpatterns/content/input/listbox-button.html)
 
 Opens a [listbox](#user-content-listbox) via a button flyout.
 
@@ -588,20 +427,9 @@ If you only require a flat list of menu items, with no groups or separators, you
 </div>
 ```
 
-If you wish to provide a semantic fallback for browser & screen reader combos that do not support menu roles, you can use list markup instead of divs:
-
-```html
-<div class="menu">
-    <ul role="menu">
-        <li role="menuitem" tabindex="0">Button 1</li>
-        <li role="menuitem" tabindex="-1">Button 2</li>
-    </ul>
-</div>
-```
-
 In all cases, a menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for its menu items.
 
-## [Menu Button](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
+## [Menu Button](https://ebay.gitbooks.io/mindpatterns/content/input/menu-button.html)
 
 A menu button opens a [menu](#user-content-menu) in a flyout.
 
@@ -635,7 +463,7 @@ A menu button opens a [menu](#user-content-menu) in a flyout.
 </div>
 ```
 
-## [Page Notice](http://ianmcburnie.github.io/mindpatterns/messaging/pagenotice/)
+## [Page Notice](http://ianmcburnie.github.io/mindpatterns/messaging/page-notice/)
 
 Use `role=region` and `aria-label` to mark the page notice as a landmark for assistive technology.
 
@@ -645,7 +473,7 @@ Use `role=region` and `aria-label` to mark the page notice as a landmark for ass
 </section>
 ```
 
-If the page notice content or display will be dynamically updated on the client, wrap the notice with `role=alert` or `role=status` to create a live region for assistive technology.
+If the page notice content or display will be dynamically updated on the client, wrap the notice with `role="alert"` or `role="status"` to create a live region for assistive technology.
 
 ```html
 <span role="alert">
@@ -751,118 +579,36 @@ In both cases, don't forget to add a label!
 
 ## [Tabs](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html)
 
-Tabs require 2 or more panels of content.
-
-### With Progressive Enhancement
-
-If you wish to support progressive enhancement, your markup should start out as a list of links.
-
-#### Before JavaScript Initialisation
-
 ```html
-<div class="tabs" id="tabs1">
-    <h2>Tabs Heading</h2>
-    <ul class="tabs__items">
-        <li class="tabs__item">
-            <a href="#tabs1_panel1">Tab 1</a>
-        </li>
-        <li class="tabs__item">
-            <a href="#tabs1_panel2">Tab 2</a>
-        </li>
-        <li class="tabs__item">
-            <a href="#tabs1_panel3">Tab 3</a>
-        </li>
-    </ul>
-    <div class="tabs__content">
-        <div class="tabs__panel" id="tabs1_panel1" tabindex="-1">
-            <h3>Panel 1 heading</h3>
-            <!-- panel content goes here -->
-        </div>
-        <div class="tabs__panel" id="tabs1_panel2" tabindex="-1">
-            <h3>Panel 2 heading</h3>
-            <!-- panel content goes here -->
-        </div>
-        <div class="tabs__panel" id="tabs1_panel3" tabindex="-1">
-            <h3>Panel 3 heading</h3>
-            <!-- panel content goes here -->
-        </div>
-    </div>
-</div>
-```
-
-#### After JavaScript Initialisation
-
-Tree structure remains identical, but many new attributes are added. Only one panel can be selected & visible at any time.
-
-```html
-<div class="tabs tab--js" id="tabs1">
-    <h2 class="clipped">Tabs Heading</h2>
-    <ul class="tabs__items" role="tablist">
-        <li class="tabs__item" role="tab" aria-controls="tabs1_panel1" aria-selected="true" id="tabs1_tab1" tabindex="0">
-            <a role="presentation">Tab 1</a>
-        </li>
-        <li class="tabs__item" role="tab" aria-controls="tabs1_panel2" aria-selected="false" id="tabs1_tab2" tabindex="-1">
-            <a role="presentation">Tab 2</a>
-        </li>
-        <li class="tabs__item" role="tab" aria-controls="tabs1_panel3" aria-selected="false" id="tabs1_tab3" tabindex="-1">
-            <a role="presentation">Tab 3</a>
-        </li>
-    </ul>
-    <div class="tabs__content">
-        <div aria-labelledby="tabs1_tab1" class="tabs__panel" role="tabpanel" id="tabs1_panel1">
-            <h3>Panel 1 heading</h3>
-            <!-- panel content goes here -->
-        </div>
-        <div aria-labelledby="tabs1_tab2" class="tabs__panel" role="tabpanel" hidden id="tabs1_panel2">
-            <h3>Panel 2 heading</h3>
-            <!-- panel content goes here -->
-        </div>
-        <div aria-labelledby="tabs1_tab3" class="tabs__panel" role="tabpanel" hidden id="tabs1_panel3">
-            <h3>Panel 3 heading</h3>
-            <!-- panel content goes here -->
-        </div>
-    </div>
-</div>
-```
-
-If the content of each tabpanel is only a small amount of unstructured text, then you may wish to convert the container of the tab panels into a live region using aria-live="polite".
-
-### Without Progressive Enhancement
-
-If you do not wish to support progressive enhancement, simply replace the list of links in the markup with div tags. You can choose to apply the ARIA attributes with JavaScript or add them directly to the rendered markup.
-
-```html
-<div class="tabs tab--js" id="tabs1">
+<div class="tabs" id="tabs-1">
     <h2 class="clipped">Tabs Heading</h2>
     <div class="tabs__items" role="tablist">
-        <div class="tabs__item" role="tab" aria-controls="tabs1_panel1" aria-selected="true" id="tabs1_tab1" tabindex="0">
+        <div class="tabs__item" role="tab" aria-controls="tabs-1-panel-1" aria-selected="true" id="tabs1_tab1" tabindex="0">
             <span>Tab 1</span>
         </div>
-        <div class="tabs__item" role="tab" aria-controls="tabs1_panel2" aria-selected="false" id="tabs1_tab2" tabindex="-1">
+        <div class="tabs__item" role="tab" aria-controls="tabs-1-panel-2" aria-selected="false" id="tabs1_tab2" tabindex="-1">
             <span>Tab 2</span>
         </div>
-        <div class="tabs__item" role="tab" aria-controls="tabs1_panel3" aria-selected="false" id="tabs1_tab3" tabindex="-1">
+        <div class="tabs__item" role="tab" aria-controls="tabs-1-panel-3" aria-selected="false" id="tabs1_tab3" tabindex="-1">
             <span>Tab 3</span>
         </div>
     </div>
     <div class="tabs__content">
-        <div aria-labelledby="tabs1_tab1" class="tabs__panel" role="tabpanel" id="tabs1_panel1">
+        <div aria-labelledby="tabs1_tab1" class="tabs__panel" role="tabpanel" id="tabs-1-panel-1">
             <h3>Panel 1 heading</h3>
             <!-- panel content goes here -->
         </div>
-        <div aria-labelledby="tabs1_tab2" class="tabs__panel" role="tabpanel" hidden id="tabs1_panel2">
+        <div aria-labelledby="tabs1_tab2" class="tabs__panel" role="tabpanel" hidden id="tabs-1-panel-2">
             <h3>Panel 2 heading</h3>
             <!-- panel content goes here -->
         </div>
-        <div aria-labelledby="tabs1_tab3" class="tabs__panel" role="tabpanel" hidden id="tabs1_panel3">
+        <div aria-labelledby="tabs1_tab3" class="tabs__panel" role="tabpanel" hidden id="tabs-1-panel-3">
             <h3>Panel 3 heading</h3>
             <!-- panel content goes here -->
         </div>
     </div>
 </div>
 ```
-
-If the content of each tabpanel is only a small amount of unstructured text, then you may wish to convert the container of the tab panels into a live region using aria-live="polite".
 
 ## [Tooltip](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tooltip.html)
 
