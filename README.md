@@ -176,7 +176,6 @@ In both cases, don't forget to add a label for the checkbox!
     <span class="combobox__control">
         <input name="combobox-1-name" type="text" role="combobox" autocomplete="off" aria-expanded="false" aria-owns="combobox-1-listbox" />
     </span>
-    <button type="button" tabindex="-1" aria-label="Expand Options"></button>
     <ul id="combobox-1-listbox" role="listbox">
         <li role="option" id="combobox-1-option-1">Option 1</li>
         <li role="option" id="combobox-1-option-2">Option 2</li>
@@ -185,6 +184,8 @@ In both cases, don't forget to add a label for the checkbox!
     </ul>
 </div>
 ```
+
+Optionally, a separate button can be added to manually expand and collapse the combobox. Typically though, the combobox will automatically expand and collapse on focus and blur, meaning any such button element is redundant. 
 
 JavaScript must update the `aria-activedescendant` attribute on the textbox to reflect the state of the currently active descendant listbox item.
 
