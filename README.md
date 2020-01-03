@@ -185,7 +185,7 @@ In both cases, don't forget to add a label for the checkbox!
 </div>
 ```
 
-Optionally, a separate button can be added to manually expand and collapse the combobox. Typically though, the combobox will automatically expand and collapse on focus and blur, meaning any such button element is redundant. 
+Optionally, a separate button can be added to manually expand and collapse the combobox. Typically though, the combobox will automatically expand and collapse on focus and blur, meaning any such button element is redundant.
 
 JavaScript must update the `aria-activedescendant` attribute on the textbox to reflect the state of the currently active descendant listbox item.
 
@@ -207,7 +207,7 @@ Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and Jav
 ## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/structure/dialog.html)
 
 ```html
-<div aria-labelledby="dialog_title" class="dialog" role="dialog">
+<div class="dialog" role="dialog" aria-labelledby="dialog_title" aria-modal="true">
     <div class="dialog__window" role="document">
         <header role="banner">
             <h2 id="dialog_title">Dialog Title</h2>
@@ -219,6 +219,10 @@ Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and Jav
     </div>
 </div>
 ```
+
+Typically, but not always, a dialog will visibly obscure the content in the main window underneath. Therefore it should be coded as a `modal` dialog.
+
+The role of `document` was required as a workaround for older versions of NVDA. Without it, NVDA was unable to access the contents of the dialog (a pretty serious bug!). It is probably time to review whether this is still necessary, given that those versions of NVDA are very old by now!
 
 ## [Fake Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-menu.html)
 
