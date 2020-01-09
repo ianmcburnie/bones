@@ -222,7 +222,7 @@ Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and Jav
 
 Typically, but not always, a dialog will visibly obscure the content in the main window underneath. Therefore it should be coded as a `modal` dialog.
 
-The role of `document` was required as a workaround for older versions of NVDA. Without it, NVDA was unable to access the contents of the dialog (a pretty serious bug!). It is probably time to review whether this is still necessary, given that those versions of NVDA are very old by now!
+The role of `document` was required as a workaround for older versions of NVDA. Without it, <a href="https://github.com/nvaccess/nvda/issues/4493#issuecomment-155328098">NVDA was unable to access the contents of the dialog</a> (a pretty serious bug!). It is probably time to review whether this is still necessary, given that those versions of NVDA are very old by now!
 
 ## [Fake Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-menu.html)
 
