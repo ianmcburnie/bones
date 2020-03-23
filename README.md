@@ -88,11 +88,11 @@ A carousel is a list of items. These items can contain anything - text, images, 
 For the server rendered markup you can choose to render as little or as much of the full list as you wish. Client-side script can lazy-load in additional items as desired.
 
 ```html
-<div class="carousel">
+<div aria-labelledby="carousel-title" aria-roledescription="carousel" class="carousel" role="group">
     <span aria-live="polite" role="status">
-        <h2 class="carousel__title">
+        <h2 class="carousel__title" id="carousel-title">
             <span>Title</span>
-            <span class="clipped"> - Carousel - slide n of n</span>
+            <span class="clipped"> - slide n of n</span>
         </h2>
     </span>
     <button aria-disabled="false" aria-label="Previous slide - Title"></button>
