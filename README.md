@@ -23,6 +23,7 @@
 1. [Page Notice](#user-content-page-notice)
 1. [Pagination](#user-content-pagination)
 1. [Radio](#user-content-radio)
+1. [Switch](#user-content-switch)
 1. [Tabs](#user-content-tabs)
 1. [Tooltip](#user-content-tooltip)
 
@@ -579,6 +580,26 @@ Foreground SVG:
 This latter markup assumes that the symbol definitions for #icon-radio-unchecked and #icon-radio-checked exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
 
 In both cases, don't forget to add a label!
+
+## [Switch](https://ebay.gitbooks.io/mindpatterns/content/input/switch.html)
+
+A switch behaves a bit like a checkbox - it can be on or off (i.e checked or unchecked). The key difference is that a switch is not a true form control. It typically executes JavaScript on the client when toggled (i.e. without a full page reload) rather than storing form data to be sent to the server.
+
+```html
+<span class="switch">
+    <span class="switch__control" role="switch" tabindex="0" aria-checked="false"></span>
+    <span class="switch__button"></span>
+</span>
+```
+
+The following version of the switch uses a checkbox under the hood. It should be used if you require the switch to store data inside of a form. As mentioned above however, this is not the intended purpose of a switch. You may wish to consider using an actual checkbox instead.
+
+```html
+<span class="switch">
+    <input class="switch__control" role="switch" type="checkbox" aria-checked="false" />
+    <span class="switch__button"></span>
+</span>
+```
 
 ## [Tabs](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tabs.html)
 
