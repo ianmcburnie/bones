@@ -160,18 +160,7 @@ For vertically stacked checkboxes, simply switch the spans to divs.
 
 ### Custom Checkbox Icon
 
-To create a custom checkbox style, either background or foreground SVG can be used as a facade over the real checkbox.
-
-Background SVG:
-
-```html
-<span class="checkbox">
-    <input class="checkbox__control" id="freeshipping" type="checkbox" name="freeshipping" />
-    <span class="checkbox__icon"></span>
-</span>
-```
-
-Foreground SVG:
+To create a custom checkbox style, a foreground SVG can be used as a facade over the real checkbox.
 
 ```html
 <span class="checkbox">
@@ -187,11 +176,13 @@ Foreground SVG:
 </span>
 ```
 
-This latter markup assumes that the symbol definitions for `#icon-checkbox-unchecked` and `#icon-checkbox-checked` exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
+This markup assumes that the symbol definitions for `#icon-checkbox-unchecked` and `#icon-checkbox-checked` exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
 
-In both cases, don't forget to add a label for the checkbox!
+Don't forget to add a label for the checkbox!
 
 ## [Combobox](https://ebay.gitbooks.io/mindpatterns/content/input/combobox.html)
+
+Collapsed state:
 
 ```html
 <div class="combobox" id="combobox-1">
@@ -207,9 +198,25 @@ In both cases, don't forget to add a label for the checkbox!
 </div>
 ```
 
-Optionally, a separate button can be added to manually expand and collapse the combobox. Typically though, the combobox will automatically expand and collapse on focus and blur, meaning any such button element is redundant.
+Expanded state:
+
+```html
+<div class="combobox combobox--expanded" id="combobox-1">
+    <span class="combobox__control">
+        <input name="combobox-1-name" type="text" role="combobox" autocomplete="off" aria-expanded="true" aria-owns="combobox-1-listbox" />
+    </span>
+    <ul id="combobox-1-listbox" role="listbox">
+        <li role="option" id="combobox-1-option-1">Option 1</li>
+        <li role="option" id="combobox-1-option-2">Option 2</li>
+        <li role="option" id="combobox-1-option-3">Option 3</li>
+        ...
+    </ul>
+</div>
+```
 
 JavaScript must update the `aria-activedescendant` attribute on the textbox to reflect the state of the currently active descendant listbox item.
+
+Optionally, a separate button can be added to manually expand and collapse the combobox. Typically though, the combobox will automatically expand and collapse on focus and blur, meaning any such button element is redundant.
 
 ## [Details](https://ebay.gitbooks.io/mindpatterns/content/disclosure/details.html)
 
@@ -298,7 +305,7 @@ NOTE: We say 'Current Page', rather than 'Current Tab', because the controls are
 
 ## [Flyout](https://ebay.gitbooks.io/mindpatterns/content/disclosure/flyout.html)
 
-A flyout might open on click, focus or hover, on any kind of button, input or link. Regardless of what type of element or interaction is used to trigger the flyout, the overlay element must immediately follow the host element in the DOM. This structure ensures a seamless and natural reading order and focus order.
+A flyout might open on click, focus or hover, on any kind of button, input or link. Ideally, the content element can immediately follow the host element in the DOM. This structure ensures a seamless and natural reading order and focus order.
 
 ```html
 <div class="flyout">
@@ -309,7 +316,20 @@ A flyout might open on click, focus or hover, on any kind of button, input or li
 </div>
 ```
 
-Note that Menu, Fake Menu, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern in that their overlay element must immediately follow the trigger element.
+If the overlay cannot be adjacent to the button, then a modifier class will be needed for styling purposes:
+
+```html
+<div class="flyout flyout--expanded">
+    <div>
+        <button class="flyout__host" aria-expanded="true">Button</button>
+    </div>
+    <div class="flyout__content">
+        <!-- overlay content -->
+    </div>
+</div>
+```
+
+Note that Menu, Fake Menu, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern.
 
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/input-validation.html)
 
@@ -573,21 +593,10 @@ For vertically stacked radios, simply switch the spans to divs.
 
 ### Custom Radios
 
-To create a custom radio style, either background or foreground SVG can be used as a facade over the real radio.
-
-Background SVG:
+To create a custom radio style, foreground SVG can be used as a facade over the real radio.
 
 ```HTML
-<span class="radio">
-    <input class="radio__control" id="radio-group1_input1" type="radio" value="3" name="radio-group-1" />
-    <span class="radio__icon"></span>
-</span>
-```
-
-Foreground SVG:
-
-```HTML
-<span class="radio__icon" hidden>
+<span class="radio" hidden>
     <input class="radio__control" id="radio-group1_input1" type="radio" value="3" name="radio-group-1" />
     <svg aria-hidden="true" class="radio__unchecked" focusable="false">
         <use xlink:href="#icon-radio-unchecked"></use>
@@ -598,9 +607,9 @@ Foreground SVG:
 </span>
 ```
 
-This latter markup assumes that the symbol definitions for #icon-radio-unchecked and #icon-radio-checked exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
+This markup assumes that the symbol definitions for `#icon-radio-unchecked` and `#icon-radio-checked` exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
 
-In both cases, don't forget to add a label!
+Don't forget to add a label!
 
 ## [Switch](https://ebay.gitbooks.io/mindpatterns/content/input/switch.html)
 
@@ -661,20 +670,11 @@ Tooltip structure is almost identical to [flyout](#user-content-flyout) structur
 
 ```html
 <span class="tooltip">
-    <input aria-describedby="tooltip0" class="tooltip__trigger" type="submit" value="Submit" />
-    <span class="tooltip__overlay" id="tooltip0" role="tooltip">Hint content</span>
+    <input aria-describedby="tooltip-0" class="tooltip__host" type="submit" value="Submit" />
+    <div class="tooltip__overlay" id="tooltip-0" role="tooltip">
+        <p>Hint content</p>
+    </div>
 </span>
 ```
-
-The main difference is that a modifier class must be used instead of aria-expanded attribute:
-
-```html
-<span class="tooltip tooltip--expanded">
-    <input aria-describedby="tooltip0" class="tooltip__trigger" type="submit" value="Submit" />
-    <span class="tooltip__overlay" id="tooltip0" role="tooltip">Hint content</span>
-</span>
-```
-
-In this example we have chosen the name `tooltip--expanded` for our modifier class.
 
 Role of `tooltip` is required on the overlay, and `aria-describedby` attribute is required on the trigger element.
