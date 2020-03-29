@@ -6,6 +6,7 @@
 
 1. [Introduction](#user-content-introduction)
 1. [Accordion](#user-content-accordion)
+1. [Alert Dialog](#user-content-alert-dialog)
 1. [Breadcrumbs](#user-content-breadcrumbs)
 1. [Carousel](#user-content-carousel)
 1. [Checkbox](#user-content-checkbox)
@@ -63,6 +64,26 @@ The accordion is simply a list of [details](#user-content-details) widgets. Each
     </li>
 </ul>
 ```
+
+## [Alert Dialog](https://ebay.gitbooks.io/mindpatterns/content/messaging/alert-dialog.html)
+
+```html
+<div class="dialog" role="alertdialog" aria-labelledby="dialog-title" aria-modal="true">
+    <div class="dialog__window">
+        <div class="dialog__header">
+            <h2 class="dialog__title" id="dialog-title">Alert Dialog Title</h2>
+        </div>
+        <div class="dialog__main">
+            <!-- dialog content goes here -->
+        </div>
+        <div class="dialog__footer">
+            <button class="dialog__close" type="button">Close</button>
+        </div>
+    </div>
+</div>
+```
+
+An alert dialog should visibly and programmatically obscure the content in the main window underneath. Therefore it should be coded as a *modal* alert dialog, using the `aria-modal` property.
 
 ## [Breadcrumbs](https://ebay.gitbooks.io/mindpatterns/content/navigation/breadcrumbs.html)
 
@@ -205,23 +226,23 @@ Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and Jav
 </details>
 ```
 
-## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/structure/dialog.html)
+## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/disclosure/dialog.html)
 
 ```html
-<div class="dialog" role="dialog" aria-labelledby="dialog_title" aria-modal="true">
+<div class="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
     <div class="dialog__window">
-        <header role="banner">
-            <h2 id="dialog_title">Dialog Title</h2>
+        <div class="dialog__header">
+            <h2 class="dialog__title" id="dialog-title">Dialog Title</h2>
             <button aria-label="Close dialog" class="dialog__close" type="button"></button>
-        </header>
-        <div>
+        </div>
+        <div class="dialog__main">
             <!-- dialog content goes here -->
         </div>
     </div>
 </div>
 ```
 
-Typically, but not always, a dialog will visibly obscure the content in the main window underneath. Therefore it should be coded as a *modal* dialog, using the `aria-modal` property.
+Typically, but not always, a dialog will visibly and programmatically obscure the content in the main window underneath. Therefore it should be coded as a *modal* dialog, using the `aria-modal` property.
 
 ## [Fake Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-menu.html)
 
