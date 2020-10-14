@@ -30,15 +30,17 @@
 
 ## Introduction
 
-Bones provides lean, mean, semantic HTML markup for widgets; ensuring maximum Accessibility, SEO and Site Speed performance. Bones markup uses ARIA only where strictly <a href="http://www.w3.org/WAI/intro/aria"> WAI-ARIA</a> necessary.
+Bones provides lean, mean, semantic HTML markup for widgets; ensuring maximum Accessibility, SEO and Site Speed performance. Bones markup uses [ARIA](http://www.w3.org/WAI/intro/aria) only where strictly necessary.
+
+Bones is not intended to be an exhaustive set of instructions for creating accessible components. The primary intention of bones is to detail the structural and semantic markup requirements. For further guidance, please visit [eBay MIND Patterns](https://ebay.gitbook.io/mindpatterns) and/or [WAI-ARIA Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1).
 
 Bones advocates the [Progressive Enhancement](http://en.wikipedia.org/wiki/Progressive_enhancement) web-design strategy; building the web in a layered fashion that allows **everyone** to access the **most important** content and functionality.
 
-Bones favors the the [BEM](http://getbem.com) (block, element, modifier) methodology for naming its classes.
+Bones favors the the [BEM](http://getbem.com) (block, element, modifier) methodology and naming convention.
 
 ## [Accordion](https://ebay.gitbooks.io/mindpatterns/content/disclosure/accordion.html)
 
-The accordion is simply a list of [details](#user-content-details) widgets. Each details summary should include a relevant heading level tag.
+The accordion is simply a list of [details](#user-content-details) widgets. Each details summary should include a relevant heading-level tag.
 
 ```html
 <ul class="accordion" role="list" aria-roledescription="accordion">
@@ -67,19 +69,19 @@ The accordion is simply a list of [details](#user-content-details) widgets. Each
 
 ## [Alert Dialog](https://ebay.gitbooks.io/mindpatterns/content/messaging/alert-dialog.html)
 
-An alert dialog should visibly and programmatically obscure the content in the main window underneath. Therefore it should be coded as a *modal* alert dialog, using the `aria-modal` property.
+A modal dialog window with a single button to acknowledge the message/content.
 
 ```html
-<div class="dialog" role="alertdialog" aria-labelledby="dialog-title" aria-modal="true">
-    <div class="dialog__window">
-        <div class="dialog__header">
-            <h2 class="dialog__title" id="dialog-title">Alert Dialog Title</h2>
+<div class="alert-dialog" role="alertdialog" aria-labelledby="alert-dialog-title" aria-modal="true">
+    <div class="alert-dialog__window">
+        <div class="alert-dialog__header">
+            <h2 class="alert-dialog__title" id="dialog-title">Alert Dialog Title</h2>
         </div>
-        <div class="dialog__main">
-            <!-- dialog content goes here -->
+        <div class="alert-dialog__main">
+            <!-- alert dialog content goes here -->
         </div>
-        <div class="dialog__footer">
-            <button class="dialog__close" type="button">Close</button>
+        <div class="alert-dialog__footer">
+            <button class="alert-dialog__acknowledge" type="button">OK</button>
         </div>
     </div>
 </div>
@@ -122,9 +124,7 @@ While CSS can be used to generate a separator image or glyph using the `::after`
 
 ## [Carousel](https://ebay.gitbooks.io/mindpatterns/content/disclosure/carousel.html)
 
-A carousel is a list of items. These items can contain anything - text, images, links, tiles, cards, etc. - but we advise against using complex widgets. The usual accessibility rules apply to the contents of these items (tab-order, semantics, etc).
-
-For the server rendered markup you can choose to render as little or as much of the full list as you wish. Client-side script can lazy-load in additional items as desired.
+A carousel is a list of items. These items be contain anything - text, images, links, tiles, cards, etc. - but each item is responsible for managing its own markup and accessibility (e.g. tab-order, semantics, etc).
 
 ```html
 <div aria-labelledby="carousel-title" aria-roledescription="carousel" class="carousel" role="group">
@@ -136,40 +136,42 @@ For the server rendered markup you can choose to render as little or as much of 
     </span>
     <button aria-disabled="false" aria-label="Previous slide - Title"></button>
     <ul>
+        <!-- onscreen items -->
         <li aria-hidden="false">...</li>
         <li aria-hidden="false">...</li>
         <li aria-hidden="false">...</li>
         ...
+        <!-- offscreen items -->
+        <li aria-hidden="true">...</li>
+        <li aria-hidden="true">...</li>
     </ul>
     <button aria-disabled="false" aria-label="Next slide - Title"></button>
 </div>
 ```
 
-JavaScript must maintain the tabindex and aria-hidden state of items as they scroll in and out of view. Items that are not in view need a tabindex value of "-1" an aria-hidden value of "true" to ensure items are hidden from keyboard users and screen reader users respectively.
-
-JavaScript must also maintain the state of the heading inside the live region.
-
-For small touch screens, you may wish to utilise swipe gestures. In which case pagination buttons can be hidden offscreen, appearing only on keyboard focus (i.e. 'stealth' buttons) for keyboard users.
+JavaScript must maintain the tabindex and aria-hidden state of items as they scroll in and out of view.
 
 ## [Checkbox](https://ebay.gitbooks.io/mindpatterns/content/input/checkbox.html)
 
-Native HTML checkboxes are 100% accessible by default. To ensure correct grouping and group label semantics, groups of checkboxes should always be placed inside of a fieldset with legend.
+Native HTML checkboxes are 100% accessible by default.
+
+To ensure correct grouping semantics, checkboxes should be placed inside of a fieldset with legend.
 
 ```html
 <fieldset>
     <legend>Auction Type</legend>
-    <div>
+    <span>
         <input id="freeshipping" type="checkbox" name="freeshipping" />
         <label for="freeshipping">Free Shipping</label>
-    </div>
-    <div>
+    </span>
+    <span>
         <input id="endssoon" type="checkbox" name="endssoon" />
         <label for="endssoon">Ends soon</label>
-    </div>
-    <div>
+    </span>
+    <span>
         <input id="zerobids" type="checkbox" name="zerobids" />
         <label for="zerobids">Zero bids</label>
-    </div>
+    </span>
 </fieldset>
 ```
 
@@ -177,29 +179,29 @@ For vertically stacked checkboxes, simply switch the spans to divs.
 
 ### Custom Checkbox Icon
 
-To create a custom checkbox style, a foreground SVG can be used as a facade over the real checkbox.
+A foreground SVG, combined with CSS, can be used as a facade over the real checkbox.
 
 ```html
 <span class="checkbox">
-  <input class="checkbox__control" id="freeshipping" type="checkbox" name="freeshipping" />
-  <span class="checkbox__icon" hidden>
-    <svg aria-hidden="true" class="checkbox__unchecked" focusable="false">
-      <use xlink:href="#icon-checkbox-unchecked"></use>
-    </svg>
-    <svg aria-hidden="true" class="checkbox__checked" focusable="false">
-      <use xlink:href="#icon-checkbox-checked"></use>
-    </svg>
-  </span>
+    <input class="checkbox__control" id="freeshipping" type="checkbox" name="freeshipping" />
+    <span class="checkbox__icon" hidden>
+        <svg aria-hidden="true" class="checkbox__unchecked" focusable="false">
+            <use xlink:href="#icon-checkbox-unchecked"></use>
+        </svg>
+        <svg aria-hidden="true" class="checkbox__checked" focusable="false">
+            <use xlink:href="#icon-checkbox-checked"></use>
+        </svg>
+    </span>
 </span>
 ```
 
-This markup assumes that the symbol definitions for `#icon-checkbox-unchecked` and `#icon-checkbox-checked` exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
-
-Don't forget to add a label for the checkbox!
+This markup assumes that the symbol definitions for `#icon-checkbox-unchecked` and `#icon-checkbox-checked` exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be over-ridden by CSS.
 
 ## [Combobox](https://ebay.gitbooks.io/mindpatterns/content/input/combobox.html)
 
-Collapsed state:
+A textbox plus listbox combination.
+
+### Collapsed State
 
 ```html
 <div class="combobox" id="combobox-1">
@@ -215,7 +217,7 @@ Collapsed state:
 </div>
 ```
 
-Expanded state:
+### Expanded State
 
 ```html
 <div class="combobox combobox--expanded" id="combobox-1">
@@ -252,6 +254,8 @@ Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and Jav
 
 ## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/disclosure/dialog.html)
 
+Dialogs can be modal (e.g. a lightbox window) or non-modal (e.g. a toast notification).
+
 ```html
 <div class="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
     <div class="dialog__window">
@@ -266,19 +270,27 @@ Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and Jav
 </div>
 ```
 
-Typically, but not always, a dialog will visibly and programmatically obscure the content in the main window underneath. Therefore it should be coded as a *modal* dialog, using the `aria-modal` property.
+
 
 ## [Fake Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-menu.html)
 
-A fake menu is styled like a regular menu, but it contains a list of links and/or buttons instead of menu items. No ARIA roles are required. If the `href` value of a fake menu item matches the current page url, then add `aria-current="page"` to that anchor tag.
+A fake menu is styled like a regular menu, but it contains a list of links and/or buttons instead of menu items.
 
 ```html
 <ul>
-    <li><a href="http://www.ebay.com">Link Text</a></li>
-    <li><a href="http://www.ebay.com">Link Text</a></li>
-    <li><a href="http://www.ebay.com">Link Text</a></li>
+    <li>
+        <a href="http://www.ebay.com">Link Text</a>
+    </li>
+    <li>
+        <button type="button">Button Text</button>
+    </li>
+    <li>
+        <a href="http://www.ebay.com">Link Text</a>
+    </li>
 </ul>
 ```
+
+If the `href` value of a fake menu item matches the current page url, then add `aria-current="page"` to that anchor tag.
 
 ## [Fake-Menu Button](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-menu-button.html)
 
@@ -289,9 +301,15 @@ A button that opens a fake menu.
     <button aria-expanded="false">Fake Menu</button>
     <div>
         <ul>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
-            <li><a href="http://www.ebay.com">Link Text</a></li>
+            <li>
+                <a href="http://www.ebay.com">Link Text</a>
+            </li>
+            <li>
+                <button type="button">Button Text</button>
+            </li>
+            <li>
+                <a href="http://www.ebay.com">Link Text</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -299,7 +317,7 @@ A button that opens a fake menu.
 
 ## [Fake Tabs](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-tabs.html)
 
-Fake tabs *look* like regular tabs, but behave like a list of links. No JavaScript is required.
+Fake tabs are simply a list of links styled to look like tabs.
 
 ```html
 <nav aria-labelledby="fake-tabs-title" class="fake-tabs" role="navigation">
@@ -318,27 +336,27 @@ Fake tabs *look* like regular tabs, but behave like a list of links. No JavaScri
 </nav>
 ```
 
-NOTE: We say 'Current Page', rather than 'Current Tab', because the controls are links, not tabs.
-
 ## [Flyout](https://ebay.gitbooks.io/mindpatterns/content/disclosure/flyout.html)
 
-A flyout might open on click, focus or hover, on any kind of button, input or link. Ideally, the content element can immediately follow the host element in the DOM. This structure ensures a seamless and natural reading order and focus order.
+A flyout might open on click, focus or hover, on any kind of host button, input or link.
+
+For correct reading order, and to minimize accessibility defects, the overlay element and its content should always immediately follow the host element in the DOM.
 
 ```html
 <div class="flyout">
-    <button class="flyout__host" aria-expanded="false">Button</button>
+    <button class="flyout__host" aria-expanded="false">Host Button</button>
     <div class="flyout__content">
         <!-- overlay content -->
     </div>
 </div>
 ```
 
-If the overlay cannot be adjacent to the button, then a modifier class will be needed for styling purposes:
+If the overlay element cannot be immediately adjacent to the button element, then an additional class will be required for styling purposes:
 
 ```html
 <div class="flyout flyout--expanded">
     <div>
-        <button class="flyout__host" aria-expanded="true">Button</button>
+        <button class="flyout__host" aria-expanded="true">Host Button</button>
     </div>
     <div class="flyout__content">
         <!-- overlay content -->
@@ -346,11 +364,11 @@ If the overlay cannot be adjacent to the button, then a modifier class will be n
 </div>
 ```
 
-Note that Menu, Fake Menu, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern.
+Note that Menu Button, Listbox Button, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern and rules.
 
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/input-validation.html)
 
-Input validation messages depend on client-side JavaScript and are considered an *enhancement* to full, server-side form validation.
+Input validation messages rendered on the client are considered an *enhancement* to full, server-side form validation.
 
 ### Valid State
 
@@ -390,13 +408,11 @@ Changing the content of a directly-descendant element will trigger a live-region
 </div>
 ```
 
-Notice that the `aria-described` attribute supplements the live-region, by using the same live-region content as a *description* for the input. Descriptions can be read at any time, live-regions only once at the time they are triggered.
-
-Be warned that even a hidden description (using display: none or `hidden` property) will be announced. Therefore if you plan on simply toggling the display of an error message, be sure to also toggle the presence of the `aria-describedby` attribute.
+Notice that the `aria-described` attribute supplements the live-region, by using the same live-region content as a *description* for the input.
 
 ## [Listbox](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
 
-The listbox pattern is intended as a JavaScript alternative to the HTML select element. It can be single-select or multi-select.
+The listbox pattern is intended as a JavaScript alternative to the `multiselect` state of the HTML select.
 
 ```html
 <span class="listbox">
@@ -423,12 +439,12 @@ An initial selection can be specified by applying the `aria-selected` state to o
 
 ## [Listbox Button](https://ebay.gitbooks.io/mindpatterns/content/input/listbox-button.html)
 
-Opens a [listbox](#user-content-listbox) via a button flyout.
+Opens a [listbox](#user-content-listbox) via a host button.
 
 ```html
 <span class="listbox-button">
     <button class="listbox-button__button" aria-expanded="false" aria-haspopup="listbox">
-        <span> <!-- flex container -->
+        <span>
             <span>Option 1</span>
             <span class="listbox-button__icon-expand"></span>
         </span>
@@ -454,31 +470,9 @@ Opens a [listbox](#user-content-listbox) via a button flyout.
 
 ## [Menu](https://ebay.gitbooks.io/mindpatterns/content/input/menu.html)
 
-A menu contains commands (`menuitem`, `menuitemradio`, or `menuitemcheckbox`) that execute JavaScript. If you require a non-JavaScript fallback, consider using native form controls (e.g. regular buttons, radios and checkboxes).
+A menu contains one or more groups of commands (`menuitem`, `menuitemradio`, or `menuitemcheckbox`) that execute JavaScript.
 
-```html
-<div class="menu">
-    <div role="menu">
-        <div role="presentation">
-            <div role="menuitem" tabindex="0">Button 1</div>
-            <div role="menuitem" tabindex="-1">Button 2</div>
-        </div>
-        <hr />
-        <div role="presentation">
-            <div aria-checked="true" role="menuitemradio" tabindex="-1">Radio Button 1 (checked)</div>
-            <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 2 </div>
-            <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 3</div>
-        </div>
-        <hr />
-        <div role="presentation">
-            <div aria-checked="true" role="menuitemcheckbox" tabindex="-1">Checkbox 1 (checked)</div>
-            <div aria-checked="true" role="menuitemcheckbox"  tabindex="-1">Checkbox 2 (checked)</div>
-        </div>
-    </div>
-</div>
-```
-
-If you only require a flat list of menu items, with no groups or separators, you can instead use a more compact form of markup:
+### Single Group
 
 ```html
 <div class="menu">
@@ -489,16 +483,38 @@ If you only require a flat list of menu items, with no groups or separators, you
 </div>
 ```
 
-In all cases, a menu requires a [rovingtabindex](http://www.w3.org/TR/wai-aria-practices/#focus_tabindex) for its menu items.
+### Multiple Groups
+
+```html
+<div class="menu">
+    <div role="menu">
+        <div role="presentation">
+            <div role="menuitem" tabindex="0">Button 1</div>
+            <div role="menuitem" tabindex="-1">Button 2</div>
+        </div>
+        <hr />
+        <div role="presentation">
+            <div aria-checked="true" role="menuitemradio" tabindex="-1">Radio Button 1</div>
+            <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 2 </div>
+            <div aria-checked="false" role="menuitemradio" tabindex="-1">Radio Button 3</div>
+        </div>
+        <hr />
+        <div role="presentation">
+            <div aria-checked="true" role="menuitemcheckbox" tabindex="-1">Checkbox 1</div>
+            <div aria-checked="true" role="menuitemcheckbox"  tabindex="-1">Checkbox 2</div>
+        </div>
+    </div>
+</div>
+```
 
 ## [Menu Button](https://ebay.gitbooks.io/mindpatterns/content/input/menu-button.html)
 
-A menu button opens a [menu](#user-content-menu) in a flyout.
+A menu button opens a [menu](#user-content-menu) in a [flyout](#user-content-flyout).
 
 ```html
 <div class="menu-button">
     <button aria-expanded="false" aria-haspopup="true" class="menu-button__button">
-        <span> <!-- flex container (optional) -->
+        <span>
             <span>Open Menu</span>
             <span class="menu-button__icon-expand"></span>
         </span>
@@ -527,31 +543,21 @@ A menu button opens a [menu](#user-content-menu) in a flyout.
 
 ## [Page Notice](http://ianmcburnie.github.io/mindpatterns/messaging/page-notice/)
 
-Use `role=region` and `aria-label` to mark the page notice as a landmark for assistive technology.
+Page notices contain important messaging. A labelled landmark element (i.e. `<section>`) increases affordance for assistive technology.
 
 ```html
-<section class="page-notice" role="region" aria-label="Page notice: high priority">
-    <p>Something went wrong. Please try again.</p>
-</section>
-```
-
-If the page notice content or display will be dynamically updated on the client, wrap the notice with `role="alert"` or `role="status"` to create a live region for assistive technology.
-
-```html
-<span role="alert">
-    <section class="page-notice" role="region" aria-label="Page notice: high priority">
-        <p>Oops. Something is still wrong. Please try again later.</p>
+<span aria-live="off">
+    <section class="page-notice" role="region" aria-label="Attention">
+        <p>Something went wrong. Please try again.</p>
     </section>
 </span>
 ```
 
+If the content or display is to be dynamically updated on the client, set `aria-live` from "off" to "polite".
+
 ## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
 
-The pagination pattern allows a user to navigate back and forwards through a URL based dataset, or jump directly to any specific URL in that set.
-
-Pagination links may update the results immediately on the client via AJAX, or on the server via a full page reload. In both cases, the browser's URL will be updated.
-
-The example below assumes that the first result set item is the current page (hence the 'Previous' link would appear 'disabled' in this state).
+Pagination is an important means of site navigation. A labelled landmark element (i.e. `<nav>`) increases affordance for assistive technology.
 
 ```html
 <nav class="pagination" aria-labelledby="pagination-heading" role="navigation">
@@ -582,11 +588,13 @@ The example below assumes that the first result set item is the current page (he
 </nav>
 ```
 
-**NOTE:** The heading need only be wrapped in an ARIA live-region if client-side pagination is implemented (i.e. partial page updates).
+**NOTE:** The ARIA live-region need only be enabled (set from "off" to "polite") if client-side pagination is implemented.
 
 ## [Radio](https://ebay.gitbooks.io/mindpatterns/content/input/radio.html)
 
-Native HTML radio buttons are 100% accessible by default. To ensure correct grouping and group label semantics, radio buttons should always be placed inside of a fieldset with legend.
+Native HTML radio buttons are 100% accessible by default.
+
+To ensure correct grouping semantics, radio buttons should be placed inside of a fieldset with legend.
 
 ```html
 <fieldset>
@@ -610,7 +618,7 @@ For vertically stacked radios, simply switch the spans to divs.
 
 ### Custom Radios
 
-To create a custom radio style, foreground SVG can be used as a facade over the real radio.
+Foreground SVG can be used as a facade over the real radio.
 
 ```HTML
 <span class="radio" hidden>
@@ -624,13 +632,11 @@ To create a custom radio style, foreground SVG can be used as a facade over the 
 </span>
 ```
 
-This markup assumes that the symbol definitions for `#icon-radio-unchecked` and `#icon-radio-checked` exist on the page. The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
-
-Don't forget to add a label!
+The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
 
 ## [Switch](https://ebay.gitbooks.io/mindpatterns/content/input/switch.html)
 
-A switch behaves a bit like a checkbox - it can be on or off (i.e checked or unchecked). The key difference is that a switch is not a true form control. It typically executes JavaScript on the client when toggled (i.e. without a full page reload) rather than storing form data to be sent to the server.
+A switch is not a true form control. It typically executes JavaScript on the client when toggled (i.e. without a full page reload).
 
 ```html
 <span class="switch">
@@ -683,7 +689,7 @@ The following version of the switch uses a checkbox under the hood. It should be
 
 ## [Tooltip](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tooltip.html)
 
-Tooltip structure is almost identical to [flyout](#user-content-flyout) structure:
+Tooltip structure is almost identical to [flyout](#user-content-flyout) structure. To ensure correct reading order for assistive technology, the overlay element must always immediately follow the host element.
 
 ```html
 <span class="tooltip">
@@ -693,5 +699,3 @@ Tooltip structure is almost identical to [flyout](#user-content-flyout) structur
     </div>
 </span>
 ```
-
-Role of `tooltip` is required on the overlay, and `aria-describedby` attribute is required on the trigger element.
