@@ -67,6 +67,8 @@ The accordion is simply a list of [details](#user-content-details) widgets. Each
 
 ## [Alert Dialog](https://ebay.gitbooks.io/mindpatterns/content/messaging/alert-dialog.html)
 
+An alert dialog should visibly and programmatically obscure the content in the main window underneath. Therefore it should be coded as a *modal* alert dialog, using the `aria-modal` property.
+
 ```html
 <div class="dialog" role="alertdialog" aria-labelledby="dialog-title" aria-modal="true">
     <div class="dialog__window">
@@ -83,25 +85,40 @@ The accordion is simply a list of [details](#user-content-details) widgets. Each
 </div>
 ```
 
-An alert dialog should visibly and programmatically obscure the content in the main window underneath. Therefore it should be coded as a *modal* alert dialog, using the `aria-modal` property.
-
 ## [Breadcrumbs](https://ebay.gitbooks.io/mindpatterns/content/navigation/breadcrumbs.html)
 
 The content is an ordered list of links inside a navigation landmark region.
 
 ```html
-<nav class="crumbs" aria-labelledby="crumbs_heading" role="navigation">
-    <h2 id="crumbs_heading">You are here</h2>
+<nav class="breadcrumbs" aria-labelledby="breadcrumbs_heading" role="navigation">
+    <h2 class="clipped" id="breadcrumbs_heading">You are here</h2>
     <ol>
-        <li><a href="http://www.ebay.com">Great Grandparent Page</a></li>
-        <li><a href="http://www.ebay.com">Grandparent Page</a></li>
-        <li><a href="http://www.ebay.com">Parent Page</a></li>
-        <li><a aria-current="location">Current Page</a></li>
+        <li>
+            <a href="http://www.ebay.com">Great Grandparent Page</a>
+            <svg focusable="false" height="10" width="10" aria-hidden="true">
+                <use xlink:href="#icon-breadcrumb"></use>
+            </svg>
+        </li>
+        <li>
+            <a href="http://www.ebay.com">Grandparent Page</a>
+            <svg focusable="false" height="10" width="10" aria-hidden="true">
+                <use xlink:href="#icon-breadcrumb"></use>
+            </svg>
+        </li>
+        <li>
+            <a href="http://www.ebay.com">Parent Page</a>
+            <svg focusable="false" height="10" width="10" aria-hidden="true">
+                <use xlink:href="#icon-breadcrumb"></use>
+            </svg>
+        </li>
+        <li>
+            <a aria-current="page">Current Page</a>
+        </li>
     </ol>
 </nav>
 ```
 
-CSS can be used to generate a separator image or glyph using the `::after` pseudo element.
+While CSS can be used to generate a separator image or glyph using the `::after` pseudo element, we find that inline SVG offers a more accessible and flexible approach.
 
 ## [Carousel](https://ebay.gitbooks.io/mindpatterns/content/disclosure/carousel.html)
 
