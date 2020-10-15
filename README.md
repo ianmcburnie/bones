@@ -16,6 +16,7 @@
 1. [Fake Menu](#user-content-fake-menu)
 1. [Fake Tabs](#user-content-fake-tabs)
 1. [Flyout](#user-content-flyout)
+1. [Infotip](#user-content-infotip)
 1. [Input Validation](#user-content-input-validation)
 1. [Listbox](#user-content-listbox)
 1. [Listbox Button](#user-content-listbox-button)
@@ -345,7 +346,7 @@ For correct reading order, and to minimize accessibility defects, the overlay el
 ```html
 <div class="flyout">
     <button class="flyout__host" aria-expanded="false">Host Button</button>
-    <div class="flyout__content">
+    <div class="flyout__overlay">
         <!-- overlay content -->
     </div>
 </div>
@@ -358,13 +359,43 @@ If the overlay element cannot be immediately adjacent to the button element, the
     <div>
         <button class="flyout__host" aria-expanded="true">Host Button</button>
     </div>
-    <div class="flyout__content">
+    <div class="flyout__overlay">
         <!-- overlay content -->
     </div>
 </div>
 ```
 
 Note that Menu Button, Listbox Button, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern and rules.
+
+## [Infotip](https://ebay.gitbooks.io/mindpatterns/content/disclosure/infotip.html)
+
+Infotip is a specific type of [flyout](#user-content-flyout). The markup becomes a little more convoluted than the regular flyout due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
+
+```html
+<span class="infotip">
+    <button class="icon-btn infotip__host" type="button" aria-expanded="false" aria-label="Help">
+        <svg class="icon icon--information-small" focusable="false" width="16" height="16" aria-hidden="true">
+            <use xlink:href="#icon-information-small"></use>
+        </svg>
+    </button>
+    <div class="infotip__overlay">
+        <span class="infotip__pointer infotip__pointer--bottom-center"></span>
+        <div class="infotip__mask">
+            <div class="infotip__cell">
+                <span class="infotip__content">
+                    <h3 class="infotip__heading">Infotip</h3>
+                    <p>Here's a tip to help you be successful at your task.</p>
+                </span>
+                <button class="infotip__close" type="button" aria-label="Dismiss infotip">
+                    <svg class="icon icon--close" focusable="false" height="24" width="24" aria-hidden="true">
+                        <use xlink:href="#icon-close"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</span>
+```
 
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/input-validation.html)
 
