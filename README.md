@@ -27,6 +27,7 @@
 1. [Radio](#user-content-radio)
 1. [Switch](#user-content-switch)
 1. [Tabs](#user-content-tabs)
+1. [Toast Dialog](#user-content-toast-dialog)
 1. [Tooltip](#user-content-tooltip)
 
 ## Introduction
@@ -717,6 +718,36 @@ The following version of the switch uses a checkbox under the hood. It should be
     </div>
 </div>
 ```
+
+## [Toast Dialog](https://ebay.gitbooks.io/mindpatterns/content/messaging/toast-dialog.html)
+
+Toast dialog is non-modal and should not steal or trap keyboard focus.
+
+```html
+<aside aria-label="Notification" aria-live="polite" aria-modal="false" class="toast-dialog" hidden role="dialog">
+    <div class="toast-dialog__window">
+        <div class="toast-dialog__header">
+            <h2 class="toast-dialog__title">
+                <!-- heading -->
+            </h2>
+            <button class="toast-dialog__close" type="button" aria-label="Close notification dialog">
+                <svg focusable="false" height="24" width="24" aria-hidden="true">
+                    <use xlink:href="#icon-close"></use>
+                </svg>
+            </button>
+        </div>
+        <div class="toast-dialog__main">
+            <!-- content -->
+        </div>
+        <!-- optional footer with cta -->
+        <div class="toast-dialog__footer">
+            <a accesskey="a" class="toast-dialog__cta" href="http://www.ebay.com">Action</a>
+        </div>
+    </div>
+</aside>
+```
+
+If using the optional footer with call-to-action link or button, the first letter of the CTA will define the `accesskey` property.
 
 ## [Tooltip](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tooltip.html)
 
