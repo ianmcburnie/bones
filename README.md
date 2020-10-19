@@ -575,17 +575,28 @@ A menu button opens a [menu](#user-content-menu) in a [flyout](#user-content-fly
 
 ## [Page Notice](http://ianmcburnie.github.io/mindpatterns/messaging/page-notice/)
 
-Page notices contain important messaging. A labelled landmark element (i.e. `<section>`) increases affordance for assistive technology.
+Page notices are common and prominent visual landmarks on any website. A labelled landmark element (i.e. `<section>`) increases affordance for assistive technology.
+
+A live-region ensure dynamic updates on the client are picked up by assistive technology. This live-region can be removed or set to "off" if the page notice is only ever rendered once on the server without any further client-side changes or updates.
 
 ```html
-<span aria-live="off">
-    <section class="page-notice" role="region" aria-label="Attention">
-        <p>Something went wrong. Please try again.</p>
+<span aria-live="polite">
+    <section class="page-notice page-notice--information" role="region" aria-label="Information">
+        <div class="page-notice__header">
+            <svg focusable="false" height="24" width="24" role="img" aria-label="Information">
+                <use xlink:href="#icon-information"></use>
+            </svg>
+        </div>
+        <div class="page-notice__main">
+            <h2 class="page-notice__title">Title</h2>
+            <p>Copy</p>
+        </div>
+        <div class="page-notice__footer">
+            <a href="https://www.ebay.com" class="page-notice__cta">Call to action</a>
+        </div>
     </section>
 </span>
 ```
-
-If the content or display is to be dynamically updated on the client, set `aria-live` from "off" to "polite".
 
 ## [Pagination](http://ianmcburnie.github.io/mindpatterns/pagination/)
 
