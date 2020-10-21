@@ -413,8 +413,8 @@ A [lightbox dialog](#user-content-lightbox-dialog) with one or more form inputs.
             <h2 class="input-dialog__title" id="input-dialog-title">Input Dialog Title</h2>
         </div>
         <div class="input-dialog__main">
-            <label>Input Label</label>
-            <input type="text" name="foo" />
+            <label for="foo">Input Label</label>
+            <input id="foo" type="text" name="foo" />
         </div>
         <div class="input-dialog__footer">
             <button class="input-dialog__cancel" type="button">Cancel</button>
