@@ -11,13 +11,15 @@
 1. [Carousel](#user-content-carousel)
 1. [Checkbox](#user-content-checkbox)
 1. [Combobox](#user-content-combobox)
+1. [Confirm Dialog](#user-content-confirm-dialog)
 1. [Details](#user-content-details)
-1. [Dialog](#user-content-dialog)
 1. [Fake Menu](#user-content-fake-menu)
 1. [Fake Tabs](#user-content-fake-tabs)
 1. [Flyout](#user-content-flyout)
 1. [Infotip](#user-content-infotip)
+1. [Input Dialog](#user-content-input-dialog)
 1. [Input Validation](#user-content-input-validation)
+1. [Lightbox Dialog](#user-content-lightbox-dialog)
 1. [Listbox](#user-content-listbox)
 1. [Listbox Button](#user-content-listbox-button)
 1. [Menu](#user-content-menu)
@@ -71,7 +73,7 @@ The accordion is simply a list of [details](#user-content-details) widgets. Each
 
 ## [Alert Dialog](https://ebay.gitbooks.io/mindpatterns/content/messaging/alert-dialog.html)
 
-A modal dialog window with a single button to acknowledge the message/content.
+A [lightbox dialog](#user-content-lightbox-dialog) with a single button to acknowledge the message/content.
 
 ```html
 <div class="alert-dialog" role="alertdialog" aria-labelledby="alert-dialog-title" aria-modal="true">
@@ -239,6 +241,28 @@ JavaScript must update the `aria-activedescendant` attribute on the textbox to r
 
 Optionally, a separate button can be added to manually expand and collapse the combobox. Typically though, the combobox will automatically expand and collapse on focus and blur, meaning any such button element is redundant.
 
+
+## [Confirm Dialog](https://ebay.gitbooks.io/mindpatterns/content/messaging/confirm-dialog.html)
+
+A [lightbox dialog](#user-content-lightbox-dialog) with buttons to cancel or confirm an action.
+
+```html
+<div class="confirm-dialog" role="dialog" aria-labelledby="confirm-dialog-title" aria-modal="true">
+    <div class="confirm-dialog__window">
+        <div class="confirm-dialog__header">
+            <h2 class="confirm-dialog__title" id="confirm-dialog-title">Confirm Dialog Title</h2>
+        </div>
+        <div class="confirm-dialog__main">
+            <!-- confirm dialog content goes here -->
+        </div>
+        <div class="confirm-dialog__footer">
+            <button class="confirm-dialog__cancel" type="button">Cancel</button>
+            <button class="confirm-dialog__confirm" type="button">OK</button>
+        </div>
+    </div>
+</div>
+```
+
 ## [Details](https://ebay.gitbooks.io/mindpatterns/content/disclosure/details.html)
 
 Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and JavaScript polyfill.
@@ -253,26 +277,6 @@ Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and Jav
     </ul>
 </details>
 ```
-
-## [Dialog](https://ebay.gitbooks.io/mindpatterns/content/disclosure/dialog.html)
-
-Dialogs can be modal (e.g. a lightbox window) or non-modal (e.g. a toast notification).
-
-```html
-<div class="dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true">
-    <div class="dialog__window">
-        <div class="dialog__header">
-            <h2 class="dialog__title" id="dialog-title">Dialog Title</h2>
-            <button aria-label="Close dialog" class="dialog__close" type="button"></button>
-        </div>
-        <div class="dialog__main">
-            <!-- dialog content goes here -->
-        </div>
-    </div>
-</div>
-```
-
-
 
 ## [Fake Menu](https://ebay.gitbooks.io/mindpatterns/content/navigation/fake-menu.html)
 
@@ -398,6 +402,28 @@ Infotip is a specific type of [flyout](#user-content-flyout). The markup becomes
 </span>
 ```
 
+## [Input Dialog](https://ebay.gitbooks.io/mindpatterns/content/disclosure/input-dialog.html)
+
+A [lightbox dialog](#user-content-lightbox-dialog) with one or more form inputs.
+
+```html
+<div class="input-dialog" role="dialog" aria-labelledby="input-dialog-title" aria-modal="true">
+    <div class="input-dialog__window">
+        <div class="input-dialog__header">
+            <h2 class="input-dialog__title" id="input-dialog-title">Input Dialog Title</h2>
+        </div>
+        <div class="input-dialog__main">
+            <label>Input Label</label>
+            <input type="text" name="foo" />
+        </div>
+        <div class="input-dialog__footer">
+            <button class="input-dialog__cancel" type="button">Cancel</button>
+            <button class="input-dialog__submit" type="button">Submit</button>
+        </div>
+    </div>
+</div>
+```
+
 ## [Input Validation](https://ebay.gitbooks.io/mindpatterns/content/messaging/input-validation.html)
 
 Input validation messages rendered on the client are considered an *enhancement* to full, server-side form validation.
@@ -441,6 +467,24 @@ Changing the content of a directly-descendant element will trigger a live-region
 ```
 
 Notice that the `aria-described` attribute supplements the live-region, by using the same live-region content as a *description* for the input.
+
+## [Lightbox Dialog](https://ebay.gitbooks.io/mindpatterns/content/disclosure/lightbox-dialog.html)
+
+A lightbox dialog is always modal. Other types of lightbox dialog include: [alert dialog](#user-content-alert-dialog), [confirm dialog](#user-content-confirm-dialog) & [input dialog](#user-content-input-dialog).
+
+```html
+<div class="lightbox-dialog" role="dialog" aria-labelledby="lightbox-dialog-title" aria-modal="true">
+    <div class="lightbox-dialog__window">
+        <div class="lightbox-dialog__header">
+            <h2 class="lightbox-dialog__title" id="lightbox-dialog-title">Dialog Title</h2>
+            <button aria-label="Close dialog" class="lightbox-dialog__close" type="button"></button>
+        </div>
+        <div class="lightbox-dialog__main">
+            <!-- lightbox dialog content goes here -->
+        </div>
+    </div>
+</div>
+```
 
 ## [Listbox](https://ebay.gitbooks.io/mindpatterns/content/input/listbox.html)
 
