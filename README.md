@@ -31,6 +31,7 @@
 1. [Tabs](#user-content-tabs)
 1. [Toast Dialog](#user-content-toast-dialog)
 1. [Tooltip](#user-content-tooltip)
+1. [Tourtip](#user-content-tourtip)
 
 ## Introduction
 
@@ -374,12 +375,14 @@ Note that Menu Button, Listbox Button, Tooltip & Combobox are special instances 
 
 ## [Infotip](https://ebay.gitbooks.io/mindpatterns/content/disclosure/infotip.html)
 
-Infotip is a specific type of [flyout](#user-content-flyout). The markup becomes a little more convoluted than the regular flyout due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
+An infotip is expanded and visible on click event of host element.
+
+Infotip is a specific type of [flyout](#user-content-flyout). The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
 
 ```html
 <span class="infotip">
-    <button class="icon-btn infotip__host" type="button" aria-expanded="false" aria-label="Help">
-        <svg class="icon icon--information-small" focusable="false" width="16" height="16" aria-hidden="true">
+    <button class="infotip__host" type="button" aria-expanded="false" aria-label="Help">
+        <svg focusable="false" width="16" height="16" aria-hidden="true">
             <use xlink:href="#icon-information-small"></use>
         </svg>
     </button>
@@ -388,11 +391,11 @@ Infotip is a specific type of [flyout](#user-content-flyout). The markup becomes
         <div class="infotip__mask">
             <div class="infotip__cell">
                 <span class="infotip__content">
-                    <h3 class="infotip__heading">Infotip</h3>
-                    <p>Here's a tip to help you be successful at your task.</p>
+                    <h3 class="infotip__heading">Infotip Title</h3>
+                    <p>Infotip Copy</p>
                 </span>
                 <button class="infotip__close" type="button" aria-label="Dismiss infotip">
-                    <svg class="icon icon--close" focusable="false" height="24" width="24" aria-hidden="true">
+                    <svg focusable="false" height="24" width="24" aria-hidden="true">
                         <use xlink:href="#icon-close"></use>
                     </svg>
                 </button>
@@ -806,13 +809,58 @@ If using the optional footer with call-to-action link or button, the first lette
 
 ## [Tooltip](https://ebay.gitbooks.io/mindpatterns/content/disclosure/tooltip.html)
 
-Tooltip structure is almost identical to [flyout](#user-content-flyout) structure. To ensure correct reading order for assistive technology, the overlay element must always immediately follow the host element.
+A tooltip is expanded and visible on hover and focus of host element.
+
+Tooltip structure is almost identical to [flyout](#user-content-flyout) structure. The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
 
 ```html
 <span class="tooltip">
-    <input aria-describedby="tooltip-0" class="tooltip__host" type="submit" value="Submit" />
+    <button class="tooltip__host" aria-describedby="tooltip-0" aria-expanded="false" aria-label="Settings">
+        <svg focusable="false" height="16" width="16" aria-hidden="true">
+            <use xlink:href="#icon-settings"></use>
+        </svg>
+    </button>
     <div class="tooltip__overlay" id="tooltip-0" role="tooltip">
-        <p>Hint content</p>
+        <span class="tooltip__pointer"></span>
+        <div class="tooltip__mask">
+            <div class="tooltip__cell">
+                <div class="tooltip__content">
+                    <p>Tooltip Copy</p>
+                </div>
+            </div>
+        </div>
     </div>
 </span>
+```
+
+## [Tourtip](https://ebay.gitbooks.io/mindpatterns/content/messaging/tourtip.html)
+
+A tourtip is expanded and visible on page load.
+
+Tourtip structure is almost identical to [flyout](#user-content-flyout) structure. The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
+
+```html
+<div class="tourtip tourtip--expanded">
+    <button class="tourtip__host" aria-label="Settings">
+        <svg focusable="false" height="16" width="16" aria-hidden="true">
+            <use xlink:href="#icon-settings"></use>
+        </svg>
+    </button>
+    <div class="tourtip__overlay" role="region" aria-labelledby="tourtip-label">
+        <span class="tourtip__pointer tourtip__pointer--top"></span>
+        <div class="tourtip__mask">
+            <div class="tourtip__cell">
+                <span class="tourtip__content">
+                    <h2 class="tourtip__heading" id="tourtip-label">Tourtip Title</h2>
+                    <p>Tourtip Copy</p>
+                </span>
+                <button class="tourtip__close" type="button" aria-label="Dismiss tourtip">
+                    <svg focusable="false" height="24" width="24" aria-hidden="true">
+                        <use xlink:href="#icon-close"></use>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 ```
