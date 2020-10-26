@@ -18,6 +18,7 @@
 1. [Flyout](#user-content-flyout)
 1. [Fullscreen Dialog](#user-content-fullscreen-dialog)
 1. [Infotip](#user-content-infotip)
+1. [Inline Notice](#user-content-inline-notice)
 1. [Input Dialog](#user-content-input-dialog)
 1. [Input Validation](#user-content-input-validation)
 1. [Lightbox Dialog](#user-content-lightbox-dialog)
@@ -447,6 +448,23 @@ Infotip is a specific type of [flyout](#user-content-flyout). The markup becomes
         </div>
     </div>
 </span>
+```
+
+## [Inline-Notice](https://ebay.gitbooks.io/mindpatterns/content/messaging/inline-notice.html)
+
+If the inline notice is rendered or updated on the client, wrap it within a [live-region](https://ebay.gitbook.io/mindpatterns/techniques/live-region) element.
+
+```html
+<div class="inline-notice inline-notice--confirmation">
+    <span class="inline-notice__header">
+        <svg focusable="false" class="icon icon--confirmation-filled" height="16" width="16" role="img" aria-label="Confirmation">
+            <use xlink:href="#icon-confirmation-filled"></use>
+        </svg>
+    </span>
+    <span class="inline-notice__main">
+        <p>Notice Copy</p>
+    </span>
+</div>
 ```
 
 ## [Input Dialog](https://ebay.gitbooks.io/mindpatterns/content/disclosure/input-dialog.html)
