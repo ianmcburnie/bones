@@ -29,6 +29,7 @@
 1. [Page Notice](#user-content-page-notice)
 1. [Pagination](#user-content-pagination)
 1. [Radio](#user-content-radio)
+1. [Select](#user-content-select)
 1. [Switch](#user-content-switch)
 1. [Tabs](#user-content-tabs)
 1. [Toast Dialog](#user-content-toast-dialog)
@@ -794,6 +795,23 @@ Foreground SVG can be used as a facade over the real radio.
 ```
 
 The hidden property ensures that the SVG icon is not visible alongside the native icon when the page is in a non-CSS state. This hidden property should be overriden by CSS.
+
+## [Select](https://ebay.gitbooks.io/mindpatterns/content/input/select.html)
+
+A native HTML select is 100% accessible by default. The "button" can be styled with CSS; the "dropdown" not so much.
+
+```html
+<span class="select">
+    <select name="options">
+        <option value="item1">Option 1</option>
+        <option value="item2">Option 2</option>
+        <option value="item3">Option 3</option>
+    </select>
+    <svg class="icon icon--dropdown" focusable="false" height="8" width="8" aria-hidden="true">
+        <use xlink:href="#icon-dropdown"></use>
+    </svg>
+</span>
+```
 
 ## [Switch](https://ebay.gitbooks.io/mindpatterns/content/input/switch.html)
 
