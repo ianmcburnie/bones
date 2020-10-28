@@ -17,6 +17,7 @@
 1. [Fake Tabs](#user-content-fake-tabs)
 1. [Flyout](#user-content-flyout)
 1. [Fullscreen Dialog](#user-content-fullscreen-dialog)
+1. [Icon Button](#user-content-icon-button)
 1. [Infotip](#user-content-infotip)
 1. [Inline Notice](#user-content-inline-notice)
 1. [Input Dialog](#user-content-input-dialog)
@@ -28,6 +29,7 @@
 1. [Menu Button](#user-content-menu-button)
 1. [Page Notice](#user-content-page-notice)
 1. [Pagination](#user-content-pagination)
+1. [Panel Dialog](#user-content-panel-dialog)
 1. [Radio](#user-content-radio)
 1. [Select](#user-content-select)
 1. [Switch](#user-content-switch)
@@ -419,6 +421,28 @@ Try to bucket the main page content in an element that is *not* an ancestor of t
 
 Note that Menu Button, Listbox Button, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern and rules.
 
+## [Icon Button](https://ebay.gitbooks.io/mindpatterns/content/input/icon-button.html)
+
+Using a hamburger menu as an example, for button behaviour:
+
+```html
+<button class="icon-btn" type="button" aria-label="Menu">
+    <svg class="icon icon--menu" focusable="false" width="16" height="16" aria-hidden="true">
+        <use xlink:href="icons.svg#icon-menu"></use>
+    </svg>
+</button>
+```
+
+For link behaviour:
+
+```html
+<a class="icon-link" href="http://www.ebay.com" aria-label="Menu">
+    <svg class="icon icon--menu" focusable="false" width="16" height="16" aria-hidden="true">
+        <use xlink:href="icons.svg#icon-menu"></use>
+    </svg>
+</a>
+```
+
 ## [Infotip](https://ebay.gitbooks.io/mindpatterns/content/disclosure/infotip.html)
 
 An infotip is expanded and visible on click event of host element.
@@ -751,6 +775,34 @@ Pagination is an important means of site navigation. A labelled landmark element
 ```
 
 **NOTE:** The ARIA live-region need only be enabled (set from "off" to "polite") if client-side pagination is implemented.
+
+## [Panel Dialog](https://ebay.gitbooks.io/mindpatterns/content/disclosure/panel-dialog.html)
+
+A modal dialog that sits flush to one side of the screen.
+
+Try to bucket the main page content in an element that is *not* an ancestor of the dialog. This will vastly simplify the amount of DOM manipulation when implementing modal behaviour.
+
+```html
+<div aria-labelledby="dialog-title" aria-modal="true" class="panel-dialog" hidden id="dialog-left-panel-0" role="dialog">
+    <div class="panel-dialog__window">
+        <div class="panel-dialog__header">
+            <h2 id="dialog-title" class="panel-dialog__title">Panel Dialog Title</h2>
+            <button aria-label="Close dialog" class="icon-btn panel-dialog__close" type="button">
+                <svg aria-hidden="true" class="icon icon--close" focusable="false" height="16" width="16">
+                    <use xlink:href="#icon-close"></use>
+                </svg>
+            </button>
+        </div>
+        <div class="panel-dialog__main">
+            <!-- content -->
+        </div>
+        <!-- optional -->
+        <div class="panel-dialog__footer">
+            <!-- content -->
+        </div>
+    </div>
+</div>
+```
 
 ## [Radio](https://ebay.gitbooks.io/mindpatterns/content/input/radio.html)
 
