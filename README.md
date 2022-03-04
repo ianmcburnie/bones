@@ -141,28 +141,30 @@ While CSS can be used to generate a separator image or glyph using the `::after`
 
 ## [Carousel](https://ebay.gitbooks.io/mindpatterns/content/disclosure/carousel.html)
 
-A carousel is a list of items. These items be contain anything - text, images, links, tiles, cards, etc. - but each item is responsible for managing its own markup and accessibility (e.g. tab-order, semantics, etc).
+A carousel is a list of items. These items may contain anything - text, images, links, tiles, cards, etc. - but each item is responsible for managing its own markup and accessibility (e.g. tab-order, semantics, etc).
 
 ```html
-<div aria-labelledby="carousel-title" aria-roledescription="carousel" class="carousel" role="group">
-    <span aria-live="polite" role="status">
-        <h2 class="carousel__title" id="carousel-title">
-            <span>Title</span>
-            <span class="clipped"> - slide n of n</span>
-        </h2>
-    </span>
-    <button aria-disabled="false" aria-label="Previous slide - Title"></button>
+<div class="carousel" role="group" aria-labelledby="carousel-title" aria-roledescription="carousel">
+    <button aria-label="Previous slide">
+        <!-- SVG icon -->
+    </button>
     <ul>
         <!-- onscreen items -->
         <li aria-hidden="false">...</li>
         <li aria-hidden="false">...</li>
         <li aria-hidden="false">...</li>
-        ...
+        <li aria-hidden="false">...</li>
+        <li aria-hidden="false">...</li>
         <!-- offscreen items -->
         <li aria-hidden="true">...</li>
         <li aria-hidden="true">...</li>
+        <li aria-hidden="true">...</li>
+        <li aria-hidden="true">...</li>
+        <li aria-hidden="true">...</li>
     </ul>
-    <button aria-disabled="false" aria-label="Next slide - Title"></button>
+    <button aria-label="Next slide">
+        <!-- SVG icon -->
+    </button>
 </div>
 ```
 
