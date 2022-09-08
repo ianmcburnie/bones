@@ -227,12 +227,14 @@ A textbox plus listbox combination.
     <span class="combobox__control">
         <input name="combobox-1-name" type="text" role="combobox" autocomplete="off" aria-expanded="false" aria-owns="combobox-1-listbox" />
     </span>
-    <ul id="combobox-1-listbox" role="listbox">
-        <li role="option" id="combobox-1-option-1">Option 1</li>
-        <li role="option" id="combobox-1-option-2">Option 2</li>
-        <li role="option" id="combobox-1-option-3">Option 3</li>
-        ...
-    </ul>
+    <div class="combobox__overlay">
+        <ul id="combobox-1-listbox" role="listbox">
+            <li role="option" id="combobox-1-option-1">Option 1</li>
+            <li role="option" id="combobox-1-option-2">Option 2</li>
+            <li role="option" id="combobox-1-option-3">Option 3</li>
+            ...
+        </ul>
+    </div>
 </div>
 ```
 
@@ -243,19 +245,18 @@ A textbox plus listbox combination.
     <span class="combobox__control">
         <input name="combobox-1-name" type="text" role="combobox" autocomplete="off" aria-expanded="true" aria-owns="combobox-1-listbox" />
     </span>
-    <ul id="combobox-1-listbox" role="listbox">
-        <li role="option" id="combobox-1-option-1">Option 1</li>
-        <li role="option" id="combobox-1-option-2">Option 2</li>
-        <li role="option" id="combobox-1-option-3">Option 3</li>
-        ...
-    </ul>
+    <div class="combobox__overlay">
+        <ul id="combobox-1-listbox" role="listbox">
+            <li role="option" id="combobox-1-option-1">Option 1</li>
+            <li role="option" id="combobox-1-option-2">Option 2</li>
+            <li role="option" id="combobox-1-option-3">Option 3</li>
+            ...
+        </ul>
+    </div>
 </div>
 ```
 
 JavaScript must update the `aria-activedescendant` attribute on the textbox to reflect the state of the currently active descendant listbox item.
-
-Optionally, a separate button can be added to manually expand and collapse the combobox. Typically though, the combobox will automatically expand and collapse on focus and blur, meaning any such button element is redundant.
-
 
 ## [Confirm Dialog](https://ebay.gitbooks.io/mindpatterns/content/messaging/confirm-dialog.html)
 
@@ -287,7 +288,7 @@ Try to bucket the main page content in an element that is *not* an ancestor of t
 
 ## [Details](https://ebay.gitbooks.io/mindpatterns/content/disclosure/details.html)
 
-Uses the native HTML `<details>` tag. IE and Edge browsers require a CSS and JavaScript polyfill.
+Uses the native HTML `<details>` tag.
 
 ```html
 <details class="details">
