@@ -397,6 +397,8 @@ If the overlay element cannot be immediately adjacent to the button element, the
 
 A fullscreen dialog takes over the entire screen.
 
+NOTE: Fullscreen dialog is an adaptive pattern with its roots in mobile app architecture. For a fully responsive web pattern we recommend lightbox dialog instead. 
+
 Try to bucket the main page content in an element that is *not* an ancestor of the dialog. This will vastly simplify the amount of DOM manipulation when implementing modal behaviour.
 
 ```html
