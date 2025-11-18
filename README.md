@@ -16,7 +16,6 @@
 1. [Fake Menu](#user-content-fake-menu)
 1. [Fake Tabs](#user-content-fake-tabs)
 1. [Flyout](#user-content-flyout)
-1. [Fullscreen Dialog](#user-content-fullscreen-dialog)
 1. [Icon Button](#user-content-icon-button)
 1. [Infotip](#user-content-infotip)
 1. [Inline Notice](#user-content-inline-notice)
@@ -393,37 +392,6 @@ If the overlay element cannot be immediately adjacent to the button element, the
 </div>
 ```
 
-## [Fullscreen Dialog](https://ebay.gitbooks.io/mindpatterns/content/disclosure/fullscreen-dialog.html)
-
-A fullscreen dialog takes over the entire screen.
-
-NOTE: Fullscreen dialog is an adaptive pattern with its roots in mobile app architecture. For a fully responsive web pattern we recommend lightbox dialog instead. 
-
-Try to bucket the main page content in an element that is *not* an ancestor of the dialog. This will vastly simplify the amount of DOM manipulation when implementing modal behaviour.
-
-```html
-<body>
-    <div>
-        <!-- main page content -->
-    </div>
-    <div class="fullscreen-dialog" role="dialog" aria-labelledby="dialog-title" aria-modal="true" hidden>
-        <div class="fullscreen-dialog__window">
-            <div id="dialog-title" class="fullscreen-dialog__header">
-                <button aria-label="Close dialog" class="fullscreen-dialog__close" type="button">
-                    <svg aria-hidden="true" focusable="false" height="16" width="16">
-                        <use xlink:href="#icon-close"></use>
-                    </svg>
-                </button>
-                <h2 class="large-text-1 bold-text">Fullscreen Dialog Title</h2>
-            </div>
-            <div class="fullscreen-dialog__main">
-                <!-- dialog copy -->
-            </div>
-        </div>
-    </div>
-</body>
-```
-
 Note that Menu Button, Listbox Button, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern and rules.
 
 ## [Icon Button](https://ebay.gitbooks.io/mindpatterns/content/input/icon-button.html)
@@ -465,10 +433,10 @@ Infotip is a specific type of [flyout](#user-content-flyout). The markup becomes
         <span class="infotip__pointer infotip__pointer--bottom-center"></span>
         <div class="infotip__mask">
             <div class="infotip__cell">
-                <span class="infotip__content">
+                <div class="infotip__content">
                     <h3 class="infotip__heading">Infotip Title</h3>
-                    <p>Infotip Copy</p>
-                </span>
+                    <!-- content -->
+                </div>
                 <button class="infotip__close" type="button" aria-label="Dismiss infotip">
                     <svg focusable="false" height="24" width="24" aria-hidden="true">
                         <use xlink:href="#icon-close"></use>
@@ -927,30 +895,34 @@ The following version of the switch uses a checkbox under the hood. It should be
 
 Toast dialog is non-modal and should not steal or trap keyboard focus.
 
-Try to position the dialog immediately after the currently focussed element (i.e. the `document.activeElement`).
+Try to position the dialog immediately after the currently focussed element (i.e. the `document.activeElement`) for optimal reading and tabbing order.
+
+The live-region container should be non-hidden at server render time. Toggling the `hidden` property on the dialog will trigger the live region change.
 
 ```html
-<aside aria-label="Notification" aria-live="polite" aria-modal="false" class="toast-dialog" hidden role="dialog">
-    <div class="toast-dialog__window">
-        <div class="toast-dialog__header">
-            <h2 class="toast-dialog__title">
-                <!-- heading -->
-            </h2>
-            <button class="toast-dialog__close" type="button" aria-label="Close notification dialog">
-                <svg focusable="false" height="24" width="24" aria-hidden="true">
-                    <use xlink:href="#icon-close"></use>
-                </svg>
-            </button>
+<div role="status">
+    <aside aria-label="Notification" aria-modal="false" class="toast-dialog" role="dialog" hidden>
+        <div class="toast-dialog__window">
+            <div class="toast-dialog__header">
+                <h2 class="toast-dialog__title">
+                    <!-- heading -->
+                </h2>
+                <button class="toast-dialog__close" type="button" aria-label="Close notification dialog">
+                    <svg focusable="false" height="24" width="24" aria-hidden="true">
+                        <use xlink:href="#icon-close"></use>
+                    </svg>
+                </button>
+            </div>
+            <div class="toast-dialog__main">
+                <!-- content -->
+            </div>
+            <!-- optional footer with cta -->
+            <div class="toast-dialog__footer">
+                <a accesskey="a" class="toast-dialog__cta" href="http://www.ebay.com">Action</a>
+            </div>
         </div>
-        <div class="toast-dialog__main">
-            <!-- content -->
-        </div>
-        <!-- optional footer with cta -->
-        <div class="toast-dialog__footer">
-            <a accesskey="a" class="toast-dialog__cta" href="http://www.ebay.com">Action</a>
-        </div>
-    </div>
-</aside>
+    </aside>
+</div>
 ```
 
 If using the optional footer with call-to-action link or button, the first letter of the CTA will define the `accesskey` property.
