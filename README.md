@@ -931,11 +931,9 @@ If using the optional footer with call-to-action link or button, the first lette
 
 A tooltip is expanded and visible on hover and focus of host element.
 
-Tooltip structure is almost identical to [flyout](#user-content-flyout) structure. The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
-
 ```html
 <span class="tooltip">
-    <button class="tooltip__host" aria-describedby="tooltip-0" aria-expanded="false" aria-label="Settings">
+    <button class="tooltip__host" aria-describedby="tooltip-0" aria-label="Settings">
         <svg focusable="false" height="16" width="16" aria-hidden="true">
             <use xlink:href="#icon-settings"></use>
         </svg>
@@ -952,6 +950,30 @@ Tooltip structure is almost identical to [flyout](#user-content-flyout) structur
     </div>
 </span>
 ```
+
+Tooltip structure is almost identical to [flyout](#user-content-flyout) structure. The main difference is that a modifier class must be used instead of aria-expanded attribute (because aria-expanded is reserved for true popovers).
+
+```html
+<span class="tooltip tooltip--expanded">
+    <button class="tooltip__host" aria-describedby="tooltip-0" aria-label="Settings">
+        <svg focusable="false" height="16" width="16" aria-hidden="true">
+            <use xlink:href="#icon-settings"></use>
+        </svg>
+    </button>
+    <div class="tooltip__overlay" id="tooltip-0" role="tooltip">
+        <span class="tooltip__pointer"></span>
+        <div class="tooltip__mask">
+            <div class="tooltip__cell">
+                <div class="tooltip__content">
+                    <!-- content -->
+                </div>
+            </div>
+        </div>
+    </div>
+</span>
+```
+
+The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
 
 ## [Tourtip](https://ebay.gitbooks.io/mindpatterns/content/messaging/tourtip.html)
 
