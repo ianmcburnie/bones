@@ -15,7 +15,6 @@
 1. [Details](#user-content-details)
 1. [Fake Menu](#user-content-fake-menu)
 1. [Fake Tabs](#user-content-fake-tabs)
-1. [Flyout](#user-content-flyout)
 1. [Icon Button](#user-content-icon-button)
 1. [Infotip](#user-content-infotip)
 1. [Inline Notice](#user-content-inline-notice)
@@ -29,6 +28,7 @@
 1. [Page Notice](#user-content-page-notice)
 1. [Pagination](#user-content-pagination)
 1. [Panel Dialog](#user-content-panel-dialog)
+1. [Popover](#user-content-popover)
 1. [Radio](#user-content-radio)
 1. [Select](#user-content-select)
 1. [Switch](#user-content-switch)
@@ -364,36 +364,6 @@ Fake tabs are simply a list of links styled to look like tabs.
 </nav>
 ```
 
-## [Flyout](https://ebay.gitbooks.io/mindpatterns/content/disclosure/flyout.html)
-
-A flyout might open on click, focus or hover, on any kind of host button, input or link.
-
-For correct reading order, and to minimize accessibility defects, the overlay element and its content should always immediately follow the host element in the DOM.
-
-```html
-<div class="flyout">
-    <button class="flyout__host" aria-expanded="false">Host Button</button>
-    <div class="flyout__overlay">
-        <!-- overlay content -->
-    </div>
-</div>
-```
-
-If the overlay element cannot be immediately adjacent to the button element, then an additional class will be required for styling purposes:
-
-```html
-<div class="flyout flyout--expanded">
-    <div>
-        <button class="flyout__host" aria-expanded="true">Host Button</button>
-    </div>
-    <div class="flyout__overlay">
-        <!-- overlay content -->
-    </div>
-</div>
-```
-
-Note that Menu Button, Listbox Button, Tooltip & Combobox are special instances of flyouts, but follow the same general pattern and rules.
-
 ## [Icon Button](https://ebay.gitbooks.io/mindpatterns/content/input/icon-button.html)
 
 Using a hamburger menu as an example, for button behaviour:
@@ -420,7 +390,7 @@ For link behaviour:
 
 An infotip is expanded and visible on click event of host element.
 
-Infotip is a specific type of [flyout](#user-content-flyout). The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
+Infotip is a specific type of [popover](#user-content-popover). The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
 
 ```html
 <span class="infotip">
@@ -657,7 +627,7 @@ A menu contains one or more groups of commands (`menuitem`, `menuitemradio`, or 
 
 ## [Menu Button](https://ebay.gitbooks.io/mindpatterns/content/input/menu-button.html)
 
-A menu button opens a [menu](#user-content-menu) in a [flyout](#user-content-flyout).
+A menu button opens a [menu](#user-content-menu) in a [popover](#user-content-popover).
 
 ```html
 <div class="menu-button">
@@ -776,6 +746,36 @@ Try to bucket the main page content in an element that is *not* an ancestor of t
     </div>
 </div>
 ```
+
+## [Popover](https://ebay.gitbooks.io/mindpatterns/content/disclosure/popover.html)
+
+A popover might open on click, focus or hover, on any kind of host button, input or link.
+
+For correct reading order, and to minimize accessibility defects, the overlay element and its content should always immediately follow the host element in the DOM.
+
+```html
+<div class="popover">
+    <button class="popover__host" aria-expanded="false">Host Button</button>
+    <div class="popover__overlay">
+        <!-- overlay content -->
+    </div>
+</div>
+```
+
+If the overlay element cannot be immediately adjacent to the button element, then an additional class will be required for styling purposes:
+
+```html
+<div class="popover popover--expanded">
+    <div>
+        <button class="popover__host" aria-expanded="true">Host Button</button>
+    </div>
+    <div class="popover__overlay">
+        <!-- overlay content -->
+    </div>
+</div>
+```
+
+Note that Menu Button, Listbox Button, Tooltip & Combobox are special instances of popovers, but follow the same general pattern and rules.
 
 ## [Radio](https://ebay.gitbooks.io/mindpatterns/content/input/radio.html)
 
@@ -951,7 +951,7 @@ A tooltip is expanded and visible on hover and focus of host element.
 </span>
 ```
 
-Tooltip structure is almost identical to [flyout](#user-content-flyout) structure. The main difference is that a modifier class must be used instead of aria-expanded attribute (because aria-expanded is reserved for true popovers).
+Tooltip structure is almost identical to [popover](#user-content-popover) structure. The main difference is that a modifier class must be used instead of aria-expanded attribute (because aria-expanded is reserved for true popovers).
 
 ```html
 <span class="tooltip tooltip--expanded">
@@ -979,7 +979,7 @@ The markup becomes a little more convoluted due to the presence of a visual "poi
 
 A tourtip is expanded and visible on page load.
 
-Tourtip structure is almost identical to [flyout](#user-content-flyout) structure. The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
+Tourtip structure is almost identical to [popover](#user-content-popover) structure. The markup becomes a little more convoluted due to the presence of a visual "pointer". This additional markup allows enough hooks for styling & masking with CSS.
 
 ```html
 <div class="tourtip tourtip--expanded">
